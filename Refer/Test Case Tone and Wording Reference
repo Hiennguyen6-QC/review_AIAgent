@@ -1,0 +1,1583 @@
+# #1 Danh_Sách_hồ_sơ_trực_tuyến
+
+| Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn | nan |
+|:---|:---|:---|:---|
+| CHỨC NĂNG 1: INDEX | | | |
+| Tiên điều kiện | 1. User được phân quyền khai báo hồ sơ đăng nhập vào hệ thống (Khách hàng khai báo trực tuyến) | | |
+| | 2. Chọn menu Khai báo, nộp hồ sơ trực tuyến | | |
+| | 3. Chi hiển thị danh sách hồ sơ của user đăng nhập hệ thống đã tạo | | |
+| Giao diện index | | | |
+| Giao diện chung | | | |
+| Kiểm tra màn hình ở trạng thái mặc định | 1. Kiểm tra title của màn hình | 1. Hiển thị title màn hình "" Danh sách hồ sơ trực tuyến"" | |
+| | 2. Kiểm tra focus chuột | 2. Highlight vào menu | |
+| | 3. Kiểm tra giá trị mặc định của các trường | 3. Set focus chuột vào textbox đầu tiên có thể edit được | |
+| | 4. Kiểm tra header, footer | 4. Các trường hiển thị mặc định = "" | |
+| | | 5. Các  đối tượng được hiển thị đầy đủ đúng theo design | |
+| Kiểm tra tổng thể giao diện màn hình | 1. Kiểm tra về bố cục, font chữ, chính tả, màu chữ | 1. Các label, textbox, combo có độ dài, rộng và khoảng cách bằng nhau, không xô lệch. Chung một style | |
+| | | 2. Các label sử dụng cùng 1 loại font, cỡ chữ, căn lề trái | |
+| | | 3. Kiểm tra tất cả lỗi về chính tả, cấu trúc câu, ngữ pháp trên màn hình | |
+| | | 4. Form được bố trí đúng design | |
+| Kiểm tra thứ tự di chuyển con trỏ chuột trên màn hình khi nhấn Tab | 1. Nhấn Tab liên tục | Con trỏ di chuyển lần lượt theo thứ tự: Từ trên xuống dưới, từ trái qua phải | |
+| Kiểm tra thứ tự di chuyển con trỏ chuột ngược lại trên màn hình khi nhấn Shift Tab | 1. Nhấn Shift Tab liên tục | Con trỏ di chuyển lần lượt theo thứ tự ngược lại: Từ phải qua trái, từ dưới lên trên | |
+| Kiểm tra thực hiện chức năng chính của màn hình khi nhấn Enter | 1. Nhấn phím Enter | 1. Nếu chuột không focus vào button nào thì sẽ thực hiện chức năng chính của button ""Tìm kiếm"" | |
+| | | 2. Nếu đang focus vào 1 button thì sẽ thực hiện chức năng của button | |
+| Kiểm tra trong trường hợp trường hợp tương tác cần hơn 1s để xử lý | Kiểm tra trường hợp tương tác hơn 1s để xử lý | 1. Bất cứ tương tác nào cần hơn 1s để xử lý, thì phải sử dụng Progress Indicator. | |
+| | | 2.Tránh sử dụng các Progress Indicator dạng tĩnh. | |
+| Textbox Tìm kiếm | | | |
+| Kiểm tra textbox tìm kiếm | Tiền điều kiện: Nhập các tiêu chí tìm kiếm thành công | 1. Hiển thị danh sách các tiêu chí đã nhập tìm kiếm trong bảng | |
+| | 1. Quan sát textbox Tìm kiếm | 2. Dữ liệu nhập vào textbox sau khi tìm kiếm không bị mất đi | |
+| | | 3. Các  đối tượng được hiển thị đầy đủ đúng theo design | |
+| Textbox Tìm kiếm theo Mã hồ sơ trên hệ thống | | | |
+| Tìm kiếm mặc định | 1. Để trống trường Mã hồ sơ | 1. Hiển thị danh sách Hồ sơ mà khách hàng đã từng tạo và được lưu trên hệ thống thỏa mãn điều kiện tìm kiếm | |
+| | 2. Click button Tìm kiếm | | |
+| Kiểm tra tìm kiếm thành công | 1. Nhập Textbox = Các ký tự Space | 1. Hiển thị toàn bộ danh sách Hồ sơ mà khách hàng đã từng tạo và được lưu trên hệ thống | hiển thị không có dữ liệu |
+| | 2. Các trường khác đều để trống | | |
+| | 3. Click button Tìm kiếm | | |
+| | 1. Nhập Textbox là một chuỗi có ký tự Space ở đầu và cuối chuỗi | 1. Hiển thị các kết quả tìm kiếm thỏa mãn điều kiện Textbox nhập vào đã được Trim Space ở đầu và cuối chuỗi | hiển thị không có dữ liệu |
+| | 2. Các trường khác đều để trống | | |
+| | 3. Click button Tìm kiếm | | |
+| | 1. Nhập textbox là một phần của xâu đã tồn tại | 1. Hiển thị các kết quả tìm kiếm với Textbox chứa xâu đã nhập không phân biệt chữ hoa, chữ thường | hiển thị không có dữ liệu |
+| | 2. Các trường khác đều để trống | | |
+| | 3. Click button Tìm kiếm | | |
+| | 1. Nhập textbox là các ký tự đặc biệt: !@#$^&*()_+=-,.<>?/\';:""|[]{} | 1. Hiển thị kết quả tìm kiếm thỏa mãn textbox chứa ký tự đã nhập | mã hồ sơ trên hệ thống được tạo theo định dang: Mã đơn vị cấp_mã đơn vị xin cấp_yyyymmdd_4 số thứ tự bắt đầu từ 1 |
+| | 2. Các trường khác đều để trống | | Hiển thị tìm kiếm không có dữ liệu |
+| | 3. Click button Tìm kiếm | | |
+| | 1. Nhập textbox là ký tự % | 1. Hiển thị kết quả tìm kiếm thỏa mãn textbox chứa ký tự đã nhập | hiển thị không có dữ liệu |
+| | 2. Các trường khác đều để trống | | |
+| | 3. Click button Tìm kiếm | | |
+| | 1. Nhập textbox là chữ tiếng việt có dấu. | 1. Hiển thị kết quả tìm kiếm thỏa mãn textbox chứa ký tự đã nhập | Mã hồ sơ trên hệ thống không chứ tiếng việt có dấu |
+| | 2. Các trường khác đều để trống | | Hiển thị không có dữ liệu |
+| | 3. Click button Tìm kiếm | | |
+| | 1. Nhập textbox là chuỗi đã tồn tại, Khác chữ Hoa , thường | 1. Hiển thị kết quả tìm kiếm thỏa mãn textbox chứa ký tự đã nhập | Hệ thống có phân biệt hoa thường |
+| | 2. Các trường khác đều để trống | 2. Không phân biệt chữ hoa, thường | |
+| | 3. Click button Tìm kiếm | | |
+| Tìm kiếm không ra kết quả | 1. Nhập tiêu chí tìm kiếm đúng định dạng nhưng không ra kết quả | 1. Hiển thị thông báo 'Không có dữ liệu' | |
+| | 2. Các trường khác đều để trống | | |
+| | 3. Click button Tìm kiếm | | |
+| Combobox Loại hồ sơ cấp phép_ApplicationDocument | | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | Giá trị mặc định = ""--Chọn--"" | |
+| Kiểm tra số lượng và sắp xếp các giá trị trong combobox | Kiểm tra giá trị trong combobox | 1. Load từ CSDL danh mục Loại hồ sơ cấp phép  (Link den bang ApplicationDocument) | |
+| | | 2. Giá trị trong combo được sắp xếp theo thứ tự alphabet | |
+| Kiểm tra hiển thị giá trị | Kích vào combobox để kiểm tra căn lề của các giá trị trong combobox | 1. Các giá trị trong combobox hiển thị dữ liệu là Tên loại hồ sơ | |
+| | | 2. Dữ liệu được căn lề trái | |
+| Kiểm tra giá trị combobox sau khi đã chọn từ danh sách | Chọn giá trị trong combo | 1. Chọn được 1 giá trị | |
+| | | 2. Giá trị được chọn view lên đúng | |
+| Combobox Trạng thái hồ sơ | | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | 1. Giá trị mặc định = ""--Chọn--"" | |
+| Kiểm tra số lượng và sắp xếp các giá trị trong combobox | Kiểm tra giá trị trong combobox | 1. Hiển thị các giá trị | hiển thị thiếu trạng thái hồ sơ: |
+| | | Trạng thái hồ sơ: | - Đã xong |
+| | | -        Đang khai hồ sơ. | - Từ chối |
+| | | -        Đang chờ tiếp nhận hồ sơ. | - Trả lại hồ sơ |
+| | | -        Đang giải quyết hồ sơ. | |
+| | | -        Đã giải quyết hồ sơ. | |
+| | | -        Hủy hồ sơ | |
+| | | -        Từ chối giải quyết hồ sơ | |
+| | | 2. Giá trị trong combo được sắp xếp theo thứ tự alphabet | |
+| Kiểm tra hiển thị giá trị | Kích vào combobox để kiểm tra căn lề của các giá trị trong combobox | 1. Dữ liệu được căn lề trái | |
+| Kiểm tra giá trị combobox sau khi đã chọn từ danh sách | Chọn giá trị trong combo | 1. Chọn được 1 giá trị | |
+| | | 2. Giá trị được chọn view lên đúng | |
+| Grid danh sách hồ sơ | | | |
+| Kiểm tra Grid | Tiền điều kiện: Chọn tab Chưa xử lý | 1. Màu nền của dòng đó thay đổi | |
+| | 1. Di chuyển con trỏ chuột vào một dòng | 2. Các đối tượng được hiển thị đầy đủ đúng theo design | |
+| | 2. Kiểm tra bố cục trong grid | 3. Phân trang không được che khuất row ở trang kế tiếp | |
+| | | 4. Hiển thị danh sách hồ sơ sắp xếp theo ngày tạo giảm dần | |
+| | Tiền điều kiện: Chọn tab Đã xử lý | 1. Màu nền của dòng đó thay đổi | |
+| | 1. Di chuyển con trỏ chuột vào một dòng | 2. Các đối tượng được hiển thị đầy đủ đúng theo design | |
+| | 2. Kiểm tra bố cục trong grid | 3. Phân trang không được che khuất row ở trang kế tiếp | |
+| | | 4. Hiển thị danh sách hồ sơ sắp xếp theo ngày tạo giảm dần | |
+| Kiểm tra hiển thị thông tin bị ẩn trong một ô | 1. Chọn một ô có thông tin quá dài bị ẩn | 1. Thông tin đầy đủ trong ô đó được view lên đầy đủ, chính xác | không hiển thị dạng ẩn ô khi thông tin dài |
+| | 2. Di chuột vào ô đó | 2. Bố cụ dễ nhìn. Không có hiệu ứng | |
+| | 3. Kiểm tra hiển thị tooltip | 3. Di chuột sang vị trí khác thì thông tin ô đó bị ẩn đi như cũ | |
+| Kiểm tra hiển thị dữ liệu trong bảng | Số thứ tự | Hiển thị số thứ tự bắt đầu từ 1 | |
+| | Hành động | 1. Hiển thị các icon hành động : Sửa, Xóa, xem chi tiết hồ sơ. | |
+| | | 2. Tooltip hiện lên tên của từng icon khi dê chuột vào icon đó. | |
+| | Mã hồ sơ trên hệ hống | 1. Hiển thị mã hồ sơ trên hệ thống_SystemCode | |
+| | Mã hồ sơ trên giấy | 1. Hiển thị mã hồ sơ trên hệ thống_PaperCode | |
+| | Người nộp | 1. Hiển thị người gửi hồ sơ_CreaterID | không hiển thị trong grid |
+| | Loại hồ sơ cấp phép | 1. Hiển thị loại hồ sơ cấp phép_ApplicanDocument | |
+| | Loại giấy phép | 1. Hiển thị loại giấy phép xin câp_CardType | không hiển thị trong grid |
+| | Trạng thái hồ sơ | Hiển thị Trạng thái hồ sơ với các giá trị có thể sau : | Một số trạng thái Từ chối tiếp nhận ..v..v. không được định nghĩa. đang hiển thị = ""undefined"" |
+| | | -        Đang khai hồ sơ. | |
+| | | -        Đang chờ tiếp nhận hồ sơ. | |
+| | | -        Đang giải quyết hồ sơ. | |
+| | | -        Đã giải quyết hồ sơ. | |
+| | | -        Hủy hồ sơ | |
+| | | -        Từ chối giải quyết hồ sơ | |
+| | | Tùy vào hồ sơ đang ở các giai đoạn | |
+| | Trạng thái xử lý hồ sơ | Hiển thị Trạng thái xử lý hồ sơ với các giá trị có thể sau : | Một số trạng thái Đang chờ phê duyệt ..v..v .... không được định nghĩa. đang hiển thị = ""undefined"" |
+| | | -        Chưa xử lý. | |
+| | | -        Đang xử lý. | |
+| | | -        Đang chờ bổ sung. | |
+| | | -        Đã xử lý. | |
+| | | -        Đã trả kết quả. | |
+| | | -        Không lấy kết quả. | |
+| | | -        Gửi chờ phê duyệt | |
+| | | -        Kiểm tra hồ sơ. | |
+| | | -        Bổ xung hồ sơ | |
+| | | -        Yêu cầu phê duyệt, cấp phát thẻ, giấy phép | |
+| | | -        Thẩm định hồ sơ | |
+| | | -        Đã phê duyệt | |
+| | | -        Yêu cầu phê duyệt từ chối cấp thẻ, giấy phép | |
+| | | Tùy vào hồ sơ đang ở các giai đoạn | |
+| | Thời điểm tạo hồ sơ | Hiển thị thời điểm lưu hồ sơ thành công. | |
+| | Thời điểm nộp hồ sơ | Hiển thị ngày gửi hồ sơ lên đơn vị tiếp nhận | |
+| | Số điện thoại | Hiển thị số điện thoại của đơn vị xin cấp phép | chưa có trường này trong grid |
+| Phân trang | | | |
+| Kiểm tra phân trang | 1. Kiểm tra hiển thị  trên một trang | 1. Hiển thị 10 bản ghi một trang | |
+| | | 2. Hiển thị số trang hiện tại/ tổng số trang có trong DB. | |
+| | | 3. Icon next trang không hiển thị chồng lên Grid | |
+| | | 4. Các button, label có độ dài, rộng và khoảng cách bằng nhau, không xô lệch, chung một style với các màn hình khác. | |
+| | 1. Click next sang trang bất kỳ | 1. Mặc định hiển thị trang đầu tiên. | |
+| | 2. Click chọn menu | | |
+| | 1. Click button next tới trang cuối cùng | 1. Không hiển thị các dòng trống trong Grid | |
+| | | 2. Ẩn button next. Không next tới trang nào khác | |
+| | 1. Click button back tới trang đầu tiên | 1. Không hiển thị các dòng trống trong Grid | |
+| | | 2. Ẩn button back. Không quay lại trang nào khác | |
+| Chức năng | | | |
+| Button Tìm Kiếm | | | |
+| Tìm kiếm mặc định | 1. Nhấn Enter | 1. Hiển thị toàn bộ danh sách Hồ sơ mà khách hàng đã từng tạo và được lưu trên hệ thống | đăng xuất, vào màn hình thì thực hiện thành công, |
+| | 2. Không nhập tiêu chí tìm kiếm | | nhưng khi sang màn hình khác(hoặc nhấn ctrl f5), vào lại thì không thực hiện tìm kiếm |
+| Tìm kiếm không ra kết quả | 1. Nhập tiêu chí tìm kiếm đúng định dạng nhưng không ra kết quả | 1. Hiển thị thông báo 'Không có dữ liệu' | không hiển thị thông báo |
+| | 2. Nhấn Enter | | |
+| | 1. Nhập tiêu chí tìm kiếm đúng định dạng nhưng không thỏa mãn tìm kiếm ""And"" | 1. Hiển thị thông báo 'Không có dữ liệu' | |
+| | 2. Nhấn Enter | | |
+| CHỨC NĂNG 2: THÊM MỚI HỒ SƠ | | | |
+| Validate | | | |
+| Kiểm tra thông tin validate của Màn hình Khai bao, nộp hồ sơ giấy phép ngắn hạn trực tuyến | Chức năng khai báo hồ sơ được triển khai chi tiết trong màn hình ""Khai báo, nộp hồ sơ giấy phép ngắn hạn trực tuyến | Khai báo, nộp hồ sơ giấy phép ngắn hạn trực tuyến | |
+| Kiểm tra thông tin validate của Màn hình Khai bao, nộp hồ sơ giấy phép dài hạn trực tuyến | Chức năng khai báo hồ sơ được triển khai chi tiết trong màn hình ""Khai báo, nộp hồ sơ giấy phép dài hạn trực tuyến | Khai báo, nộp hồ sơ giấy phép dài hạn trực tuyến | |
+| Kiểm tra thông tin validate của Màn hình Khai bao, nộp hồ sơ thẻ ngắn hạn trực tuyến | Chức năng khai báo hồ sơ được triển khai chi tiết trong màn hình ""Khai báo, nộp hồ sơ thẻ ngắn hạn trực tuyến | Khai báo, nộp hồ sơ thẻ ngắn hạn trực tuyến | |
+| Kiểm tra thông tin validate của Màn hình Khai bao, nộp hồ sơ thẻ dài hạn trực tuyến | Chức năng khai báo hồ sơ được triển khai chi tiết trong màn hình ""Khai báo, nộp hồ sơ thẻ dài hạn trực tuyến | Khai báo, nộp hồ sơ thẻ dài hạn trực tuyến | |
+| Chức năng | | | |
+| Button Lưu dữ liệu | | | |
+| Kiểm tra việc lưu hồ sơ vừa khai báo thành công | 1. Nhập các thông tin khai báo hồ sơ xin cấp giấy phép đúng định dạng | 1. Hiển thị mess thông báo lưu hồ sơ thành công | |
+| | 2. Click button Lưu | 2. Giữ nguyên màn hình sửa cho người dùng thực hiện sưa thông tin nếu cần | |
+| | | 3. Hiển thị thêm một bản ghi vừa thêm trong danh sách trong màn hình index | |
+| | | - Cột ngày gửi = trống; | |
+| | | 4. Thông tin vừa thêm được lưu đúng vào các cột tương ứng trong bảng. | |
+| | | 5. Thông tin chung được lưu đầy đủ vào các trường trong bảng ApplicantLicense | |
+| | | 6. Thông tin Đơn/Công văn đề nghị cấp giấy phép được lưu đầy đủ vào các trường trong bảng ApplicationDocumentary | |
+| | | 7. Thông tin phương tiện xin cấp giấy phép được bổ xung vào các bảng sau: | |
+| | | - Thông tin chi tiết từng loại phương tiện xin cấp giấy phép được lưu đầy đủ vào các trường trong bảng ApplicantVehicle | |
+| | | - Thông tin chi tiết về số lượng phương tiện và các thông tin chung cấp phát giấy phép cho phương tiện được lưu trong bảng VehicleRequest | |
+| | | - Thông tin khu vực hạn chế của từng phương tiện được lưu trong bảng VehicleRestrictArea | |
+| Kiểm tra việc lưu hồ sơ vừa khai báo thành công | 1. Nhập các thông tin khai báo hồ sơ xin cấp thẻ đúng định dạng | 1. Hiển thị mess thông báo lưu hồ sơ thành công | |
+| | 2. Click button Lưu | 2. Giữ nguyên màn hình sửa cho người dùng thực hiện sưa thông tin nếu cần | |
+| | | 3. Hiển thị thêm một bản ghi vừa thêm trong danh sách trong màn hình index | |
+| | | - Cột ngày gửi = trống; | |
+| | | 4. Thông tin vừa thêm được lưu đúng vào các cột tương ứng trong bảng. | |
+| | | 5. Thông tin chung được lưu đầy đủ vào các trường trong bảng ApplicantDoc | Test thẻ ngắn hạn trực tuyến |
+| | | 6. Thông tin Đơn/Công văn đề nghị cấp thẻ được lưu trong bảng Documentary | Test thẻ ngắn hạn trực tuyến |
+| | | 7. Thông tin nhân viên xin cấp thẻ được bổ xung vào các bảng sau: | Test thẻ ngắn hạn trực tuyến |
+| | | - Thông tin chi tiết nhân viên xin cấp thẻ được lưu trong bảng CustomerIssueRequest | chưa test giá trị trong DB |
+| | | - Thông tin về số lượng nhân viên và các thông tin chung cấp phát thẻ được lưu trong bảng CardRequest | |
+| | | - Thông tin khu vực hạn chế của từng nhân viên được lưu trong bảng CardRestrictArea | |
+| | | 8. Thông tin nhân viên xin cấp thẻ dài hạn được Cập nhật vào các bảng sau: | |
+| | | - Thông tin chi tiết nhân viên xin cấp thẻ được lưu trong bảng CustomerDeclaration | |
+| | | - Thông tin về số lượng nhân viên và các thông tin chung cấp phát thẻ được lưu trong bảng CardRequest | |
+| | | - Thông tin khu vực hạn chế của từng nhân viên được lưu trong bảng DeclarationRestrictArea | |
+| | | - Công việc trong khu vực hạn chế :DeclarationRestrictWork | |
+| | | - Lịch sử bản thân : DeclarationHistory | |
+| | | - kỷ luật : DeclarationDiscipline | |
+| | | - Tiền án, tiền sự :DeclarationViolation | |
+| Kiểm tra việc Thêm mới không thành công | 1. Nhập dữ liệu chứa ít nhất 1 thông tin không hợp lệ | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Click button Lưu | 2. Không lưu dữ liệu vừa nhập vào hệ thống | |
+| Kiểm tra lưu hồ sơ yêu cầu bổ xung hồ sơ | 1. Chỉnh sửa hồ sơ yêu cầu bổ xung hồ sơ (Trạng thái hồ sơ = 3:3) | - Thông tin cột [Status] = 3: Đang giải quyết | |
+| | 2. Click button lưu hồ sơ | - Thông tin cột ProcessingStatus = 3: Đang chờ bổ xung | |
+| Kiểm tra lưu hồ sơ bị trả lại từ màn hình tiếp nhận hồ sơ | 1. Chỉnh sửa hồ sơ bị trả lại (Trạng thái hồ sơ = 1:2) | - Thông tin cột [Status] = 1: Đang khai báo | |
+| | 2. Click button lưu hồ sơ | - Thông tin cột ProcessingStatus = 2: Đang xử lý | |
+| Button Gửi | | | |
+| Kiểm tra việc lưu hồ sơ vừa khai báo thành công | 1. Nhập các thông tin khai báo đúng định dạng | 1. Hiển thị mess thông báo gửi hồ sơ thành công | Không quay về màn hình index |
+| | 2. Click button Gửi | 2. Quay về màn hình quản lý danh sách các hồ sơ (index) | |
+| | | 3. Hiển thị thay đổi trong màn hình index: | |
+| | | - Hiển thị ngày gửi = thời điểm gửi hồ sơ thành công | |
+| | | - Trạng thái hồ sơ = Đang chờ xử lý hồ sơ | |
+| | | 4. Thông tin được lưu đúng vào các cột tương ứng trong bảng. | |
+| Kiểm tra việc lưu hồ sơ khai báo cấp giấy phép ngắn hạn thành công | 1. Nhập các thông tin khai báo giấy phép đúng định dạng | 5. Thông tin chung được lưu đầy đủ vào các trường trong bảng ApplicantLicense Giá trị cột IsDeleted = 0 | |
+| | 2. Click button Gửi | - Thông tin cột ApplyType = 1: Trực tuyến | |
+| | | - Thông tin cột LicenseType = Lấy theo cột TimeType trong bảng CardType (1: Dài hạn, 2: ngắn hạn) | |
+| | | - Thông tin cột [Status] = 2: Đang chờ tiếp nhận | |
+| | | - Thông tin cột ProcessingStatus = 1: Chưa xử lý | |
+| | | - Thông tin cột PaymentStatus = 1: Chưa nộp phí | |
+| | | - Thông tin cột CreatedTime = Thời điểm lưu hồ sơ thành công | |
+| | | - Thông tin cột ApplyTime = Thời điểm gửi hồ sơ thành công | |
+| Kiểm tra việc lưu hồ sơ khai báo cấp thẻ ngắn hạn thành công | 1. Nhập các thông tin khai báo thẻ đúng định dạng | 5. Thông tin chung được lưu đầy đủ vào các trường trong bảng ApplicantDoc nêu rõ các trường được lưu tương ứng | Test thẻ ngắn hạn trực tuyến |
+| | 2. Click button Gửi | - Thông tin cột ApplyType = 1: Trực tuyến | |
+| | | - Thông tin cột CardTimeType = Lấy theo cột TimeType trong bảng CardType (1: Dài hạn, 2: ngắn hạn) | |
+| | | - Thông tin cột [Status] = 2: Đang chờ tiếp nhận | |
+| | | - Thông tin cột ProcessingStatus = 1: Chưa xử lý | |
+| | | - Thông tin cột PaymentStatus = 1: Chưa nộp phí | |
+| | | - Thông tin cột CreatedTime = Thời điểm lưu hồ sơ thành công | |
+| | | - Thông tin cột ApplyTime = Thời điểm gửi hồ sơ thành công | |
+| Kiểm tra việc gửi hồ sơ không thành công | 1. Nhập dữ liệu chứa ít nhất 1 thông tin không hợp lệ | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Click button Gửi | 2. Không lưu dữ liệu vừa nhập vào hệ thống | |
+| | 1. Nhập dữ liệu Thiếu ít nhất 1 thông tin | 1. Hiển thị thông báo lỗi tương ứng | Test thẻ ngắn hạn trực tuyến |
+| | 2. Click button Gửi | 2. Không lưu dữ liệu vừa nhập vào hệ thống | |
+| Kiểm tra gửi hồ sơ yêu cầu bổ xung hồ sơ | 1. Chỉnh sửa hồ sơ yêu cầu bổ xung hồ sơ (Trạng thái hồ sơ = 3:3) | - Thông tin cột [Status] = 3: Đang giải quyết | |
+| | 2. Click button lưu hồ sơ | - Thông tin cột ProcessingStatus = 9: Bổ xung hồ sơ | |
+| Kiểm tra  gửi hồ sơ bị trả lại từ màn hình tiếp nhận hồ sơ | 1. Chỉnh sửa hồ sơ bị trả lại (Trạng thái hồ sơ = 1:2) | - Thông tin cột [Status] = 2: Đang chờ tiếp nhận | |
+| | 2. Click button lưu hồ sơ | - Thông tin cột ProcessingStatus = 2: Đang xử lý | |
+| Button Hủy bỏ | | | |
+| Kiểm tra hoạt động của button Hủy | 1. Nhập dữ liệu hợp lệ vào các trường | 1. Không Update dữ liệu vừa thêm vào hệ thống | |
+| | 2. Nhấn nút Hủy bỏ | 2. Quay về màn hình Quản lý hồ sơ (Index) | |
+| CHỨC NĂNG 3: SỬA HỒ SƠ | | | |
+| Tiền điều kiện | 1. User được phân quyền khai báo hồ sơ đăng nhập vào hệ thống (Khách hàng khai báo trực tuyến) | | |
+| | 2. Chọn menu Khai báo, nộp hồ sơ trực tuyến | | |
+| | 3. Chọn 1 hồ sơ cần chỉnh sửa, click button chỉnh sửa. | | |
+| | 4. Button chỉnh sửa chỉ hiển thị với hồ sơ có trạng thái hồ sơ = ""Đang nhập liệu"" ; ""Trả lại hồ sơ""; hoặc ""Đang giải quyết"" với trạng thái xử lý hồ sơ = ""Chờ bổ xung"" | | |
+| Giao diện | | | |
+| Giao diện chung | | | |
+| Kiểm tra thông tin validate của chỉnh sửa hồ sơ giấy phép ngắn hạn trực tuyến | Chức năng chỉnh sửa hồ sơ được triển khai chi tiết trong màn hình ""Chỉnh sửa hồ sơ giấy phép ngắn hạn trực tuyến | Chỉnh sửa hồ sơ giấy phép ngắn hạn trực tuyến | |
+| Kiểm tra thông tin validate của chỉnh sửa hồ sơ giấy phép dài hạn trực tuyến | Chức năng chỉnh sửa hồ sơ được triển khai chi tiết trong màn hình ""Chỉnh sửa hồ sơ giấy phép dài hạn trực tuyến | Chỉnh sửa hồ sơ giấy phép dài hạn trực tuyến | |
+| Kiểm tra thông tin validate của chỉnh sửa hồ sơ thẻ ngắn hạn trực tuyến | Chức năng chỉnh sửa hồ sơ được triển khai chi tiết trong màn hình ""Chỉnh sửa hồ sơ thẻ ngắn hạn trực tuyến | Chỉnh sửa hồ sơ thẻ ngắn hạn trực tuyến | |
+| Kiểm tra thông tin validate của chỉnh sửa hồ sơ thẻ dài hạn trực tuyến | Chức năng chỉnh sửa hồ sơ được triển khai chi tiết trong màn hình ""Chỉnh sửa hồ sơ thẻ dài hạn trực tuyến | Chỉnh sửa hồ sơ thẻ dài hạn trực tuyến | |
+| Chức năng | | | |
+| Button Cập nhật | | | |
+| Kiểm tra việc lưu hồ sơ cấp giấy phép vừa chỉnh sửa thành công | 1. Nhập các thông tin khai báo đúng định dạng | 1. Hiển thị mess thông báo lưu hồ sơ thành công | |
+| | 2. Click button Cập nhật | 2. Vẫn hiển thị màn hình chỉnh sửa | |
+| | | 3. Hiển thị thông tin vừa cập trong danh sách trong màn hình index | |
+| | | - Cột ngày gửi = giá trị cũ; | |
+| | | 4. Thông tin vừa thêm được lưu đúng vào các cột tương ứng trong bảng. | |
+| | | 5. Thông tin chung được lưu đầy đủ vào các trường trong bảng ApplicantLicense nêu rõ các trường được lưu tương ứng | |
+| | | 6. Cập nhật bản ghi vào bảng ApplicationDocumentary trong DB, | |
+| | | Thông tin Đơn/Công văn đề nghị cấp thẻ được lưu đầy đủ vào các trường trong bảng ApplicationDocumentary nêu rõ các trường được lưu tương ứng | |
+| | | 7. Thông tin phương tiện xin cấp giấy phép được cập nhật vào các bảng sau: | |
+| | | - Thông tin chi tiết từng loại phương tiện xin cấp giấy phép được lưu đầy đủ vào các trường trong bảng ApplicantVehicle nêu rõ các trường được lưu tương ứng | |
+| | | - Thông tin chi tiết về số lượng phương tiện và các thông tin chung cấp phát giấy phép cho phương tiện được lưu trong bảng VehicleRequest | |
+| | | - Thông tin khu vực hạn chế của từng phương tiện được lưu trong bảng VehicleRestrictArea | |
+| Kiểm tra việc lưu hồ sơ xin cấp thẻ vừa chỉnh sửa thành công | 1. Nhập các thông tin khai báo đúng định dạng | 5. Thông tin chung được lưu đầy đủ vào các trường trong bảng ApplicantDoc nêu rõ các trường được lưu tương ứng | |
+| | 2. Click button Cập nhật | | |
+| | | 6. Thông tin Đơn/Công văn đề nghị cấp thẻ được lưu trong bảng Documentary | |
+| | | 7. Thông tin nhân viên xin cấp thẻ ngắn hạn được Cập nhật vào các bảng sau: | |
+| | | - Thông tin chi tiết nhân viên xin cấp thẻ được lưu trong bảng CustomerIssueRequest | |
+| | | - Thông tin về số lượng nhân viên và các thông tin chung cấp phát thẻ được lưu trong bảng CardRequest | |
+| | | - Thông tin khu vực hạn chế của từng nhân viên được lưu trong bảng CardRestrictArea | |
+| | | 8. Thông tin nhân viên xin cấp thẻ dài hạn được Cập nhật vào các bảng sau: | |
+| | | - Thông tin chi tiết nhân viên xin cấp thẻ được lưu trong bảng CustomerDeclaration | |
+| | | - Thông tin về số lượng nhân viên và các thông tin chung cấp phát thẻ được lưu trong bảng CardRequest | |
+| | | - Thông tin khu vực hạn chế của từng nhân viên được lưu trong bảng DeclarationRestrictArea | |
+| | | - Công việc trong khu vực hạn chế :DeclarationRestrictWork | |
+| | | - Lịch sử bản thân : DeclarationHistory | |
+| | | - kỷ luật : DeclarationDiscipline | |
+| | | - Tiền án, tiền sự :DeclarationViolation | |
+| Kiểm tra việc cập nhật không thành công | 1. Nhập dữ liệu chứa ít nhất 1 thông tin không hợp lệ | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Click button Cập nhật | 2. Không lưu dữ liệu vừa nhập vào hệ thống | |
+| | 1. Chọn hồ sơ đã được gửi hoặc đang trong quá trình xử lý | Không hiển thị icon cập nhật đối với các hồ sơ đãng được gửi hoặc đang trong quá trình xử lý | |
+| | 2. Click button Cập nhật | | |
+| Kiểm tra cập nhật hồ sơ yêu cầu bổ xung hồ sơ | 1. Chỉnh sửa hồ sơ yêu cầu bổ xung hồ sơ (Trạng thái hồ sơ = 3:3) | - Thông tin cột [Status] = 3: Đang giải quyết | |
+| | 2. Click button lưu hồ sơ | - Thông tin cột ProcessingStatus = 3: Đang chờ bổ xung | |
+| Kiểm tra cập nhật hồ sơ bị trả lại từ màn hình tiếp nhận hồ sơ | 1. Chỉnh sửa hồ sơ bị trả lại (Trạng thái hồ sơ = 1:2) | - Thông tin cột [Status] = 1: Đang khai báo | |
+| | 2. Click button lưu hồ sơ | - Thông tin cột ProcessingStatus = 2: Đang xử lý | |
+| Button Gửi | | | |
+| Tiền điều kiện | chỉnh sửa hồ sơ bị trả lại: | | |
+| | - Hồ sơ có trạng thái 3:3 bổ xung hồ sơ | | |
+| | - Hồ sơ có trạng thái 1:2 từ chối tiếp nhận hồ sơ | | |
+| Kiểm tra việc gửi hồ sơ vừa khai báo thành công | Kiểm tra thay đổi trạng thái hồ sơ khi gửi lại hồ sơ Đang chờ bổ xung 3:3 | 3. Hiển thị thay đổi trong màn hình index: | |
+| | | - Thông tin cột [Status] = 3: Đang giải quyết | |
+| | | - Thông tin cột ProcessingStatus = 9: Bổ xung hồ sơ | |
+| | Kiểm tra thay đổi trạng thái hồ sơ khi gửi lại hồ sơ 1:2 | 3. Hiển thị thay đổi trong màn hình index: | |
+| | | - Thông tin cột [Status] = 2: Đang chờ tiếp nhận | |
+| | | - Thông tin cột ProcessingStatus = 2: Đang xử lý | |
+| Tiền điều kiện | Chỉnh sửa hồ sơ mới được khai báo | | |
+| Kiểm tra việc gửi hồ sơ vừa khai báo thành công | 1. Nhập các thông tin khai báo đúng định dạng | 1. Hiển thị mess thông báo gửi hồ sơ thành công | |
+| | 2. Click button Gửi | 2. Quay về màn hình quản lý danh sách các hồ sơ (index) | |
+| | | 3. Hiển thị thay đổi trong màn hình index: | |
+| | | - Hiển thị ngày gửi = thời điểm gửi hồ sơ thành công | |
+| | | - Trạng thái hồ sơ = Đang chờ xử lý hồ sơ | |
+| | | 4. Thông tin được lưu đúng vào các cột tương ứng trong bảng. | |
+| | | 5. Thêm 1 bản ghi vào bảng trong DB, | |
+| | | Thông tin chung được lưu đầy đủ vào các trường trong bảng ApplicantLicense nêu rõ các trường được lưu tương ứng Giá trị cột IsDeleted = 0 | |
+| | | - Thông tin cột ApplyType = 1: Trực tuyến | |
+| | | - Thông tin cột LicenseType = Lấy theo cột TimeType trong bảng CardType (1: Dài hạn, 2: ngắn hạn) | |
+| | | - Thông tin cột [Status] = 2: Đang chờ tiếp nhận | |
+| | | - Thông tin cột ProcessingStatus = 1: Chưa xử lý | |
+| | | - Thông tin cột PaymentStatus = 1: Chưa nộp phí | |
+| | | - Thông tin cột CreatedTime = Thời điểm lưu hồ sơ thành công | |
+| | | - Thông tin cột ApplyTime = Thời điểm gửi hồ sơ thành công | |
+| Kiểm tra việc gửi hồ sơ không thành công | 1. Nhập dữ liệu chứa ít nhất 1 thông tin không hợp lệ | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Click button Gửi | 2. Không lưu dữ liệu vừa nhập vào hệ thống | |
+| | 1. Nhập dữ liệu Thiếu ít nhất 1 thông tin | 1. Hiển thị thông báo lỗi tương ứng | Vẫn gửi được hồ sơ thiếu thông tin phương tiện, thông tin nhân viên |
+| | 2. Click button Gửi | 2. Không lưu dữ liệu vừa nhập vào hệ thống | |
+| | 1. Chọn hồ sơ đã được gửi hoặc đang trong quá trình xử lý | Không hiển thị icon cập nhật đối với các hồ sơ đã được gửi hoặc đang trong quá trình xử lý, không mở được màn hình cập nhật để có thể thực hiện chức năng gửi hồ sơ | |
+| | 2. Click button Cập nhật | | |
+| Button Hủy bỏ | | | |
+| Kiểm tra hoạt động của button Hủy | 1. Nhập dữ liệu hợp lệ vào các trường | 1. Không Update dữ liệu vừa thêm vào hệ thống | |
+| | 2. Nhấn nút Hủy bỏ | 2. Quay về màn hình Quản lý hồ sơ (Index) | |
+| CHỨC NĂNG 4: XÓA HỒ SƠ | | | |
+| Tiền điều kiện | 1. User được phân quyền khai báo hồ sơ đăng nhập vào hệ thống (Khách hàng khai báo trực tuyến) | | |
+| | 2. Chọn menu Khai báo, nộp hồ sơ trực tuyến | | |
+| | 3. Chọn 1 hồ sơ cần chỉnh xóa, click button xóa | | |
+| | 4. Button xóa chỉ hiển thị với hồ sơ có trạng thái hồ sơ = 1:1 | | |
+| Giao diện | | | |
+| Giao diện chung | | | |
+| Kiểm tra màn hình ở trạng thái mặc định | 1. Kiểm tra Title của màn hình | 1. Hiển thị Popup xác nhận xóa hồ sơ | |
+| | 2. Kiểm tra giá trị mặc định của các trường | 2. Các đối tượng được hiển thị đầy đủ đúng theo design | |
+| Kiểm tra tổng thể giao diện màn hình | 1. Kiểm tra về bố cục, font chữ, chính tả, màu chữ | 1. Các đối tượng có độ dài, rộng và khoảng cách bằng nhau, không xô lệch | |
+| | | 2. Các label sử dụng cùng 1 loại font, cỡ chữ, căn lề trái. chung 1 style | |
+| | | 3. Kiểm tra tất cả lỗi về chính tả, cấu trúc câu, ngữ pháp trên màn hình | |
+| | | 4. Form được bố trí đúng design | |
+| Chức năng | | | |
+| Button Đồng ý | | | |
+| Kiếm tra click button Đồng ý thành công trong popup | 1. Chọn hồ sơ bất kỳ | 1. Hiển thị mess thông báo Xóa thành công | 1. Xóa trắng thẻ ngắn hạn thành công |
+| | 2. Click button Đồng ý | 2. Hiển thị màn hình Quản lý hồ sơ | |
+| | | 3. Không hiển thị hồ sơ vừa xóa trong danh sách | |
+| | | 4. Xóa trắng bản ghi trong danh sách | |
+| Kiểm tra Click butotn xóa không thành công | 1. Chon hồ sơ có trạng thái hồ sơ (Status) khác với các trường hợp sau: | 1. Không hiển thị button xóa đối với những hồ sơ đã được gửi hoặc đang trong quá trình xử lý | |
+| | - ""Đang nhập liệu"" ; | | |
+| | - ""Trả lại hồ sơ""; hoặc | | |
+| | - ""Đang giải quyết"" với trạng thái xử lý hồ sơ = ""Chờ bổ xung"". | | |
+| | 2. Clickbutton Đồng ý | | |
+| Button Hủy bỏ | | | |
+| Kiểm tra  button hủy bỏ | 1. Click button hủy bỏ | 1. Quay về màn hình Quản lý hồ sơ (Index) | |
+| CHỨC NĂNG 5: HỦY HỒ SƠ | | | |
+| Tiền điều kiện | 1. User được phân quyền khai báo hồ sơ đăng nhập vào hệ thống (Khách hàng khai báo trực tuyến) | | |
+| | 2. Chọn menu Khai báo, nộp hồ sơ trực tuyến | | |
+| | 3. Chọn 1 hồ sơ cần hủy, Click button chỉnh sửa | | |
+| | 4. Click button Hủy bỏ tại bước 3 | | |
+| | 5. Button hủy chỉ hiển thị với hồ sơ có trạng thái hồ sơ = 1:2; hoặc 3:3 | | |
+| Giao diện | | | |
+| Giao diện chung | | | |
+| Kiểm tra màn hình ở trạng thái mặc định | 1. Kiểm tra Title của màn hình | 1. Hiển thị Popup xác nhận hủy hồ sơ | |
+| | 2. Kiểm tra giá trị mặc định của các trường | 2. Các đối tượng được hiển thị đầy đủ đúng theo design | |
+| Kiểm tra tổng thể giao diện màn hình | 1. Kiểm tra về bố cục, font chữ, chính tả, màu chữ | 1. Các đối tượng có độ dài, rộng và khoảng cách bằng nhau, không xô lệch | |
+| | | 2. Các label sử dụng cùng 1 loại font, cỡ chữ, căn lề trái. chung 1 style | |
+| | | 3. Kiểm tra tất cả lỗi về chính tả, cấu trúc câu, ngữ pháp trên màn hình | |
+| | | 4. Form được bố trí đúng design | |
+| Validate Ghi chú trong bảng_ApplicantHis | | | |
+| Textbox Ghi chú_Note ( NVARCHAR 2000 ) | | | |
+| Kiểm tra giá trị mặc định | Kiểm tra giá trị mặc định | Giá trị mặc định = "" | |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu  có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space, lưu dữ liệu thành công | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu toàn ký tự space | 1. Nhập dữ liệu toàn ký tự space | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu > maxlength | 1. Nhập dữ liệu  > 2000 ký tự | 1. Hiển thị thông báo lỗi tương ứng | Không cho phép lưu những cũng không hiển thị thông báo lỗi |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu = maxlength | 1. Nhập dữ liệu  = 2000 ký tự | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu < maxlength | 1. Nhập dữ liệu  < 2000 ký tự | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự đặc biệt | 1. Nhập dữ liệu có chứa ký tự đặc biệt | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự là các thẻ html | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ </table> ... | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự không phải là ký tự Unicode | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ: 全角/半角 ... | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự chữ cái | 1. Nhập dữ liệu  có chứa ký tự chữ cái | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự số | 1. Nhập dữ liệu  có chứa ký tự số | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa chữ tiếng việt có dấu | 1. Nhập dữ liệu  có chứa chữ tiếng việt có dấu | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu phân biệt chữ HOA chữ thường | 1. Nhập dữ liệu giống vỡi dữ liệu đã tồn tại, khác chữ hoa, thường | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Chức năng | | | |
+| Button Đồng ý | | | |
+| Kiếm tra click button Đồng ý thành công trong popup | 1. Chọn hồ sơ bất kỳ | 1. Hiển thị mess thông báo Hủy thành công | |
+| | 2. Click button hủy hồ sơ | 2. Hiển thị màn hình Xem chi tiết hồ sơ | |
+| | 3. Nhập nội dung hủy hồ sơ và click button hủy trong popup | 3. Hiển thị trạng thái hồ sơ trong màn hình xem chi tiết = ""Hủy hồ sơ"" | |
+| | | 4. Thay đổi trạng thái hồ sơ [Status] = 5 : Hủy hồ sơ | |
+| | | 5. Thay đổi trạng thái xử lý hồ sơ = 4 : Đã xử lý hồ sơ | |
+| | | 6. Nội dung hủy hồ sơ được câp nhật trong bảng ApplicantHis | |
+| Kiểm tra Click button Hủy không thành công | 1. Chon hồ sơ có trạng thái hồ sơ (Status) khác với các trường hợp sau: | 1. Không hiển thị button Hủy hồ sơ đối với những hồ sơ chưa được xử lý | |
+| | - ""Đang nhập liệu"" ; | | |
+| | - ""Trả lại hồ sơ""; | | |
+| | - ""Đang giải quyết"" với trạng thái xử lý hồ sơ = ""Chờ bổ xung"". | | |
+| | 2. Clickbutton hủy hồ sơ | | |
+| Button Hủy bỏ | | | |
+| Kiểm tra  button hủy bỏ | 1. Click button hủy bỏ | 1. Quay về màn hình chỉnh sửa hồ sơ | |
+| CHỨC NĂNG 6: XEM CHI TIẾT HỒ SƠ | | | |
+| Tiền điều kiện | 1. User được phân quyền khai báo hồ sơ đăng nhập vào hệ thống (Khách hàng khai báo trực tuyến) | | |
+| | 2. Chọn menu Khai báo, nộp hồ sơ trực tuyến | | |
+| | 3. Chọn 1 hồ sơ cần xem chi tiết, click button xem chi tiết | | |
+| Giao diện | | | |
+| Giao diện chung | | | |
+| Kiểm tra màn hình ở trạng thái mặc định | 1. Kiểm tra title của màn hình | 1. Hiển thị Title của màn hình menu chính | |
+| | 2. Kiểm tra focus chuột | 2. Highlight vào danh mục Quản lý hồ sơ | |
+| | 3. Kiểm tra giá trị mặc định của các trường | 3. Các đối tượng được hiển thị đầy đủ đúng theo design | |
+| | 4. Kiểm tra header, footer | | |
+| Kiểm tra tổng thể giao diện màn hình | 1. Kiểm tra về bố cục, font chữ, chính tả, màu chữ | 1. Các label, textbox, combo có độ dài, rộng và khoảng cách bằng nhau, không xô lệch | |
+| | | 2. Các label sử dụng cùng 1 loại font, cỡ chữ, căn lề trái | |
+| | | 3. Kiểm tra tất cả lỗi về chính tả, cấu trúc câu, ngữ pháp trên màn hình | |
+| | | 4. Form được bố trí đúng design | |
+| Kiểm tra thứ tự di chuyển con trỏ chuột trên màn hình khi nhấn Tab | Nhấn Tab liên tục | Con trỏ di chuyển lần lượt theo thứ tự: Từ trên xuống dưới, từ trái qua phải | |
+| Kiểm tra thứ tự di chuyển con trỏ chuột ngược lại trên màn hình khi nhấn Shift Tab | Nhấn Shift Tab liên tục | Con trỏ di chuyển lần lượt theo thứ tự ngược lại: Từ phải qua trái, từ dưới lên trên | |
+| Kiểm tra thực hiện chức năng chính của màn hình khi nhấn Enter | Nhấn phím Enter | 1. Nếu chuột không focus vào button nào thì sẽ thực hiện chức năng chính của button ""Quay lại"" | Hệ thống không thục hiện focus |
+| | | 2. Nếu đang focus vào 1 button thì sẽ thực hiện chức năng của button | |
+| Kiểm tra việc thông tin được fill vào các trường mặc định | Hiển thị màn hình danh sách hồ sơ | 1. Thông tin chi tiết về thông tin hồ sơ được fill đầy đủ và chính xác vào các trường trong form | 1. Xem chi tiết hồ sơ xin cấp thẻ chưa được chỉnh sửa |
+| | 1. Click chọn bản ghi bất kỳ có trong danh sách | | |
+| | 2. Click icon xem chi tiết | | |
+| Kiểm tra trong trường hợp trường hợp tương tác cần hơn 1s để xử lý | Kiểm tra trường hợp tương tác hơn 1s để xử lý | 1. Bất cứ tương tác nào cần hơn 1s để xử lý, thì phải sử dụng Progress Indicator. | |
+| | | 2.Tránh sử dụng các Progress Indicator dạng tĩnh. | |
+| Chức năng | | | |
+| Button Quay lại | | | |
+| Kiểm tra button Quay lại | 1. Click button Quay lại | 1. Quay về màn hình Quản lý hồ sơ (Index) | |
+| Button Cập nhật | | | |
+| Tiền điều kiện | Button Cập nhật chỉ hiển thị với hồ sơ có trạng thái hồ sơ: | | |
+| | - ""Đang nhập liệu"" ; | | |
+| | - ""Trả lại hồ sơ""; | | |
+| | - ""Đang giải quyết"" với trạng thái xử lý hồ sơ = ""Chờ bổ xung"" | | |
+| Kiểm tra button Cập nhật | 1. Click button Cập nhật | 1. Hiển thị màn hình cập nhật hồ sơ | |
+| Button Xóa | | | |
+| Tiền điều kiện | Button xóa chỉ hiển thị với hồ sơ có trạng thái hồ sơ: | | |
+| | - Trạng thái hồ sơ = 1:""Đang nhập liệu"" ; | | |
+| | - Trạng thái xử lý hồ sơ = 1: Chưa xử lý | | |
+| Kiểm tra button Xóa | 1. Click button Xóa | 1. Hiển thị popup xác nhận xóa hồ sơ | |
+| Button Hủy bỏ | | | |
+| Tiền điều kiện | Button xóa chỉ hiển thị với hồ sơ do user đang đăng nhập hệ thống tạo ra | | |
+| | - Cột CreatorId = user đang đăng nhập hệ thống | | |
+| | - trạng thái hồ sơ = 1:2 hoặc 3:3 | | |
+| Kiểm tra button Hủy bỏ | 1. Click button Hủy bỏ | 1. Hiển thị popup xác nhận Hủy hồ sơ | |
+| Button Gửi | | | |
+| Tiền điều kiện | Button Gửi chỉ hiển thị với hồ sơ có trạng thái hồ sơ: | | |
+| | - ""Đang nhập liệu"" ; | | |
+| | - ""Trả lại hồ sơ""; | | |
+| | - ""Đang giải quyết"" với trạng thái xử lý hồ sơ = ""Chờ bổ xung"" | | |
+| Kiểm tra button Gửi hồ sơ | 1. Click button Gửi | 1. Hiển thị Mess thông báo Gửi hồ sơ thành công  hoặc không thành công | |
+| Ngoại lệ | | | |
+| Kiểm tra xóa đồng thời một hồ sơ trên nhiều thiết bị | 1. Mở cùng một lúc màn hình xóa hồ sơ trên nhiều thiết bị. | 1. Thiết bị 1 xóa hồ sơ thành công | |
+| | 2. Click xóa hồ sơ trên một thiết bị đầu tiên | 2. Sau khi load lại trang, bản ghi vừa xóa không còn hiển thị trên màn hình của thiết bị thứ 2 | |
+| | 3. Click xóa hồ sơ trên các thiết bị khác | | |
+| Kiểm tra sửa đồng thời một hồ sơ trên nhiều thiết bị | 1. Mở cùng một lúc màn hình sửa hồ sơ trên nhiều thiết bị. | 1. Sửa hồ sơ thành công | |
+| | 2. Click sửa hồ sơ trên một thiết bị đầu tiên | 2. Sau khi load lại trang, bản ghi vừa sửa được cập nhật trên màn hình của thiết bị thứ 2 | |
+| | 3. Click sửa hồ sơ trên các thiết bị khác | | |
+
+---
+# #2 Chỉnh_sửa_hồ_sơ_giấy_phép_dài_h
+
+| Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
+|:---|:---|:---|
+| CHỨC NĂNG 1: HIỂN THỊ MÀN HÌNH SỬA | | |
+| Giao diện index | | |
+| Tiền điều kiện | 1. User được phân quyền khai báo hồ sơ đăng nhập vào hệ thống (Khách hàng khai báo trực tuyến) | |
+| | 2. Chọn menu Khai báo, nộp hồ sơ trực tuyến | |
+| | 3. Chọn 1 hồ sơ cần chỉnh sửa, click button chỉnh sửa. | |
+| | 4. Button chỉnh sửa chỉ hiển thị với hồ sơ có trạng thái hồ sơ = ""Đang nhập liệu"" ; ""Trả lại hồ sơ""; hoặc ""Đang giải quyết"" với trạng thái xử lý hồ sơ = ""Chờ bổ xung"" | |
+| Giao diện chung | | |
+| Kiểm tra màn hình ở trạng thái mặc định | 1. Kiểm tra title của màn hình | 1. Hiển thị title màn hình ""Chỉnh sửa hồ sơ giấy phép dài hạn trực tuyến"" |
+| | 2. Kiểm tra focus chuột | 2. Highlight vào menu |
+| | 3. Kiểm tra giá trị mặc định của các trường | 3. Set focus chuột vào textbox đầu tiên có thể edit được |
+| | 4. Kiểm tra header, footer | 4. Các trường hiển thị mặc định = "" |
+| | | 5. Các  đối tượng được hiển thị đầy đủ đúng theo design |
+| Kiểm tra tổng thể giao diện màn hình | 1. Kiểm tra về bố cục, font chữ, chính tả, màu chữ | 1. Các label, textbox, combo có độ dài, rộng và khoảng cách bằng nhau, không xô lệch |
+| | | 2. Các label sử dụng cùng 1 loại font, cỡ chữ, căn lề trái |
+| | | 3. Kiểm tra tất cả lỗi về chính tả, cấu trúc câu, ngữ pháp trên màn hình |
+| | | 4. Form được bố trí đúng design |
+| Kiểm tra thứ tự di chuyển con trỏ chuột trên màn hình khi nhấn Tab | Nhấn Tab liên tục | Con trỏ di chuyển lần lượt theo thứ tự: Từ trên xuống dưới, từ trái qua phải |
+| Kiểm tra thứ tự di chuyển con trỏ chuột ngược lại trên màn hình khi nhấn Shift Tab | Nhấn Shift Tab liên tục | Con trỏ di chuyển lần lượt theo thứ tự ngược lại: Từ phải qua trái, từ dưới lên trên |
+| Kiểm tra thực hiện chức năng chính của màn hình khi nhấn Enter | Nhấn phím Enter | 1. Nếu chuột không focus vào button nào thì sẽ thực hiện chức năng chính của button ""Lưu"" |
+| | | 2. Nếu đang focus vào 1 button thì sẽ thực hiện chức năng của button |
+| Kiểm tra việc thông tin được fill vào các trường mặc định | Hiển thị màn hình danh sách hồ sơ | 1. Thông tin chi tiết về thông tin hồ sơ được fill đầy đủ và chính xác vào các trường trong form |
+| | 1. Click chọn bản ghi bất kỳ có trong danh sách | |
+| | 2. Click icon xem chi tiết | |
+| Kiểm tra trong trường hợp trường hợp tương tác cần hơn 1s để xử lý | Kiểm tra trường hợp tương tác hơn 1s để xử lý | 1. Bất cứ tương tác nào cần hơn 1s để xử lý, thì phải sử dụng Progress Indicator. |
+| | | 2.Tránh sử dụng các Progress Indicator dạng tĩnh. |
+| CHỨC NĂNG 2: VALIDATE DỮ LIỆU | | |
+| Tab Thông tin chung | | |
+| Validate thông tin chung trong bảng_ApplicantLicense | | |
+| Combobox Loại hồ sơ cấp phép_ApplicanDocument | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | 1. Giá trị mặc định = ""--Chọn--"" |
+| Kiểm tra số lượng và sắp xếp các giá trị trong combobox | Kiểm tra giá trị trong combobox | 1. Load từ CSDL danh mục Loại hồ sơ cấp phép  (Link den bang ApplicationDocument) |
+| | | 2. Giá trị trong combo được sắp xếp theo thứ tự alphabet |
+| Kiểm tra hiển thị giá trị | Kích vào combobox để kiểm tra căn lề của các giá trị trong combobox | 1. Các giá trị trong combobox hiển thị dữ liệu là Tên loại hồ sơ |
+| | | 2. Dữ liệu được căn lề trái |
+| Kiểm tra giá trị combobox sau khi đã chọn từ danh sách | Chọn giá trị trong combo | 1. Chọn được 1 giá trị |
+| | | 2. Giá trị được chọn view lên đúng |
+| Combobox Loại giấy phép_CardType | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | 1. Giá trị mặc định = ""--Chọn--"" |
+| Kiểm tra số lượng và sắp xếp các giá trị trong combobox | Kiểm tra giá trị trong combobox | 1. Load từ CSDL danh mục Loại giấy phép  (Link den bang CardType) |
+| | | 2. Giá trị trong combo được sắp xếp theo thứ tự alphabet |
+| Kiểm tra hiển thị giá trị | Kích vào combobox để kiểm tra căn lề của các giá trị trong combobox | 1. Các giá trị trong combobox hiển thị dữ liệu là Tên loại giấy phép |
+| | | 2. Dữ liệu được căn lề trái |
+| Kiểm tra giá trị combobox sau khi đã chọn từ danh sách | Chọn giá trị trong combo | 1. Chọn được 1 giá trị |
+| | | 2. Giá trị được chọn view lên đúng |
+| Combobox Đơn vị xin cấp phép_Organize | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | Giá trị mặc định = ""--Chọn--"" |
+| Kiểm tra số lượng và sắp xếp các giá trị trong combobox | Kiểm tra giá trị trong combobox | 1. Load từ CSDL danh mục Loại hồ sơ  (Link den bang Organize) |
+| | | 2. Giá trị trong combo được sắp xếp theo thứ tự alphabet |
+| Kiểm tra hiển thị giá trị | Kích vào combobox để kiểm tra căn lề của các giá trị trong combobox | 1. Các giá trị trong combobox hiển thị dữ liệu là Tên đơn vị xin cấp phép |
+| | | 2. Dữ liệu được căn lề trái |
+| Kiểm tra giá trị combobox sau khi đã chọn từ danh sách | Chọn giá trị trong combo | 1. Chọn được 1 giá trị |
+| | | 2. Giá trị được chọn view lên đúng |
+| Textbox Người liên hệ_ContactPerson ( NVARCHAR 200 ) | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | Giá trị mặc định = "" |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space, lưu dữ liệu thành công |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu toàn ký tự space | 1. Nhập dữ liệu toàn ký tự space | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu > maxlength | 1. Nhập dữ liệu  > 200 ký tự | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu = maxlength | 1. Nhập dữ liệu  = 200 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu < maxlength | 1. Nhập dữ liệu  < 200 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự đặc biệt | 1. Nhập dữ liệu có chứa ký tự đặc biệt | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự là các thẻ html | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ </table> ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự không phải là ký tự Unicode | 1. Nhập dữ liệu có chứa ký tự không phải là Unicode : ví dụ: 全角/半角 ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự chữ cái | 1. Nhập dữ liệu  có chứa ký tự chữ cái | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự số | 1. Nhập dữ liệu  có chứa ký tự số | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa chữ tiếng việt có dấu | 1. Nhập dữ liệu  có chứa chữ tiếng việt có dấu | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu phân biệt chữ HOA chữ thường | 1. Nhập dữ liệu giống vỡi dữ liệu đã tồn tại, khác chữ hoa, thường | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Textbox SĐT liên hệ_ContactPhone | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | Giá trị mặc định = "" |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu đúng định dạng có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space |
+| | 2. Nhập đúng định dạng các trường còn lại | 2. Dữ liệu hợp lệ |
+| | 3. Click button lưu dữ liệu | |
+| Kiểm tra chức năng nhập dữ liệu = min length | 1. Nhập dữ liệu = 10 ký tự | 1. Lưu dữ liệu thành công |
+| | 2. Các trường khác nhập đúng định dạng | |
+| | 3. Click button Tạo mới | |
+| Kiểm tra chức năng nhập dữ liệu < min length | 1. Nhập dữ liệu < 10 ký tự | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Các trường khác nhập đúng định dạng | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button lưu dữ liệu | |
+| Kiểm tra chức năng nhập dữ liệu từ 10 - 20 ký tự | 1. Nhập dữ liệu > 10 ký tự | 1. Lưu dữ liệu thành công |
+| | 2. Các trường khác nhập đúng định dạng | |
+| | 3. Click button lưu dữ liệu | |
+| Kiểm tra nhập quá maxlength | 1. Nhập dữ liệu > 20 ký tự. | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập hợp lệ các trường còn lại | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button lưu dữ liệu | |
+| Kiểm tra khi nhập dữ liệu là số thập phân | 1. Nhập dữ liệu là số thập phân | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Các thông tin khác được nhập hợp lệ | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button lưu dữ liệu | |
+| Nhập Dữ liệu  là số âm | 1.Nhập dữ liệu là số âm | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Các thông tin khác được nhập hợp lệ | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button lưu dữ liệu | |
+| Kiểm tra khi dữ liệu là các ký tự chữ, các ký tự đặc biệt. | 1. Nhập dữ liệu là các ký tự, thẻ html, ký tự đặc biệt | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Các thông tin khác được nhập hợp lệ | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button lưu dữ liệu | |
+| Kiểm tra tự động loại bỏ số 0 đầu chuỗi | 1. Nhập dữ liệu có chứa số 0 ở đầu | 1. Định dạng số điện thoại là chuỗi |
+| | 2. Các thông tin khác được nhập hợp lệ | 2. Hiển thị số điện thoại bao gồm cả số 0 |
+| | 3. Click button lưu dữ liệu | |
+| Textbox Ghi chú_Note ( NVARCHAR 2000 ) | | |
+| Kiểm tra giá trị mặc định | Kiểm tra giá trị mặc định | Giá trị mặc định = "" |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu  có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space, lưu dữ liệu thành công |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu toàn ký tự space | 1. Nhập dữ liệu toàn ký tự space | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu > maxlength | 1. Nhập dữ liệu  > 2000 ký tự | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu = maxlength | 1. Nhập dữ liệu  = 2000 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu < maxlength | 1. Nhập dữ liệu  < 2000 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự đặc biệt | 1. Nhập dữ liệu có chứa ký tự đặc biệt | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự là các thẻ html | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ </table> ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự không phải là ký tự Unicode | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ: 全角/半角 ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự chữ cái | 1. Nhập dữ liệu  có chứa ký tự chữ cái | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự số | 1. Nhập dữ liệu  có chứa ký tự số | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa chữ tiếng việt có dấu | 1. Nhập dữ liệu  có chứa chữ tiếng việt có dấu | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu phân biệt chữ HOA chữ thường | 1. Nhập dữ liệu giống vỡi dữ liệu đã tồn tại, khác chữ hoa, thường | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Tab Đơn/Công văn đề nghị cấp giấy phép | | |
+| Validate Đơn/Công văn đề nghị cấp giấy phép trong bảng_ApplicationDocumentary | | |
+| Textbox Số/Ký hiệu ( NVARCHAR 200 ) | | |
+| Kiểm tra giá trị mặc định | Kiểm tra giá trị mặc định | Giá trị mặc định = "" |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space, lưu dữ liệu thành công |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu toàn ký tự space | 1. Nhập dữ liệu toàn ký tự space | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu > maxlength | 1. Nhập dữ liệu  > 200 ký tự | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu = maxlength | 1. Nhập dữ liệu  = 200 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu < maxlength | 1. Nhập dữ liệu  < 200 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự đặc biệt | 1. Nhập dữ liệu có chứa ký tự đặc biệt | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự là các thẻ html | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ </table> ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự không phải là ký tự Unicode | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ: 全角/半角 ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự chữ cái | 1. Nhập dữ liệu  có chứa ký tự chữ cái | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự số | 1. Nhập dữ liệu  có chứa ký tự số | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa chữ tiếng việt có dấu | 1. Nhập dữ liệu  có chứa chữ tiếng việt có dấu | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu phân biệt chữ HOA chữ thường | 1. Nhập dữ liệu giống vỡi dữ liệu đã tồn tại, khác chữ hoa, thường | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Calendar Ngày cấp | | |
+| Kiểm tra focus trong hộp Calendar khi textbox chưa có giá trị | 1. Để trống giá trị của textbox. | Ngày hiện tại của hệ thống trên DB được focus |
+| | 2. Thay đổi ngày trên client | |
+| | 3. Click vào icon Calendar bên cạnh textbox. | |
+| | 4. Kiểm tra giá trị focus trong hộp Calendar | |
+| Kiểm tra focus trong hộp Calendar khi texbtox đã có dữ liệu | Giả sử trường ngày tháng đã có giá trị (VD: 20/10/2005) | Ngày 20/10/2005 được focus |
+| | 1. Click vào icon Calendar bên cạnh textbox. | |
+| | 2. Kiểm tra giá trị focus trong hộp Calendar | |
+| Kiểm tra hoạt động của hộp Calendar | 1. Click vào icon Calendar bên cạnh textbox. | 1. Hộp Calendar tự động đóng lại |
+| | 2. Lựa chọn 1 giá trị ngày tháng trong hộp Calendar | 2. Giá trị ngày tháng vừa chọn hiển thị trong textbox theo định dạng dd/mm/yyyy |
+| Kiểm tra chức năng Trimspace | 1. Nhập vào dữ liệu theo đúng định dạng và có chưa các ký tự space ở đầu và cuối chuỗi | 1. Chặn nhập không cho phép nhập ký tự space |
+| | 2. Nhập đúng định dạng các trường còn lại | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào toàn ký tự space | 1. Nhập vào dữ liệu toàn ký tự space | 1. Chặn nhập không cho phép nhập ký tự space |
+| | 2. Nhập đúng định dạng các trường còn lại | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào dữ liệu là ký tự | 1. Nhập vào dữ liệu là ký tự , dấu âm, số thập phân | 1. Chặn nhập không cho phép nhập ký tự trừ ký tự đặc trưng ngắn cách ngày tháng năm |
+| | 2. Nhập đúng định dạng các trường còn lại | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào calendar là các thẻ HTML | 1. Nhập vào dữ liệu là chữ cái hoặc ký tự đặc biệt là các thẻ HTML: ví dụ </table> ... | 1. Chặn nhập không cho phép nhập ký tự trừ ký tự đặc trưng ngắn cách ngày tháng năm |
+| | 2. Nhập đúng định dạng các trường khác | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào dữ liệu ngày sai | 1. Nhập vào giá trị ngày > = 32 | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| | 1. Nhập vào giá trị ngày = 00 | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào dữ liệu tháng sai | 1. Nhập vào giá trị tháng > = 13 | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| | 1. Nhập vào giá trị tháng = 00 | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào dữ liệu năm sai | 1. Nhập vào giá trị năm > năm hiện tại | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào calendar đúng định dạng | 1. nhập vào Calendar theo định dạng ""dd/mm/yyyy"" | 1. Lưu dữ liệu thành công |
+| | 2. Nhập đúng định dạng các trường khác | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào calendar sai định dạng | 1. nhập vào Calendar khác định dạng ""dd/mm/yyyy"" | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào calendar ngày 29, 30, 31/02 của các năm không phải là nhuận | 1. Nhập vào Calendar ngày 29, 30, 31/02/2017 | 1. Hiển thị thông báo sai dữ liệu |
+| | 2. Nhập đúng định dạng các trường khác | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào Calenda lớn hơn ngày hiện tại | 1. Nhập vào dữ liệu lớn hơn ngày hiện tại | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Textbox Nơi cấp ( NVARCHAR 200 ) | | |
+| Kiểm tra giá trị mặc định | Kiểm tra giá trị mặc định | Giá trị mặc định = "" |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu  có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space, lưu dữ liệu thành công |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu toàn ký tự space | 1. Nhập dữ liệu toàn ký tự space | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu > maxlength | 1. Nhập dữ liệu  > 200 ký tự | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu = maxlength | 1. Nhập dữ liệu  = 200 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu < maxlength | 1. Nhập dữ liệu  < 200 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự đặc biệt | 1. Nhập dữ liệu có chứa ký tự đặc biệt | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự là các thẻ html | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ </table> ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự không phải là ký tự Unicode | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ: 全角/半角 ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự chữ cái | 1. Nhập dữ liệu  có chứa ký tự chữ cái | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự số | 1. Nhập dữ liệu  có chứa ký tự số | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa chữ tiếng việt có dấu | 1. Nhập dữ liệu  có chứa chữ tiếng việt có dấu | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu phân biệt chữ HOA chữ thường | 1. Nhập dữ liệu giống vỡi dữ liệu đã tồn tại, khác chữ hoa, thường | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Textbox Người ký ( NVARCHAR 200 ) | | |
+| Kiểm tra giá trị mặc định | Kiểm tra giá trị mặc định | Giá trị mặc định = "" |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu  có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space, lưu dữ liệu thành công |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu toàn ký tự space | 1. Nhập dữ liệu toàn ký tự space | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu > maxlength | 1. Nhập dữ liệu  > 200 ký tự | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu = maxlength | 1. Nhập dữ liệu  = 200 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu < maxlength | 1. Nhập dữ liệu  < 200 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự đặc biệt | 1. Nhập dữ liệu có chứa ký tự đặc biệt | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự là các thẻ html | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ </table> ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự không phải là ký tự Unicode | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ: 全角/半角 ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự chữ cái | 1. Nhập dữ liệu  có chứa ký tự chữ cái | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự số | 1. Nhập dữ liệu  có chứa ký tự số | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa chữ tiếng việt có dấu | 1. Nhập dữ liệu  có chứa chữ tiếng việt có dấu | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu phân biệt chữ HOA chữ thường | 1. Nhập dữ liệu giống vỡi dữ liệu đã tồn tại, khác chữ hoa, thường | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Textbox Chức vụ ( NVARCHAR 200 ) | | |
+| Kiểm tra giá trị mặc định | Kiểm tra giá trị mặc định | Giá trị mặc định = "" |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu  có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space, lưu dữ liệu thành công |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu toàn ký tự space | 1. Nhập dữ liệu toàn ký tự space | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu > maxlength | 1. Nhập dữ liệu  > 200 ký tự | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu = maxlength | 1. Nhập dữ liệu  = 200 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu < maxlength | 1. Nhập dữ liệu  < 200 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự đặc biệt | 1. Nhập dữ liệu có chứa ký tự đặc biệt | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự là các thẻ html | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ </table> ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự không phải là ký tự Unicode | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ: 全角/半角 ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự chữ cái | 1. Nhập dữ liệu  có chứa ký tự chữ cái | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự số | 1. Nhập dữ liệu  có chứa ký tự số | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa chữ tiếng việt có dấu | 1. Nhập dữ liệu  có chứa chữ tiếng việt có dấu | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu phân biệt chữ HOA chữ thường | 1. Nhập dữ liệu giống vỡi dữ liệu đã tồn tại, khác chữ hoa, thường | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Tab Danh sách file đính kèm | | |
+| Grid danh sách File đính kèm | | |
+| Kiểm tra hiển thị dữ liệu trong bảng | Số thứ tự | Hiển thị số thứ tự bắt đầu từ 1 |
+| | Loại giấy tờ | Hiển thị loại giấy tờ đi kèm, yêu cầu |
+| | Tên file | Hiển thị tên file đã được đính kèm |
+| | Mô tả | Hiển thị mô tả của loại giấy tờ đó |
+| | Hành động | Hiển thị các button hành động |
+| | | Tải lên: cho phép tải file |
+| | | Tải xuống: cho phép tải file đính kèm của hồ sơ |
+| | | Xóa: cho phép xóa file vừa tải lên |
+| Tab Danh sách các phương tiện xin cấp giấy phép | | |
+| Validate Danh sách các phương tiện xin cấp giấy phép_ApplicantVehicle | | |
+| Grid danh sách phương tiện | | |
+| Kiểm tra Grid | Tiền điều kiện: Chọn tab Danh sách các phương tiện xin cấp giấy phép | 1. Màu nền của dòng đó thay đổi |
+| | 1. Di chuyển con trỏ chuột vào một dòng | 2. Các đối tượng được hiển thị đầy đủ đúng theo design |
+| | 2. Kiểm tra bố cục trong grid | 3. Phân trang không được che khuất row ở trang kế tiếp |
+| | | 4. Hiển thị danh sách hồ sơ sắp xếp theo ngày tạo giảm dần |
+| Kiểm tra hiển thị thông tin bị ẩn trong một ô | 1. Chọn một ô có thông tin quá dài bị ẩn | 1. Thông tin đầy đủ trong ô đó được view lên đầy đủ, chính xác |
+| | 2. Di chuột vào ô đó | 2. Bố cụ dễ nhìn. Không có hiệu ứng |
+| | 3. Kiểm tra hiển thị tooltip | 3. Di chuột sang vị trí khác thì thông tin ô đó bị ẩn đi như cũ |
+| Kiểm tra hiển thị dữ liệu trong bảng | Số thứ tự | Hiển thị số thứ tự bắt đầu từ 1 |
+| | Loại phương tiện | 1. Hiển thị Loại phương tiện |
+| | Biển số | 1. Hiển thị Biển số của phương tiện |
+| | Nhãn hiệu | 1. Hiển thị Nhãn hiệu của phương tiện |
+| | Số loại | 1. Hiển thị Số loại của phương tiện |
+| | Trọng tải | 1. Hiển thị Trọng tải của phương tiện |
+| | Thời hạn giấy đăng ký | Hiển thị Thời hạn giấy đăng ký của phương tiện |
+| | Thời hạn đăng kiểm | Hiển thị Thời hạn đăng kiểm của phương tiện |
+| | Thời hạn bảo hiểm | Hiển thị Thời hạn bảo hiểm của phương tiện |
+| | Ghi chú | Hiển thị Ghi chú của phương tiện |
+| | Hành động | Hiển thị các icon hành động |
+| Button Thêm phương tiện | | |
+| CHỨC NĂNG 3: THỰC HIỆN CHỨC NĂNG | | |
+| Button Lưu dữ liệu | | |
+| Kiểm tra việc lưu hồ sơ vừa khai báo thành công | 1. Nhập các thông tin khai báo hồ sơ xin cấp giấy phép đúng định dạng | 1. Hiển thị mess thông báo lưu hồ sơ thành công |
+| | 2. Click button Lưu | 2. Giữ nguyên màn hình sửa cho người dùng thực hiện sưa thông tin nếu cần |
+| | | 3. Hiển thị thêm một bản ghi vừa thêm trong danh sách trong màn hình index |
+| | | - Cột ngày gửi = trống; |
+| | | 4. Thông tin vừa thêm được lưu đúng vào các cột tương ứng trong bảng. |
+| | | 5. Thông tin chung được lưu đầy đủ vào các trường trong bảng ApplicantLicense |
+| | | 6. Thông tin Đơn/Công văn đề nghị cấp giấy phép được lưu đầy đủ vào các trường trong bảng ApplicationDocumentary |
+| | | 7. Thông tin phương tiện xin cấp giấy phép được bổ xung vào các bảng sau: |
+| | | - Thông tin chi tiết từng loại phương tiện xin cấp giấy phép được lưu đầy đủ vào các trường trong bảng ApplicantVehicle |
+| | | - Thông tin chi tiết về số lượng phương tiện và các thông tin chung cấp phát giấy phép cho phương tiện được lưu trong bảng VehicleRequest |
+| | | - Thông tin khu vực hạn chế của từng phương tiện được lưu trong bảng VehicleRestrictArea |
+| Kiểm tra việc Thêm mới không thành công | 1. Nhập dữ liệu chứa ít nhất 1 thông tin không hợp lệ | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Click button Lưu | 2. Không lưu dữ liệu vừa nhập vào hệ thống |
+| | 1. Không nhập các thông tin bắt buộc | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Click button Lưu | 2. Không lưu dữ liệu vừa nhập vào hệ thống |
+| Button Gửi | | |
+| Kiểm tra việc lưu hồ sơ vừa khai báo thành công | 1. Nhập các thông tin khai báo đúng định dạng | 1. Hiển thị mess thông báo gửi hồ sơ thành công |
+| | 2. Click button Gửi | 2. Quay về màn hình quản lý danh sách các hồ sơ (index) |
+| | | 3. Hiển thị thay đổi trong màn hình index: |
+| | | - Hiển thị ngày gửi = thời điểm gửi hồ sơ thành công |
+| | | - Trạng thái hồ sơ = Đang chờ xử lý hồ sơ |
+| | | 4. Thông tin được lưu đúng vào các cột tương ứng trong bảng. |
+| | | 5. Thông tin chung được lưu đầy đủ vào các trường trong bảng ApplicantLicense |
+| | | - Thông tin cột ApplyType = 1: Trực tuyến |
+| | | - Thông tin cột LicenseType = 2: ngắn hạn |
+| | | - Thông tin cột [Status] = 2: Đang chờ tiếp nhận |
+| | | - Thông tin cột ProcessingStatus = 1: Chưa xử lý |
+| | | - Thông tin cột PaymentStatus = 1: Chưa nộp phí |
+| | | - Thông tin cột CreatedTime = Thời điểm lưu hồ sơ thành công |
+| | | - Thông tin cột ApplyTime = Thời điểm gửi hồ sơ thành công |
+| Kiểm tra việc gửi hồ sơ không thành công | 1. Nhập dữ liệu chứa ít nhất 1 thông tin không hợp lệ | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Click button Gửi | 2. Không lưu dữ liệu vừa nhập vào hệ thống |
+| | 1. Nhập dữ liệu Thiếu ít nhất 1 thông tin | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Click button Gửi | 2. Không lưu dữ liệu vừa nhập vào hệ thống |
+| Button Hủy bỏ | | |
+| Kiểm tra hoạt động của button Hủy | 1. Nhập dữ liệu hợp lệ vào các trường | 1. Không Update dữ liệu vừa thêm vào hệ thống |
+| | 2. Nhấn nút Hủy bỏ | 2. Quay về màn hình Quản lý hồ sơ (Index) |
+
+---
+# #3 Khai_báo,_nộp_hồ_sơ_giấy_phép_d
+
+| Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn | nan |
+|:---|:---|:---|:---|
+| CHỨC NĂNG 1: HIỂN THỊ MÀN HÌNH THÊM MỚI | | | |
+| Giao diện index | | | |
+| Tiền điều kiện | 1. User được phân quyền khai báo hồ sơ đăng nhập vào hệ thống (Khách hàng khai báo trực tuyến) | | |
+| | 2. Chọn menu Khai báo, nộp hồ sơ trực tuyến | | |
+| | 3. Click button Thêm mới | | |
+| Giao diện chung | | | |
+| Kiểm tra màn hình ở trạng thái mặc định | 1. Kiểm tra title của màn hình | 1. Hiển thị title màn hình ""Khai báo, nộp hồ sơ giấy phép dài hạn trực tuyến"" | |
+| | 2. Kiểm tra focus chuột | 2. Highlight vào menu | |
+| | 3. Kiểm tra giá trị mặc định của các trường | 3. Set focus chuột vào textbox đầu tiên có thể edit được | |
+| | 4. Kiểm tra header, footer | 4. Các trường hiển thị mặc định = "" | |
+| | | 5. Các  đối tượng được hiển thị đầy đủ đúng theo design | |
+| Kiểm tra tổng thể giao diện màn hình | 1. Kiểm tra về bố cục, font chữ, chính tả, màu chữ | 1. Các label, textbox, combo có độ dài, rộng và khoảng cách bằng nhau, không xô lệch | |
+| | | 2. Các label sử dụng cùng 1 loại font, cỡ chữ, căn lề trái | |
+| | | 3. Kiểm tra tất cả lỗi về chính tả, cấu trúc câu, ngữ pháp trên màn hình | |
+| | | 4. Form được bố trí đúng design | |
+| Kiểm tra thứ tự di chuyển con trỏ chuột trên màn hình khi nhấn Tab | Nhấn Tab liên tục | Con trỏ di chuyển lần lượt theo thứ tự: Từ trên xuống dưới, từ trái qua phải | |
+| Kiểm tra thứ tự di chuyển con trỏ chuột ngược lại trên màn hình khi nhấn Shift Tab | Nhấn Shift Tab liên tục | Con trỏ di chuyển lần lượt theo thứ tự ngược lại: Từ phải qua trái, từ dưới lên trên | |
+| Kiểm tra thực hiện chức năng chính của màn hình khi nhấn Enter | Nhấn phím Enter | 1. Nếu chuột không focus vào button nào thì sẽ thực hiện chức năng chính của button ""Lưu"" | |
+| | | 2. Nếu đang focus vào 1 button thì sẽ thực hiện chức năng của button | |
+| Kiểm tra trong trường hợp trường hợp tương tác cần hơn 1s để xử lý | Kiểm tra trường hợp tương tác hơn 1s để xử lý | 1. Bất cứ tương tác nào cần hơn 1s để xử lý, thì phải sử dụng Progress Indicator. | |
+| | | 2.Tránh sử dụng các Progress Indicator dạng tĩnh. | |
+| CHỨC NĂNG 2: VALIDATE DỮ LIỆU | | | |
+| Tab Thông tin chung | | | |
+| Validate thông tin chung trong bảng_ApplicantLicense | | | |
+| Combobox Loại hồ sơ cấp phép_ApplicanDocument | | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | 1. Giá trị mặc định = ""--Chọn--"" | |
+| Kiểm tra số lượng và sắp xếp các giá trị trong combobox | Kiểm tra giá trị trong combobox | 1. Load từ CSDL danh mục Loại hồ sơ cấp phép  (Link den bang ApplicationDocument) | |
+| | | 2. Giá trị trong combo được sắp xếp theo thứ tự alphabet | |
+| Kiểm tra hiển thị giá trị | Kích vào combobox để kiểm tra căn lề của các giá trị trong combobox | 1. Các giá trị trong combobox hiển thị dữ liệu là Tên loại hồ sơ | |
+| | | 2. Dữ liệu được căn lề trái | |
+| Kiểm tra giá trị combobox sau khi đã chọn từ danh sách | Chọn giá trị trong combo | 1. Chọn được 1 giá trị | |
+| | | 2. Giá trị được chọn view lên đúng | |
+| Combobox Loại giấy phép_CardType | | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | 1. Giá trị mặc định = ""--Chọn--"" | |
+| Kiểm tra số lượng và sắp xếp các giá trị trong combobox | Kiểm tra giá trị trong combobox | 1. Load từ CSDL danh mục Loại giấy phép  (Link den bang CardType) | |
+| | | 2. Giá trị trong combo được sắp xếp theo thứ tự alphabet | |
+| Kiểm tra hiển thị giá trị | Kích vào combobox để kiểm tra căn lề của các giá trị trong combobox | 1. Các giá trị trong combobox hiển thị dữ liệu là Tên loại giấy phép | |
+| | | 2. Dữ liệu được căn lề trái | |
+| Kiểm tra giá trị combobox sau khi đã chọn từ danh sách | Chọn giá trị trong combo | 1. Chọn được 1 giá trị | |
+| | | 2. Giá trị được chọn view lên đúng | |
+| Combobox Đơn vị xin cấp phép_Organize | | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | Giá trị mặc định = ""--Chọn--"" | |
+| Kiểm tra số lượng và sắp xếp các giá trị trong combobox | Kiểm tra giá trị trong combobox | 1. Load từ CSDL danh mục Loại hồ sơ  (Link den bang Organize) | |
+| | | 2. Giá trị trong combo được sắp xếp theo thứ tự alphabet | |
+| Kiểm tra hiển thị giá trị | Kích vào combobox để kiểm tra căn lề của các giá trị trong combobox | 1. Các giá trị trong combobox hiển thị dữ liệu là Tên đơn vị xin cấp phép | |
+| | | 2. Dữ liệu được căn lề trái | |
+| Kiểm tra giá trị combobox sau khi đã chọn từ danh sách | Chọn giá trị trong combo | 1. Chọn được 1 giá trị | |
+| | | 2. Giá trị được chọn view lên đúng | |
+| Textbox Người liên hệ_ContactPerson ( NVARCHAR 200 ) | | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | Giá trị mặc định = "" | |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space, lưu dữ liệu thành công | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu toàn ký tự space | 1. Nhập dữ liệu toàn ký tự space | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu > maxlength | 1. Nhập dữ liệu  > 200 ký tự | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu = maxlength | 1. Nhập dữ liệu  = 200 ký tự | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu < maxlength | 1. Nhập dữ liệu  < 200 ký tự | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự đặc biệt | 1. Nhập dữ liệu có chứa ký tự đặc biệt | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự là các thẻ html | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ </table> ... | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự không phải là ký tự Unicode | 1. Nhập dữ liệu có chứa ký tự không phải là Unicode : ví dụ: 全角/半角 ... | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự chữ cái | 1. Nhập dữ liệu  có chứa ký tự chữ cái | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự số | 1. Nhập dữ liệu  có chứa ký tự số | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa chữ tiếng việt có dấu | 1. Nhập dữ liệu  có chứa chữ tiếng việt có dấu | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu phân biệt chữ HOA chữ thường | 1. Nhập dữ liệu giống vỡi dữ liệu đã tồn tại, khác chữ hoa, thường | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Textbox SĐT liên hệ_ContactPhone | | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | Giá trị mặc định = "" | |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu đúng định dạng có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space | |
+| | 2. Nhập đúng định dạng các trường còn lại | 2. Dữ liệu hợp lệ | |
+| | 3. Click button lưu dữ liệu | | |
+| Kiểm tra chức năng nhập dữ liệu = min length | 1. Nhập dữ liệu = 10 ký tự | 1. Lưu dữ liệu thành công | |
+| | 2. Các trường khác nhập đúng định dạng | | |
+| | 3. Click button Tạo mới | | |
+| Kiểm tra chức năng nhập dữ liệu < min length | 1. Nhập dữ liệu < 10 ký tự | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Các trường khác nhập đúng định dạng | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button lưu dữ liệu | | |
+| Kiểm tra chức năng nhập dữ liệu từ 10 - 20 ký tự | 1. Nhập dữ liệu > 10 ký tự | 1. Lưu dữ liệu thành công | |
+| | 2. Các trường khác nhập đúng định dạng | | |
+| | 3. Click button lưu dữ liệu | | |
+| Kiểm tra nhập quá maxlength | 1. Nhập dữ liệu > 20 ký tự. | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập hợp lệ các trường còn lại | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button lưu dữ liệu | | |
+| Kiểm tra khi nhập dữ liệu là số thập phân | 1. Nhập dữ liệu là số thập phân | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Các thông tin khác được nhập hợp lệ | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button lưu dữ liệu | | |
+| Nhập Dữ liệu  là số âm | 1.Nhập dữ liệu là số âm | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Các thông tin khác được nhập hợp lệ | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button lưu dữ liệu | | |
+| Kiểm tra khi dữ liệu là các ký tự chữ, các ký tự đặc biệt. | 1. Nhập dữ liệu là các ký tự, thẻ html, ký tự đặc biệt | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Các thông tin khác được nhập hợp lệ | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button lưu dữ liệu | | |
+| Kiểm tra tự động loại bỏ số 0 đầu chuỗi | 1. Nhập dữ liệu có chứa số 0 ở đầu | 1. Định dạng số điện thoại là chuỗi | |
+| | 2. Các thông tin khác được nhập hợp lệ | 2. Hiển thị số điện thoại bao gồm cả số 0 | |
+| | 3. Click button lưu dữ liệu | | |
+| Textbox Ghi chú_Note ( NVARCHAR 2000 ) | | | |
+| Kiểm tra giá trị mặc định | Kiểm tra giá trị mặc định | Giá trị mặc định = "" | |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu  có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space, lưu dữ liệu thành công | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu toàn ký tự space | 1. Nhập dữ liệu toàn ký tự space | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu > maxlength | 1. Nhập dữ liệu  > 2000 ký tự | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu = maxlength | 1. Nhập dữ liệu  = 2000 ký tự | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu < maxlength | 1. Nhập dữ liệu  < 2000 ký tự | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự đặc biệt | 1. Nhập dữ liệu có chứa ký tự đặc biệt | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự là các thẻ html | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ </table> ... | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự không phải là ký tự Unicode | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ: 全角/半角 ... | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự chữ cái | 1. Nhập dữ liệu  có chứa ký tự chữ cái | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự số | 1. Nhập dữ liệu  có chứa ký tự số | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa chữ tiếng việt có dấu | 1. Nhập dữ liệu  có chứa chữ tiếng việt có dấu | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu phân biệt chữ HOA chữ thường | 1. Nhập dữ liệu giống vỡi dữ liệu đã tồn tại, khác chữ hoa, thường | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Tab Đơn/Công văn đề nghị cấp giấy phép | | | |
+| Validate Đơn/Công văn đề nghị cấp giấy phép trong bảng_ApplicationDocumentary | | | |
+| Textbox Số/Ký hiệu ( NVARCHAR 200 ) | | | |
+| Kiểm tra giá trị mặc định | Kiểm tra giá trị mặc định | Giá trị mặc định = "" | |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space, lưu dữ liệu thành công | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu toàn ký tự space | 1. Nhập dữ liệu toàn ký tự space | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu > maxlength | 1. Nhập dữ liệu  > 200 ký tự | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu = maxlength | 1. Nhập dữ liệu  = 200 ký tự | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu < maxlength | 1. Nhập dữ liệu  < 200 ký tự | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự đặc biệt | 1. Nhập dữ liệu có chứa ký tự đặc biệt | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự là các thẻ html | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ </table> ... | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự không phải là ký tự Unicode | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ: 全角/半角 ... | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự chữ cái | 1. Nhập dữ liệu  có chứa ký tự chữ cái | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự số | 1. Nhập dữ liệu  có chứa ký tự số | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa chữ tiếng việt có dấu | 1. Nhập dữ liệu  có chứa chữ tiếng việt có dấu | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu phân biệt chữ HOA chữ thường | 1. Nhập dữ liệu giống vỡi dữ liệu đã tồn tại, khác chữ hoa, thường | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Calendar Ngày cấp | | | |
+| Kiểm tra focus trong hộp Calendar khi textbox chưa có giá trị | 1. Để trống giá trị của textbox. | Ngày hiện tại của hệ thống trên DB được focus | |
+| | 2. Thay đổi ngày trên client | | |
+| | 3. Click vào icon Calendar bên cạnh textbox. | | |
+| | 4. Kiểm tra giá trị focus trong hộp Calendar | | |
+| Kiểm tra focus trong hộp Calendar khi texbtox đã có dữ liệu | Giả sử trường ngày tháng đã có giá trị (VD: 20/10/2005) | Ngày 20/10/2005 được focus | |
+| | 1. Click vào icon Calendar bên cạnh textbox. | | |
+| | 2. Kiểm tra giá trị focus trong hộp Calendar | | |
+| Kiểm tra hoạt động của hộp Calendar | 1. Click vào icon Calendar bên cạnh textbox. | 1. Hộp Calendar tự động đóng lại | |
+| | 2. Lựa chọn 1 giá trị ngày tháng trong hộp Calendar | 2. Giá trị ngày tháng vừa chọn hiển thị trong textbox theo định dạng dd/mm/yyyy | |
+| Kiểm tra chức năng Trimspace | 1. Nhập vào dữ liệu theo đúng định dạng và có chưa các ký tự space ở đầu và cuối chuỗi | 1. Chặn nhập không cho phép nhập ký tự space | |
+| | 2. Nhập đúng định dạng các trường còn lại | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra nhập vào toàn ký tự space | 1. Nhập vào dữ liệu toàn ký tự space | 1. Chặn nhập không cho phép nhập ký tự space | |
+| | 2. Nhập đúng định dạng các trường còn lại | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra nhập vào dữ liệu là ký tự | 1. Nhập vào dữ liệu là ký tự , dấu âm, số thập phân | 1. Chặn nhập không cho phép nhập ký tự trừ ký tự đặc trưng ngắn cách ngày tháng năm | |
+| | 2. Nhập đúng định dạng các trường còn lại | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra nhập vào calendar là các thẻ HTML | 1. Nhập vào dữ liệu là chữ cái hoặc ký tự đặc biệt là các thẻ HTML: ví dụ </table> ... | 1. Chặn nhập không cho phép nhập ký tự trừ ký tự đặc trưng ngắn cách ngày tháng năm | |
+| | 2. Nhập đúng định dạng các trường khác | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra nhập vào dữ liệu ngày sai | 1. Nhập vào giá trị ngày > = 32 | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| | 1. Nhập vào giá trị ngày = 00 | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra nhập vào dữ liệu tháng sai | 1. Nhập vào giá trị tháng > = 13 | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| | 1. Nhập vào giá trị tháng = 00 | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra nhập vào dữ liệu năm sai | 1. Nhập vào giá trị năm > năm hiện tại | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra nhập vào calendar đúng định dạng | 1. nhập vào Calendar theo định dạng ""dd/mm/yyyy"" | 1. Lưu dữ liệu thành công | |
+| | 2. Nhập đúng định dạng các trường khác | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra nhập vào calendar sai định dạng | 1. nhập vào Calendar khác định dạng ""dd/mm/yyyy"" | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra nhập vào calendar ngày 29, 30, 31/02 của các năm không phải là nhuận | 1. Nhập vào Calendar ngày 29, 30, 31/02/2017 | 1. Hiển thị thông báo sai dữ liệu | |
+| | 2. Nhập đúng định dạng các trường khác | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra nhập vào Calenda lớn hơn ngày hiện tại | 1. Nhập vào dữ liệu lớn hơn ngày hiện tại | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Textbox Nơi cấp ( NVARCHAR 200 ) | | | |
+| Kiểm tra giá trị mặc định | Kiểm tra giá trị mặc định | Giá trị mặc định = "" | |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu  có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space, lưu dữ liệu thành công | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu toàn ký tự space | 1. Nhập dữ liệu toàn ký tự space | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu > maxlength | 1. Nhập dữ liệu  > 200 ký tự | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu = maxlength | 1. Nhập dữ liệu  = 200 ký tự | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu < maxlength | 1. Nhập dữ liệu  < 200 ký tự | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự đặc biệt | 1. Nhập dữ liệu có chứa ký tự đặc biệt | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự là các thẻ html | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ </table> ... | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự không phải là ký tự Unicode | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ: 全角/半角 ... | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự chữ cái | 1. Nhập dữ liệu  có chứa ký tự chữ cái | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự số | 1. Nhập dữ liệu  có chứa ký tự số | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa chữ tiếng việt có dấu | 1. Nhập dữ liệu  có chứa chữ tiếng việt có dấu | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu phân biệt chữ HOA chữ thường | 1. Nhập dữ liệu giống vỡi dữ liệu đã tồn tại, khác chữ hoa, thường | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Textbox Người ký ( NVARCHAR 200 ) | | | |
+| Kiểm tra giá trị mặc định | Kiểm tra giá trị mặc định | Giá trị mặc định = "" | |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu  có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space, lưu dữ liệu thành công | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu toàn ký tự space | 1. Nhập dữ liệu toàn ký tự space | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu > maxlength | 1. Nhập dữ liệu  > 200 ký tự | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu = maxlength | 1. Nhập dữ liệu  = 200 ký tự | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu < maxlength | 1. Nhập dữ liệu  < 200 ký tự | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự đặc biệt | 1. Nhập dữ liệu có chứa ký tự đặc biệt | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự là các thẻ html | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ </table> ... | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự không phải là ký tự Unicode | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ: 全角/半角 ... | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự chữ cái | 1. Nhập dữ liệu  có chứa ký tự chữ cái | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự số | 1. Nhập dữ liệu  có chứa ký tự số | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa chữ tiếng việt có dấu | 1. Nhập dữ liệu  có chứa chữ tiếng việt có dấu | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu phân biệt chữ HOA chữ thường | 1. Nhập dữ liệu giống vỡi dữ liệu đã tồn tại, khác chữ hoa, thường | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Textbox Chức vụ ( NVARCHAR 200 ) | | | |
+| Kiểm tra giá trị mặc định | Kiểm tra giá trị mặc định | Giá trị mặc định = "" | |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu  có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space, lưu dữ liệu thành công | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu toàn ký tự space | 1. Nhập dữ liệu toàn ký tự space | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu > maxlength | 1. Nhập dữ liệu  > 200 ký tự | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu = maxlength | 1. Nhập dữ liệu  = 200 ký tự | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu < maxlength | 1. Nhập dữ liệu  < 200 ký tự | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự đặc biệt | 1. Nhập dữ liệu có chứa ký tự đặc biệt | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự là các thẻ html | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ </table> ... | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự không phải là ký tự Unicode | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ: 全角/半角 ... | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự chữ cái | 1. Nhập dữ liệu  có chứa ký tự chữ cái | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa các ký tự số | 1. Nhập dữ liệu  có chứa ký tự số | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu chứa chữ tiếng việt có dấu | 1. Nhập dữ liệu  có chứa chữ tiếng việt có dấu | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Kiểm tra dữ liệu phân biệt chữ HOA chữ thường | 1. Nhập dữ liệu giống vỡi dữ liệu đã tồn tại, khác chữ hoa, thường | 1. Lưu thành công dữ liệu đã nhập | |
+| | 2. Nhập đúng định dạng các trường khác. | | |
+| | 3. Click button để lưu dữ liệu | | |
+| Tab Danh sách file đính kèm | | | |
+| Grid danh sách File đính kèm | | | |
+| Kiểm tra hiển thị dữ liệu trong bảng | Số thứ tự | Hiển thị số thứ tự bắt đầu từ 1 | |
+| | Loại giấy tờ | Hiển thị loại giấy tờ đi kèm, yêu cầu | |
+| | Tên file | Hiển thị tên file đã được đính kèm | |
+| | Mô tả | Hiển thị mô tả của loại giấy tờ đó | |
+| | Hành động | Hiển thị các button hành động | |
+| | | Tải lên: cho phép tải file | |
+| | | Tải xuống: cho phép tải file đính kèm của hồ sơ | |
+| | | Xóa: cho phép xóa file vừa tải lên | |
+| Tab Danh sách các phương tiện xin cấp giấy phép | | | |
+| Validate Danh sách các phương tiện xin cấp giấy phép_ApplicantVehicle | | | |
+| Grid danh sách phương tiện | | | |
+| Kiểm tra Grid | Tiền điều kiện: Chọn tab Danh sách các phương tiện xin cấp giấy phép | 1. Màu nền của dòng đó thay đổi | |
+| | 1. Di chuyển con trỏ chuột vào một dòng | 2. Các đối tượng được hiển thị đầy đủ đúng theo design | |
+| | 2. Kiểm tra bố cục trong grid | 3. Phân trang không được che khuất row ở trang kế tiếp | |
+| | | 4. Hiển thị danh sách hồ sơ sắp xếp theo ngày tạo giảm dần | |
+| Kiểm tra hiển thị thông tin bị ẩn trong một ô | 1. Chọn một ô có thông tin quá dài bị ẩn | 1. Thông tin đầy đủ trong ô đó được view lên đầy đủ, chính xác | |
+| | 2. Di chuột vào ô đó | 2. Bố cụ dễ nhìn. Không có hiệu ứng | |
+| | 3. Kiểm tra hiển thị tooltip | 3. Di chuột sang vị trí khác thì thông tin ô đó bị ẩn đi như cũ | |
+| Kiểm tra hiển thị dữ liệu trong bảng | Số thứ tự | Hiển thị số thứ tự bắt đầu từ 1 | |
+| | Loại phương tiện | 1. Hiển thị Loại phương tiện | |
+| | Biển số | 1. Hiển thị Biển số của phương tiện | |
+| | Nhãn hiệu | 1. Hiển thị Nhãn hiệu của phương tiện | |
+| | Số loại | 1. Hiển thị Số loại của phương tiện | |
+| | Trọng tải | 1. Hiển thị Trọng tải của phương tiện | |
+| | Thời hạn giấy đăng ký | Hiển thị Thời hạn giấy đăng ký của phương tiện | |
+| | Thời hạn đăng kiểm | Hiển thị Thời hạn đăng kiểm của phương tiện | |
+| | Thời hạn bảo hiểm | Hiển thị Thời hạn bảo hiểm của phương tiện | |
+| | Ghi chú | Hiển thị Ghi chú của phương tiện | |
+| | Hành động | Hiển thị các icon hành động | |
+| Button Thêm phương tiện | | | |
+| CHỨC NĂNG 3: THỰC HIỆN CHỨC NĂNG | | | |
+| Button Lưu dữ liệu | | | |
+| Kiểm tra việc lưu hồ sơ vừa khai báo thành công | 1. Nhập các thông tin khai báo hồ sơ xin cấp giấy phép đúng định dạng | 1. Hiển thị mess thông báo lưu hồ sơ thành công | |
+| | 2. Click button Lưu | 2. Giữ nguyên màn hình sửa cho người dùng thực hiện sưa thông tin nếu cần | |
+| | | 3. Hiển thị thêm một bản ghi vừa thêm trong danh sách trong màn hình index | |
+| | | - Cột ngày gửi = trống; | |
+| | | 4. Thông tin vừa thêm được lưu đúng vào các cột tương ứng trong bảng. | |
+| | | 5. Thông tin chung được lưu đầy đủ vào các trường trong bảng ApplicantLicense | |
+| | | 6. Thông tin Đơn/Công văn đề nghị cấp giấy phép được lưu đầy đủ vào các trường trong bảng ApplicationDocumentary | |
+| | | 7. Thông tin phương tiện xin cấp giấy phép được bổ xung vào các bảng sau: | |
+| | | - Thông tin chi tiết từng loại phương tiện xin cấp giấy phép được lưu đầy đủ vào các trường trong bảng ApplicantVehicle | |
+| | | - Thông tin chi tiết về số lượng phương tiện và các thông tin chung cấp phát giấy phép cho phương tiện được lưu trong bảng VehicleRequest | |
+| | | - Thông tin khu vực hạn chế của từng phương tiện được lưu trong bảng VehicleRestrictArea | |
+| Kiểm tra việc Thêm mới không thành công | 1. Nhập dữ liệu chứa ít nhất 1 thông tin không hợp lệ | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Click button Lưu | 2. Không lưu dữ liệu vừa nhập vào hệ thống | |
+| | 1. Không nhập các thông tin bắt buộc | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Click button Lưu | 2. Không lưu dữ liệu vừa nhập vào hệ thống | |
+| Button Gửi | | | |
+| Kiểm tra việc lưu hồ sơ vừa khai báo thành công | 1. Nhập các thông tin khai báo đúng định dạng | 1. Hiển thị mess thông báo gửi hồ sơ thành công | |
+| | 2. Click button Gửi | 2. Quay về màn hình quản lý danh sách các hồ sơ (index) | |
+| | | 3. Hiển thị thay đổi trong màn hình index: | |
+| | | - Hiển thị ngày gửi = thời điểm gửi hồ sơ thành công | |
+| | | - Trạng thái hồ sơ = Đang chờ xử lý hồ sơ | |
+| | | 4. Thông tin được lưu đúng vào các cột tương ứng trong bảng. | |
+| | | 5. Thông tin chung được lưu đầy đủ vào các trường trong bảng ApplicantLicense | |
+| | | - Thông tin cột ApplyType = 1: Trực tuyến | |
+| | | - Thông tin cột LicenseType = 1: Dài hạn | |
+| | | - Thông tin cột [Status] = 2: Đang chờ tiếp nhận | |
+| | | - Thông tin cột ProcessingStatus = 1: Chưa xử lý | |
+| | | - Thông tin cột PaymentStatus = 1: Chưa nộp phí | |
+| | | - Thông tin cột CreatedTime = Thời điểm lưu hồ sơ thành công | |
+| | | - Thông tin cột ApplyTime = Thời điểm gửi hồ sơ thành công | |
+| Kiểm tra việc gửi hồ sơ không thành công | 1. Nhập dữ liệu chứa ít nhất 1 thông tin không hợp lệ | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Click button Gửi | 2. Không lưu dữ liệu vừa nhập vào hệ thống | |
+| | 1. Nhập dữ liệu Thiếu ít nhất 1 thông tin | 1. Hiển thị thông báo lỗi tương ứng | |
+| | 2. Click button Gửi | 2. Không lưu dữ liệu vừa nhập vào hệ thống | |
+| Button Hủy bỏ | | | |
+| Kiểm tra hoạt động của button Hủy | 1. Nhập dữ liệu hợp lệ vào các trường | 1. Không Update dữ liệu vừa thêm vào hệ thống | |
+| | 2. Nhấn nút Hủy bỏ | 2. Quay về màn hình Quản lý hồ sơ (Index) | |
+
+---
+# #4 Quản_lý_thông_tin_cá_nhân
+
+| Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
+|:---|:---|:---|
+| CHỨC NĂNG 1: CẬP NHẬT THÔNG TIN CÁ NHÂN | | |
+| Tiền điều kiện | 1. User đăng nhập vào hệ thống | |
+| | 2. Click chọn vào Tên đầy đủ hoặc icon của user đang đăng nhập trên thanh menu bar | |
+| | 3. Click chọn menu thông tin cá nhân | |
+| Giao diện màn hình index | | |
+| Giao diện chung | | |
+| Kiểm tra màn hình ở trạng thái mặc định | 1. Kiểm tra title của màn hình | 1. Hiển thị title màn hình ""Cập nhật thông tin cá nhân"" |
+| | 2. Kiểm tra focus chuột | 2. Các  đối tượng được hiển thị đầy đủ đúng theo design |
+| | 3. Kiểm tra giá trị mặc định của các trường | |
+| | 4. Kiểm tra header, footer | |
+| Kiểm tra tổng thể giao diện màn hình | 1. Kiểm tra về bố cục, font chữ, chính tả, màu chữ | 1. Các label, textbox, combo có độ dài, rộng và khoảng cách bằng nhau, không xô lệch. Chung một style |
+| | | 2. Các label sử dụng cùng 1 loại font, cỡ chữ, căn lề trái |
+| | | 3. Kiểm tra tất cả lỗi về chính tả, cấu trúc câu, ngữ pháp trên màn hình |
+| | | 4. Form được bố trí đúng design |
+| Kiểm tra thứ tự di chuyển con trỏ chuột trên màn hình khi nhấn Tab | 1. Nhấn Tab liên tục | Con trỏ di chuyển lần lượt theo thứ tự: Từ trên xuống dưới, từ trái qua phải |
+| Kiểm tra thứ tự di chuyển con trỏ chuột ngược lại trên màn hình khi nhấn Shift Tab | 1. Nhấn Shift Tab liên tục | Con trỏ di chuyển lần lượt theo thứ tự ngược lại: Từ phải qua trái, từ dưới lên trên |
+| Kiểm tra thực hiện chức năng chính của màn hình khi nhấn Enter | 1. Nhấn phím Enter | 1. Nếu chuột không focus vào button nào thì sẽ thực hiện chức năng chính của button ""Cập nhật"" |
+| | | 2. Nếu đang focus vào 1 button thì sẽ thực hiện chức năng của button |
+| Kiểm tra trong trường hợp trường hợp tương tác cần hơn 1s để xử lý | Kiểm tra trường hợp tương tác hơn 1s để xử lý | 1. Bất cứ tương tác nào cần hơn 1s để xử lý, thì phải sử dụng Progress Indicator. |
+| | | 2.Tránh sử dụng các Progress Indicator dạng tĩnh. |
+| Vùng thông tin chi tiết tài khoản | | |
+| Textbox Tên đăng nhập | | |
+| Kiểm tra hiển thị mặc định | Kiểm tra dữ liệu hiển thị mặc định | 1. Dữ liệu cũ được fill mặc định vào textbox |
+| | | 2. RO không cho phép người dùng sửa thông tin |
+| Textbox Email | | |
+| Kiểm tra hiển thị mặc định | Kiểm tra dữ liệu hiển thị mặc định | 1. Dữ liệu cũ được fill mặc định vào textbox |
+| | | 2. RO không cho phép người dùng sửa thông tin |
+| Checkbox Khóa | | |
+| Kiểm tra hiển thị mặc định | Kiểm tra dữ liệu hiển thị mặc định | 1. Hiện thị trạng thái khóa của user |
+| | | 2. RO không cho phép người dùng sửa thông tin |
+| Validate Thông tin cá nhân | | |
+| Textbox Họ tên (VARCHAR 200) | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | 1. Giá trị mặc định fill dữ liệu cũ |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space, lưu dữ liệu thành công |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button Tạo mới | |
+| Kiểm tra dữ liệu toàn ký tự space | 1. Nhập dữ liệu toàn ký tự space | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button Tạo mới | |
+| Kiểm tra dữ liệu > maxlength | 1. Nhập dữ liệu  > 200 ký tự | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu = maxlength | 1. Nhập dữ liệu  = 200 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu < maxlength | 1. Nhập dữ liệu  < 200 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu = minlength | 1. Nhập dữ liệu  = 1 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu > minlength | 1. Nhập dữ liệu  > 1 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự đặc biệt | 1. Nhập dữ liệu có chứa ký tự đặc biệt | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự là các thẻ html | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ </table> ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự không phải là ký tự Unicode | 1. Nhập dữ liệu có chứa ký tự là Unicode : ví dụ: 全角/半角 ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự chữ cái | 1. Nhập dữ liệu  có chứa ký tự chữ cái | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự số | 1. Nhập dữ liệu  có chứa ký tự số | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa chữ tiếng việt có dấu | 1. Nhập dữ liệu  có chứa chữ tiếng việt có dấu | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu phân biệt chữ HOA chữ thường | 1. Nhập dữ liệu giống vỡi dữ liệu đã tồn tại, khác chữ hoa, thường | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Textbox Số điện thoại | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | 1. Giá trị mặc định fill dữ liệu cũ |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu đúng định dạng có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space |
+| | 2. Nhập đúng định dạng các trường còn lại | 2. Dữ liệu hợp lệ |
+| | 3. Click button lưu dữ liệu | |
+| Kiểm tra chức năng nhập dữ liệu = min length | 1. Nhập dữ liệu = 10 ký tự | 1. Lưu dữ liệu thành công |
+| | 2. Các trường khác nhập đúng định dạng | |
+| | 3. Click button Tạo mới | |
+| Kiểm tra chức năng nhập dữ liệu < min length | 1. Nhập dữ liệu < 10 ký tự | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Các trường khác nhập đúng định dạng | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button lưu dữ liệu | |
+| Kiểm tra chức năng nhập dữ liệu từ 10 - 20 ký tự | 1. Nhập dữ liệu > 10 ký tự | 1. Lưu dữ liệu thành công |
+| | 2. Các trường khác nhập đúng định dạng | |
+| | 3. Click button lưu dữ liệu | |
+| Kiểm tra nhập quá maxlength | 1. Nhập dữ liệu > 20 ký tự. | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập hợp lệ các trường còn lại | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button lưu dữ liệu | |
+| Kiểm tra khi nhập dữ liệu là số thập phân | 1. Nhập dữ liệu là số thập phân | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Các thông tin khác được nhập hợp lệ | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button lưu dữ liệu | |
+| Nhập Dữ liệu  là số âm | 1.Nhập dữ liệu là số âm | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Các thông tin khác được nhập hợp lệ | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button lưu dữ liệu | |
+| Kiểm tra khi dữ liệu là các ký tự chữ, các ký tự đặc biệt. | 1. Nhập dữ liệu là các ký tự, thẻ html, ký tự đặc biệt | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Các thông tin khác được nhập hợp lệ | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button lưu dữ liệu | |
+| Kiểm tra tự động loại bỏ số 0 đầu chuỗi | 1. Nhập dữ liệu có chứa số 0 ở đầu | 1. Định dạng số điện thoại là chuỗi |
+| | 2. Các thông tin khác được nhập hợp lệ | 2. Hiển thị số điện thoại bao gồm cả số 0 |
+| | 3. Click button lưu dữ liệu | |
+| Calendar Ngày sinh | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | 1. Giá trị mặc định fill dữ liệu cũ |
+| Kiểm tra focus trong hộp Calendar khi textbox chưa có giá trị | 1. Để trống giá trị của textbox. | Ngày hiện tại của hệ thống trên DB được focus |
+| | 2. Thay đổi ngày trên client | |
+| | 3. Click vào icon Calendar bên cạnh textbox. | |
+| | 4. Kiểm tra giá trị focus trong hộp Calendar | |
+| Kiểm tra focus trong hộp Calendar khi texbtox đã có dữ liệu | Giả sử trường ngày tháng đã có giá trị (VD: 20/10/2005) | Ngày 20/10/2005 được focus |
+| | 1. Click vào icon Calendar bên cạnh textbox. | |
+| | 2. Kiểm tra giá trị focus trong hộp Calendar | |
+| Kiểm tra hoạt động của hộp Calendar | 1. Click vào icon Calendar bên cạnh textbox. | 1. Hộp Calendar tự động đóng lại |
+| | 2. Lựa chọn 1 giá trị ngày tháng trong hộp Calendar | 2. Giá trị ngày tháng vừa chọn hiển thị trong textbox theo định dạng dd/mm/yyyy |
+| Kiểm tra chức năng Trimspace | 1. Nhập vào dữ liệu theo đúng định dạng và có chưa các ký tự space ở đầu và cuối chuỗi | 1. Chặn nhập không cho phép nhập ký tự space |
+| | 2. Nhập đúng định dạng các trường còn lại | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào toàn ký tự space | 1. Nhập vào dữ liệu toàn ký tự space | 1. Chặn nhập không cho phép nhập ký tự space |
+| | 2. Nhập đúng định dạng các trường còn lại | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào dữ liệu là ký tự | 1. Nhập vào dữ liệu là ký tự , dấu âm, số thập phân | 1. Chặn nhập không cho phép nhập ký tự trừ ký tự đặc trưng ngắn cách ngày tháng năm |
+| | 2. Nhập đúng định dạng các trường còn lại | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào calendar là các thẻ HTML | 1. Nhập vào dữ liệu là chữ cái hoặc ký tự đặc biệt là các thẻ HTML: ví dụ </table> ... | 1. Chặn nhập không cho phép nhập ký tự trừ ký tự đặc trưng ngắn cách ngày tháng năm |
+| | 2. Nhập đúng định dạng các trường khác | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào dữ liệu ngày sai | 1. Nhập vào giá trị ngày > = 32 | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| | 1. Nhập vào giá trị ngày = 00 | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào dữ liệu tháng sai | 1. Nhập vào giá trị tháng > = 13 | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| | 1. Nhập vào giá trị tháng = 00 | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào dữ liệu năm sai | 1. Nhập vào giá trị năm <1900 | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| | 1. Nhập vào giá trị năm > năm hiện tại | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào calendar đúng định dạng | 1. nhập vào Calendar theo định dạng ""dd/mm/yyyy"" | 1. Lưu dữ liệu thành công |
+| | 2. Nhập đúng định dạng các trường khác | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào calendar sai định dạng | 1. nhập vào Calendar khác định dạng ""dd/mm/yyyy"" | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác | 2. không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào calendar ngày 29, 30, 31/02 của các năm không phải là nhuận | 1. Nhập vào Calendar ngày 29, 30, 31/02/2017 | 1. Hiển thị thông báo sai dữ liệu |
+| | 2. Nhập đúng định dạng các trường khác | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra nhập vào Calenda lớn hơn ngày hiện tại | 1. Nhập vào dữ liệu lớn hơn ngày hiện tại | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Radiobutton Giới tính | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | 1. Giá trị mặc định fill dữ liệu cũ |
+| Kiểm tra hiển thị giá trị | Kích vào Button để kiểm tra focus các giá trị | 1. Các giá trị khác được check trước đó thành uncheck |
+| | | 2. Dữ liệu được căn lề trái |
+| Kiểm tra giá trị combobox sau khi đã chọn từ danh sách | Chọn giá trị trong combobox | 1. Chọn được 1 giá trị |
+| | | 2. Giá trị được chọn view lên đúng |
+| Textbox Chức vụ (VARCHAR 200) | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | 1. Giá trị mặc định fill dữ liệu cũ |
+| Kiểm tra chức năng Trimspace | 1. Nhập dữ liệu có chứa ký tự space ở đầu và cuối chuỗi | 1. Trim ký tự space, lưu dữ liệu thành công |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button Tạo mới | |
+| Kiểm tra dữ liệu toàn ký tự space | 1. Nhập dữ liệu toàn ký tự space | 1. Trimspace. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Dữ liệu lưu vào hệ thống = "" |
+| | 3. Click button Tạo mới | |
+| Kiểm tra dữ liệu > maxlength | 1. Nhập dữ liệu  > 200 ký tự | 1. Hiển thị thông báo lỗi tương ứng |
+| | 2. Nhập đúng định dạng các trường khác. | 2. Không cho phép lưu dữ liệu |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu = maxlength | 1. Nhập dữ liệu  = 200 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu < maxlength | 1. Nhập dữ liệu  < 200 ký tự | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự đặc biệt | 1. Nhập dữ liệu có chứa ký tự đặc biệt | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự là các thẻ html | 1. Nhập dữ liệu có chứa ký tự là thẻ html : ví dụ </table> ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự không phải là ký tự Unicode | 1. Nhập dữ liệu có chứa ký tự không phải là Unicode : ví dụ: 全角/半角 ... | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự chữ cái | 1. Nhập dữ liệu  có chứa ký tự chữ cái | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa các ký tự số | 1. Nhập dữ liệu  có chứa ký tự số | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu chứa chữ tiếng việt có dấu | 1. Nhập dữ liệu  có chứa chữ tiếng việt có dấu | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Kiểm tra dữ liệu phân biệt chữ HOA chữ thường | 1. Nhập dữ liệu giống vỡi dữ liệu đã tồn tại, khác chữ hoa, thường | 1. Lưu thành công dữ liệu đã nhập |
+| | 2. Nhập đúng định dạng các trường khác. | |
+| | 3. Click button để lưu dữ liệu | |
+| Vùng Thông tin Phân quyền | | |
+| Danh sách vai trò đã chọn | | |
+| Kiểm tra hiển thị bảng vai trò | Kiểm tra hiển thị thông tin bảng | 1. Hiển thị 1 cột với dữ liệu với dữ liệu cũ ban đầu đã được tạo |
+| | | 2. Cột vai trò: Hiển thị tên vai trò đã được tạo trước đó |
+| | | 3. Dữ liệu là RO không cho phép sửa |
+| Vùng dữ liệu quản lý | | |
+| Kiểu User | | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | 1. Giá trị mặc định fill dữ liệu cũ |
+| | | 2. Dữ liệu hiển thị là RO không cho phép sửa |
+| Textbox Tổ chức phát hành | | |
+| Tiên điều kiện | 1. Chỉ hiển thị khi người dùng có Kiểu User = Tổ chức phát hành | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | 1. Giá trị mặc định fill dữ liệu cũ |
+| | | 2. Dữ liệu hiển thị là RO không cho phép sửa |
+| Textbox Doanh nghiệp đăng ký | | |
+| Tiên điều kiện | 1. Chỉ hiển thị khi người dùng có Kiểu User = Doanh nghiệp đăng ký | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | 1. Giá trị mặc định fill dữ liệu cũ |
+| | | 2. Dữ liệu hiển thị là RO không cho phép sửa |
+| Textbox Đơn vị nhận hồ sơ cấp phát | | |
+| Tiên điều kiện | 1. Chỉ hiển thị khi người dùng có Kiểu User = Doanh nghiệp đăng ký | |
+| Kiểm tra giá trị mặc định | 1. Kiểm tra hiển thị giá trị mặc định | 1. Giá trị mặc định fill dữ liệu cũ |
+| | | 2. Dữ liệu hiển thị là RO không cho phép sửa |
+| Chức năng(Phần này viết cho các trường hợp kiểm thử kiểm tra các ràng buộc trong cơ sở dữ liệu và cho các luồng nghiệp vụ trong tài liệu giải pháp, tích hợp với các chức năng ) | | |
+| Button Cập nhật | | |
+| Kiểm tra không nhập trường | 1. Không nhập Họ tên | 1. Hiển thị thông báo lỗi |
+| bắt buộc vùng dữ liệu thông tin cá nhân | 2. Nhập hợp lệ các trường còn lại | |
+| | 3. Click button lưu dữ liệu | |
+| Kiểm tra không nhập các trường  không bắt buộc | 1. Không nhập Số điện thoại | 1. Lưu thành công các dữ liệu khác |
+| | 2. Nhập hợp lệ các trường còn lại | |
+| | 3. Click button lưu dữ liệu | |
+| | 1. Không nhập Ngày sinh | 1. Lưu thành công các dữ liệu khác |
+| | 2. Nhập hợp lệ các trường còn lại | |
+| | 3. Click button lưu dữ liệu | |
+| | 1. Không nhập Chức vụ | 1. Lưu thành công các dữ liệu khác |
+| | 2. Nhập hợp lệ các trường còn lại | |
+| | 3. Click button lưu dữ liệu | |
+| Kiểm tra nhập dữ liệu đã tồn tại | 1. Nhập Họ tên đã tồn tại | 1. Lưu thành công các dữ liệu |
+| | 2. Nhập hợp lệ các trường còn lại | |
+| | 3. Click button lưu dữ liệu | |
+| | 1. Nhập Số điện thoại đã tồn tại | 1. Lưu thành công các dữ liệu |
+| | 2. Nhập hợp lệ các trường còn lại | |
+| | 3. Click button lưu dữ liệu | |
+| Kiểm tra việc Cập nhật được lưu thành công | 1. Nhập dữ liệu hợp lệ vào các trường | 1. Hiển thị mess thông báo cập nhật thành công |
+| | 2. Click button lưu dữ liệu | 2. Giữ nguyên màn hình không chuyển trang. |
+| | | 4. Lưu dữ liệu thành công vào DB |
+| | 1. Nhập dữ liệu hợp lệ vào các trường | 1. Hiển thị tên mới cập nhật lên thanh menu |
+| | 2. Cập nhật tên đầy đủ thành công | 2. Trường hợp tên quá dài hiển thị rút gọn lại. |
+| | 3. Click button lưu dữ liệu | |
+| | 4. Đăng xuất rồi đăng nhập lại hệ thống | |
+| | 5. Kiểm tra tên người dùng hiển thị trên góc bên phải thanh menu | |
+| Ngoại lệ | | |
+| Kiểm tra sửa đồng thời thông tin cá nhân trên nhiều thiết bị | 1. Đăng nhập cùng 1 ACC trên nhiều thiết bị. Mở cùng một lúc màn hình sửa thông tin cá nhân | 1. Cập nhật thành công |
+| | 2. Click cập nhật thông tin cá nhân trên một thiết bị đầu tiên | 2. Chỉ cập nhật thông tin trên thiết bị gửi yêu cầu cuối cùng |
+| | 3. Click cập nhật thông tin cá nhân trên các thiết bị khác | |

@@ -1,0 +1,771 @@
+# 1: Component_Matrix
+
+| UI Component             | Critical Areas                    | High Risk Scenarios            | UX Validation            | Security Validation       | Accessibility Validation   | Responsive Validation   | Performance Validation    | Automation Candidate   |
+|:-------------------------|:----------------------------------|:-------------------------------|:-------------------------|:--------------------------|:---------------------------|:------------------------|:--------------------------|:-----------------------|
+| Textbox                  | Validation, input behavior, state | XSS, SQL injection, max length | Focus, typing smoothness | Injection prevention      | Keyboard, screen reader    | Mobile keyboard         | Long input typing         | High                   |
+| Password Field           | Masking, visibility toggle        | Password leak                  | Show/hide UX             | Copy/paste restriction    | Label announce             | Mobile secure keyboard  | Toggle smoothness         | High                   |
+| Textarea                 | Multi-line input                  | Huge content                   | Auto resize              | Script injection          | Keyboard navigation        | Mobile typing           | Large text rendering      | Medium                 |
+| Button                   | Click behavior, loading           | Duplicate submit               | Click feedback           | Permission action         | Keyboard Enter/Space       | Touch target size       | Spam click handling       | High                   |
+| Icon Button              | Tooltip, icon clarity             | Wrong action icon              | Hover/focus feedback     | Restricted action         | Screen reader label        | Mobile icon tap         | Icon rendering            | Medium                 |
+| Link                     | Navigation                        | Broken navigation              | Hover state              | Open redirect             | Screen reader text         | Responsive wrapping     | Navigation speed          | High                   |
+| Dropdown                 | Option selection, search          | Wrong selection                | Expand/collapse UX       | Restricted options        | Keyboard navigation        | Mobile select UX        | Large dataset loading     | High                   |
+| Multi Select             | Multiple values                   | Partial selection bug          | Tag display UX           | Unauthorized option       | Keyboard selection         | Mobile interaction      | Large option rendering    | Medium                 |
+| Checkbox                 | Checked/unchecked state           | Wrong selection                | Selection clarity        | Hidden action bypass      | Keyboard toggle            | Touch interaction       | Bulk checkbox handling    | High                   |
+| Radio Button             | Exclusive selection               | Multiple selected              | Visual clarity           | Invalid option            | Keyboard navigation        | Mobile layout           | Rendering consistency     | Medium                 |
+| Toggle Switch            | ON/OFF state                      | Wrong state sync               | Immediate feedback       | Permission state          | Keyboard toggle            | Mobile touch            | State transition speed    | Medium                 |
+| Date Picker              | Date selection, timezone          | Invalid date                   | Calendar UX              | Date validation           | Keyboard support           | Mobile date picker      | Calendar loading          | High                   |
+| Time Picker              | Time format                       | Wrong timezone                 | Time selection UX        | Invalid time              | Keyboard navigation        | Mobile picker           | Render performance        | Medium                 |
+| DateTime Picker          | Combined date/time                | DST issue                      | Picker usability         | Validation consistency    | Screen reader              | Mobile layout           | Loading smoothness        | Medium                 |
+| Modal/Dialog             | Focus trap, overlay               | Background interaction         | Open/close animation     | Unauthorized modal access | Focus restoration          | Mobile fullscreen       | Animation smoothness      | High                   |
+| Drawer/Sidebar           | Navigation                        | Hidden content                 | Open/close transition    | Permission menu           | Keyboard navigation        | Responsive collapse     | Render performance        | Medium                 |
+| Tooltip                  | Hover/focus info                  | Wrong tooltip content          | Timing/position          | Sensitive info exposure   | Screen reader support      | Mobile fallback         | Tooltip rendering         | Low                    |
+| Toast Notification       | Success/error feedback            | Wrong message                  | Visibility duration      | Sensitive info leak       | Screen reader announce     | Mobile position         | Multiple toast handling   | Medium                 |
+| Alert Banner             | Warning/error display             | Hidden critical alert          | Visibility clarity       | Info exposure             | ARIA alert                 | Responsive wrapping     | Render stability          | Medium                 |
+| Search Box               | Keyword search                    | Incorrect result               | Search responsiveness    | Query injection           | Keyboard search            | Mobile keyboard         | Debounce performance      | High                   |
+| Filter Panel             | Multi-condition filter            | Wrong AND/OR logic             | Easy reset UX            | Restricted filter         | Keyboard navigation        | Mobile collapse         | Filter query performance  | High                   |
+| Data Grid/Table          | Sorting/filter/pagination         | Wrong data order               | Sticky header UX         | Unauthorized row action   | Keyboard table nav         | Horizontal scroll       | Large dataset performance | High                   |
+| Card List                | Data display                      | Missing data                   | Consistent spacing       | Hidden info leak          | Semantic structure         | Responsive card layout  | Lazy loading              | Medium                 |
+| Accordion                | Expand/collapse state             | Wrong expanded section         | Transition smoothness    | Hidden restricted data    | Keyboard expand            | Mobile interaction      | Animation performance     | Medium                 |
+| Tabs                     | Active tab state                  | Wrong tab content              | Tab switching UX         | Restricted tab access     | Keyboard navigation        | Responsive tabs         | Tab load speed            | High                   |
+| Breadcrumb               | Navigation hierarchy              | Wrong path                     | Navigation clarity       | Unauthorized path         | Screen reader nav          | Mobile wrapping         | Navigation speed          | Low                    |
+| Pagination               | Page navigation                   | Wrong page data                | Navigation clarity       | Query tampering           | Keyboard navigation        | Mobile pagination       | Large page handling       | High                   |
+| File Upload              | File validation                   | Malicious file upload          | Upload progress UX       | File type restriction     | Keyboard upload            | Mobile upload           | Large upload handling     | Critical               |
+| File Download            | File export                       | Wrong exported data            | Download feedback        | Unauthorized export       | Accessible filename        | Mobile download         | Export performance        | Critical               |
+| Image Viewer             | Image rendering                   | Broken image                   | Zoom UX                  | Unsafe image source       | Alt text                   | Mobile pinch zoom       | Large image loading       | Medium                 |
+| Video Player             | Playback controls                 | Playback failure               | Seeking UX               | Unauthorized stream       | Keyboard controls          | Mobile playback         | Streaming performance     | Medium                 |
+| Audio Player             | Playback behavior                 | Audio sync issue               | Volume UX                | Unauthorized source       | Keyboard control           | Mobile playback         | Streaming stability       | Medium                 |
+| Chat Box                 | Real-time message                 | Duplicate message              | Typing UX                | Message injection         | Screen reader update       | Mobile keyboard         | Real-time performance     | Medium                 |
+| Stepper/Wizard           | Multi-step flow                   | Lost step data                 | Progress clarity         | Step bypass               | Keyboard flow              | Mobile navigation       | Step loading              | High                   |
+| Infinite Scroll          | Lazy loading                      | Duplicate/missing item         | Smooth scrolling         | Query abuse               | Keyboard support           | Mobile scroll           | Memory leak               | High                   |
+| Skeleton Loading         | Loading placeholder               | Endless skeleton               | Perceived performance    | nan                       | Screen reader hidden       | Responsive skeleton     | Render smoothness         | Medium                 |
+| Empty State              | No data state                     | Missing guidance               | Helpful UX               | Hidden permission issue   | Accessible message         | Responsive empty layout | Fast rendering            | Low                    |
+| Error State              | Failure handling                  | Wrong error                    | Recovery guidance        | Sensitive info exposure   | Screen reader alert        | Responsive error UI     | Retry performance         | High                   |
+| Session Timeout Popup    | Expired session                   | Unexpected logout              | Warning timing UX        | Session hijack prevention | Keyboard accessible        | Mobile modal            | Timer stability           | Critical               |
+| Approval Workflow Screen | State transition                  | Wrong approval state           | Clear workflow UX        | Permission approval       | Keyboard navigation        | Responsive workflow     | State sync performance    | Critical               |
+| Audit Log Viewer         | History tracking                  | Missing logs                   | Readable timeline        | Sensitive log exposure    | Accessible table           | Mobile readability      | Huge log performance      | High                   |
+| Notification Center      | Real-time notification            | Missing notification           | Read/unread UX           | Unauthorized notification | Screen reader announce     | Mobile layout           | Notification sync         | Medium                 |
+| Dashboard Widget         | KPI/data visualization            | Wrong metric                   | Readability              | Data exposure             | Accessible charts          | Responsive cards        | Widget loading            | High                   |
+
+# 2: Textbox_Matrix
+
+| UI Component   | Category       | Sub Category        | UI State   | Scenario                        | Test Data                 | Expected Result                 | Validation Type   | Priority   |
+|:---------------|:---------------|:--------------------|:-----------|:--------------------------------|:--------------------------|:--------------------------------|:------------------|:-----------|
+| Textbox        | Default State  | Placeholder         | Default    | Verify placeholder              | nan                       | Placeholder đúng wording/design | UI                | Low        |
+| Textbox        | Input Behavior | Typing              | Focus      | Typing normal text              | abc123                    | Textbox nhận input smooth       | Functional        | Medium     |
+| Textbox        | Input Behavior | Copy/Paste          | Focus      | Paste long content              | 1000 chars                | Không lag/vỡ UI                 | Functional        | Medium     |
+| Textbox        | Input Behavior | Undo/Redo           | Focus      | Ctrl+Z/Ctrl+Y                   | abc123                    | Undo/Redo đúng                  | Functional        | Low        |
+| Textbox        | Validation     | Max Length          | Error      | Input vượt max length           | 300 chars                 | Không cho nhập vượt giới hạn    | Functional        | High       |
+| Textbox        | Validation     | Min Length          | Error      | Input dưới min length           | abc                       | Hiển thị validation đúng        | Functional        | High       |
+| Textbox        | Validation     | Leading Space       | Error      | Input leading spaces            | " abc"                    | System trim đúng                | Functional        | Medium     |
+| Textbox        | Validation     | Trailing Space      | Error      | Input trailing spaces           | "abc "                    | System trim đúng                | Functional        | Medium     |
+| Textbox        | Validation     | Multi Space         | Error      | Input multiple spaces           | "a b"                     | Handle đúng theo business       | Functional        | Low        |
+| Textbox        | Validation     | Special Character   | Error      | Input special chars             | @#$%^&*                   | Validate đúng business rule     | Functional        | Medium     |
+| Textbox        | Validation     | Unicode             | Default    | Input Japanese/Vietnamese       | こんにちは                | Không lỗi encoding              | Functional        | High       |
+| Textbox        | Validation     | Emoji               | Default    | Input emoji                     | 😀🔥                      | Render đúng                     | Functional        | Low        |
+| Textbox        | Security       | SQL Injection       | Error      | Input SQL injection             | OR 1=1 --                 | Không crash/lộ data             | Security          | Critical   |
+| Textbox        | Security       | XSS                 | Error      | Input XSS script                | <script>alert(1)</script> | Không execute script            | Security          | Critical   |
+| Textbox        | State          | Disabled            | Disabled   | Verify disabled textbox         | nan                       | Không focus/edit được           | UI                | Medium     |
+| Textbox        | State          | Readonly            | Readonly   | Verify readonly textbox         | nan                       | Không edit nhưng copy được      | UI                | Medium     |
+| Textbox        | UI State       | Focus               | Focus      | Tab tới textbox                 | nan                       | Focus border hiển thị đúng      | UI/UX             | Low        |
+| Textbox        | UI State       | Hover               | Hover      | Hover textbox                   | nan                       | Hover effect consistent         | UI                | Low        |
+| Textbox        | Accessibility  | Keyboard Navigation | Focus      | Navigate bằng keyboard          | Tab                       | Keyboard usable                 | Accessibility     | High       |
+| Textbox        | Accessibility  | Screen Reader       | Focus      | Read textbox bằng screen reader | nan                       | Label announce đúng             | Accessibility     | High       |
+| Textbox        | Mobile         | Keyboard Type       | Focus      | Focus email input               | email@gmail.com           | Keyboard type đúng              | UX                | Medium     |
+| Textbox        | Browser        | Autofill            | Default    | Browser autofill                | Saved account             | Autofill hoạt động đúng         | Functional        | Medium     |
+| Textbox        | Performance    | Typing Delay        | Focus      | Typing text dài liên tục        | 5000 chars                | Không lag input                 | Performance       | Medium     |
+| Textbox        | Localization   | RTL Language        | Default    | Input Arabic                    | مرحبا                     | Render RTL đúng                 | Localization      | Medium     |
+| Textbox        | Responsive     | Zoom 200%           | Focus      | Browser zoom 200%               | nan                       | UI vẫn usable                   | UI/UX             | Medium     |
+
+# 3: Button_Matrix
+
+| UI Component   | Category      | Sub Category       | UI State   | Scenario                | Test Data            | Expected Result                   | Validation Type   | Priority   |
+|:---------------|:--------------|:-------------------|:-----------|:------------------------|:---------------------|:----------------------------------|:------------------|:-----------|
+| Button         | Interaction   | Single Click       | Active     | Click button            | Click                | Trigger đúng 1 action             | Functional        | High       |
+| Button         | Interaction   | Double Click       | Active     | Double click submit     | Double click         | Không duplicate request           | Security          | Critical   |
+| Button         | Interaction   | Spam Click         | Loading    | Spam click liên tục     | 10 rapid clicks      | Chỉ tạo 1 request                 | Security          | Critical   |
+| Button         | State         | Loading            | Loading    | Submit khi loading      | Click                | Hiển thị spinner + disable button | UI/UX             | High       |
+| Button         | State         | Disabled           | Disabled   | Disabled button         | Click                | Không trigger action              | UI                | Medium     |
+| Button         | State         | Hidden             | Hidden     | Verify hidden button    | nan                  | Không hiển thị UI                 | UI                | Medium     |
+| Button         | Accessibility | Keyboard           | Focus      | Press Enter/Space       | Enter                | Trigger đúng action               | Accessibility     | High       |
+| Button         | Accessibility | Focus Visible      | Focus      | Tab tới button          | Tab                  | Focus outline rõ ràng             | Accessibility     | Medium     |
+| Button         | Permission    | Role Access        | Disabled   | Viewer click delete     | Viewer role          | Button hidden/disabled đúng       | Security          | High       |
+| Button         | UX            | Destructive Action | Active     | Click delete button     | Delete item          | Show confirm popup đúng           | UX                | High       |
+| Button         | Browser       | Multiple Browser   | Active     | Same action on browsers | Chrome/Edge          | Behavior consistent               | Compatibility     | Medium     |
+| Button         | Responsive    | Mobile Touch       | Active     | Tap button trên mobile  | Tap                  | Touch area đủ lớn                 | UX                | Medium     |
+| Button         | Performance   | Slow API           | Loading    | API response chậm       | 10s response         | Loading state stable              | Performance       | Medium     |
+| Button         | Localization  | Long Text          | Active     | German button text      | SehrLangerButtonText | Không vỡ layout                   | Localization      | Medium     |
+
+# 4: Authentication_&_Session_Matrix
+
+| Module   | Category          | Scenario                         | Test Data           | Expected Result              | Validation Type   | Priority   |
+|:---------|:------------------|:---------------------------------|:--------------------|:-----------------------------|:------------------|:-----------|
+| Login    | Authentication    | Login valid account              | valid_user/password | Login success                | Functional        | Critical   |
+| Login    | Authentication    | Login invalid password           | wrong password      | Show error đúng              | Functional        | Critical   |
+| Login    | Security          | SQL injection login              | OR 1=1 --           | Không bypass auth            | Security          | Critical   |
+| Session  | Multi Browser     | Login same account on 2 browsers | Chrome + Edge       | Theo session policy          | Security          | High       |
+| Session  | Timeout           | Idle timeout                     | 30 mins idle        | Auto logout đúng timing      | Security          | Critical   |
+| Session  | Token Refresh     | Access token expired             | expired token       | Refresh token hoạt động đúng | Security          | Critical   |
+| Session  | Browser Cache     | Browser back after logout        | Back browser        | Không access secure page     | Security          | High       |
+| Session  | Concurrent Action | Spam submit                      | 10 rapid clicks     | Không duplicate transaction  | Security          | Critical   |
+| Session  | Refresh Page      | Refresh during submit            | F5                  | Không duplicate action       | Functional        | High       |
+| Session  | Offline Mode      | Disconnect internet              | Offline             | Retry/offline state đúng     | UX                | High       |
+| Session  | Reconnect         | Restore internet                 | Reconnect network   | Auto recover đúng            | UX                | Medium     |
+
+# 5: Dropdown_Matrix
+
+| UI Component   | Category      | Scenario               | Test Data      | Expected Result     | Validation Type   | Priority   |
+|:---------------|:--------------|:-----------------------|:---------------|:--------------------|:------------------|:-----------|
+| Dropdown       | Default State | Verify default value   | Default option | Selected đúng       | Functional        | Medium     |
+| Dropdown       | Interaction   | Open dropdown          | Click dropdown | Open đúng vị trí    | UI/UX             | Medium     |
+| Dropdown       | Search        | Search option          | keyword        | Filter result đúng  | Functional        | High       |
+| Dropdown       | Keyboard      | Arrow navigation       | Arrow keys     | Keyboard usable     | Accessibility     | High       |
+| Dropdown       | Large Dataset | 1000+ items            | Large data     | Không lag/freezing  | Performance       | Medium     |
+| Dropdown       | Async Loading | API loading            | Slow API       | Loading state đúng  | UX                | Medium     |
+| Dropdown       | Empty State   | No data                | Empty list     | Show "No data" đúng | UX                | Medium     |
+| Dropdown       | Permission    | Restricted option      | Viewer role    | Hide invalid option | Security          | High       |
+| Dropdown       | Localization  | Long translated option | German text    | Không vỡ layout     | Localization      | Medium     |
+| Dropdown       | Mobile        | Mobile select          | Mobile tap     | Interaction smooth  | UX                | Medium     |
+
+# 6: UI_Semantic_Dictionary
+
+| UI Keyword   | Semantic Type      | Behavior           | Risk                 | Common Validation   |
+|:-------------|:-------------------|:-------------------|:---------------------|:--------------------|
+| Save         | Submit Action      | Create/Update data | Duplicate submit     | Loading/confirm     |
+| Delete       | Destructive Action | Remove data        | Data loss            | Confirm/policy      |
+| Approve      | Workflow Action    | State transition   | Permission           | Audit log           |
+| Search       | Query Action       | Filter data        | Performance          | Debounce            |
+| Export       | File Action        | Generate file      | Permission/data leak | Encoding            |
+| Password     | Sensitive Input    | Secret data        | Security             | Masking             |
+| Amount       | Financial Input    | Currency value     | Precision            | Decimal             |
+| Date Range   | Dependent Input    | Start/End relation | Invalid range        | Cross-validation    |
+
+# 7: Risk_Heuristic_Library
+
+| Pattern         | Common Bugs        |
+|:----------------|:-------------------|
+| Async Loading   | Duplicate request  |
+| Modal           | Focus trap         |
+| Pagination      | Missing data       |
+| Search          | Debounce/cache     |
+| Approval        | Wrong state        |
+| Permission      | Hidden UI mismatch |
+| Upload          | Corrupted file     |
+| Infinite Scroll | Duplicate item     |
+| Session         | Stale token        |
+
+# 8: User_Behavior_Matrix
+
+| User Behavior          | Risk                  |
+|:-----------------------|:----------------------|
+| Spam click             | Duplicate transaction |
+| Browser back           | State inconsistency   |
+| Refresh during loading | Duplicate submit      |
+| Multi tabs             | Stale state           |
+| Network lost           | Partial save          |
+| Switch device          | Session issue         |
+| Leave form half-way    | Unsaved changes       |
+| Paste malformed text   | Validation issue      |
+
+# 9: TableGrid_Matrix
+
+| UI Component   | Category      | Scenario            | Test Data      | Expected Result          | Validation Type   | Priority   |
+|:---------------|:--------------|:--------------------|:---------------|:-------------------------|:------------------|:-----------|
+| Data Grid      | Sorting       | Sort ascending      | Mixed values   | Sort đúng ASC            | Functional        | High       |
+| Data Grid      | Sorting       | Sort descending     | Mixed values   | Sort đúng DESC           | Functional        | High       |
+| Data Grid      | Pagination    | Next page           | 100+ records   | Load đúng data           | Functional        | High       |
+| Data Grid      | Search        | Search keyword      | keyword        | Result đúng              | Functional        | High       |
+| Data Grid      | Filter        | Multi filter        | Status + Role  | AND logic đúng           | Functional        | High       |
+| Data Grid      | Empty State   | No result           | Invalid search | Show empty state đúng    | UX                | Medium     |
+| Data Grid      | Overflow      | Long text           | 500 chars      | Truncate + tooltip đúng  | UI/UX             | Medium     |
+| Data Grid      | Sticky Header | Scroll page         | Scroll down    | Header luôn visible      | UX                | Low        |
+| Data Grid      | Bulk Action   | Bulk approve        | 100 selected   | Action đúng tất cả items | Functional        | Critical   |
+| Data Grid      | Performance   | Huge dataset        | 10000 rows     | Không lag/freeze         | Performance       | High       |
+| Data Grid      | Responsive    | Mobile table        | Mobile screen  | Horizontal scroll đúng   | Responsive        | Medium     |
+| Data Grid      | Accessibility | Keyboard navigation | Tab/Arrow      | Keyboard usable          | Accessibility     | High       |
+
+# 10: Search_Matrix
+
+| UI Component   | Category      | Sub Category          | UI State        | Scenario                           | Test Data                 | Expected Result              | Validation Type   | Priority   |
+|:---------------|:--------------|:----------------------|:----------------|:-----------------------------------|:--------------------------|:-----------------------------|:------------------|:-----------|
+| Search Box     | Default State | Placeholder           | Default         | Verify placeholder                 | nan                       | Placeholder đúng wording     | UI                | Low        |
+| Search Box     | Input         | Exact Match           | Active          | Search exact keyword               | User123                   | Return đúng result           | Functional        | High       |
+| Search Box     | Input         | Partial Match         | Active          | Search partial keyword             | User                      | Return matched results       | Functional        | High       |
+| Search Box     | Input         | Case Sensitive        | Active          | Search upper/lower case            | USER/user                 | Theo business rule           | Functional        | Medium     |
+| Search Box     | Input         | Trim Space            | Active          | Search với leading/trailing spaces | " abc "                   | System trim đúng             | Functional        | Medium     |
+| Search Box     | Input         | Multiple Spaces       | Active          | Search nhiều spaces                | "a b"                     | Handle đúng                  | Functional        | Medium     |
+| Search Box     | Input         | Special Character     | Active          | Search special chars               | @#$%                      | Không crash/lỗi              | Functional        | Medium     |
+| Search Box     | Input         | Unicode               | Active          | Search Japanese/Vietnamese         | こんにちは                | Search đúng encoding         | Functional        | High       |
+| Search Box     | Input         | Emoji                 | Active          | Search emoji                       | 😀🔥                      | Theo business rule           | Functional        | Low        |
+| Search Box     | Validation    | Empty Search          | Empty           | Click search without keyword       | Empty                     | Theo business rule           | Functional        | Medium     |
+| Search Box     | Validation    | No Result             | Empty Result    | Search invalid keyword             | xyz_not_found             | Show "No result" đúng        | UX                | High       |
+| Search Box     | Search Logic  | AND Filter            | Active          | Multiple filter AND                | Status=Active + Admin     | Result đúng                  | Functional        | High       |
+| Search Box     | Search Logic  | OR Filter             | Active          | OR condition                       | Name OR Email             | Result đúng                  | Functional        | High       |
+| Search Box     | Search Logic  | Reset Filter          | Default         | Reset search/filter                | Click Reset               | Clear đúng data/filter       | Functional        | High       |
+| Search Box     | Search Logic  | Persist Search        | Back Navigation | Back page                          | Browser back              | Giữ filter/search đúng       | UX                | Medium     |
+| Search Box     | Search Logic  | Debounce              | Typing          | Typing liên tục                    | Fast typing               | Không spam API               | Performance       | Medium     |
+| Search Box     | Search Logic  | Search While Loading  | Loading         | Search nhiều lần                   | Rapid search              | Cancel previous request đúng | Performance       | High       |
+| Search Box     | Performance   | Huge Dataset          | Loading         | Search data lớn                    | 1M records                | Response acceptable          | Performance       | High       |
+| Search Box     | Security      | SQL Injection         | Error           | SQL injection search               | OR 1=1 --                 | Không bypass/filter sai      | Security          | Critical   |
+| Search Box     | Security      | XSS                   | Error           | Search script                      | <script>alert(1)</script> | Không execute                | Security          | Critical   |
+| Search Box     | Accessibility | Keyboard Search       | Focus           | Press Enter search                 | Enter                     | Trigger đúng search          | Accessibility     | High       |
+| Search Box     | Accessibility | Screen Reader         | Focus           | Read search field                  | nan                       | Announce label đúng          | Accessibility     | High       |
+| Search Box     | Responsive    | Mobile Search         | Active          | Search on mobile                   | Mobile keyboard           | UI usable                    | UX                | Medium     |
+| Search Box     | Browser       | Browser Compatibility | Active          | Search multiple browsers           | Chrome/Edge/Safari        | Behavior consistent          | Compatibility     | Medium     |
+| Search Box     | Offline       | No Internet           | Offline         | Search without internet            | Offline                   | Show retry/offline state     | UX                | High       |
+
+# 11: Date_Picker_Matrix
+
+| UI Component   | Category      | Sub Category           | UI State   | Scenario                     | Test Data     | Expected Result           | Validation Type   | Priority   |
+|:---------------|:--------------|:-----------------------|:-----------|:-----------------------------|:--------------|:--------------------------|:------------------|:-----------|
+| Date Picker    | Default State | Default Date           | Default    | Verify default selected date | Today         | Hiển thị đúng default     | Functional        | Medium     |
+| Date Picker    | Interaction   | Open Calendar          | Active     | Open picker                  | Click input   | Calendar open đúng vị trí | UI/UX             | Medium     |
+| Date Picker    | Interaction   | Select Date            | Active     | Select valid date            | 2026-05-19    | Select đúng date          | Functional        | High       |
+| Date Picker    | Validation    | Invalid Date           | Error      | Input invalid date           | 31/02/2026    | Show validation đúng      | Functional        | High       |
+| Date Picker    | Validation    | Min Date               | Error      | Select date < min date       | 1900-01-02    | Không cho select          | Functional        | High       |
+| Date Picker    | Validation    | Max Date               | Error      | Select date > max date       | 9999-12-31    | Không cho select          | Functional        | High       |
+| Date Picker    | Validation    | Leap Year              | Active     | Select leap date             | 29/02/2028    | Handle đúng               | Functional        | Medium     |
+| Date Picker    | Validation    | DST Timezone           | Active     | DST transition               | DST date      | Correct timezone handling | Functional        | High       |
+| Date Picker    | Interaction   | Keyboard Input         | Focus      | Manual typing                | 2026-05-19    | Parse đúng format         | Functional        | Medium     |
+| Date Picker    | Interaction   | Keyboard Navigation    | Focus      | Arrow/tab navigation         | Keyboard      | Keyboard usable           | Accessibility     | High       |
+| Date Picker    | UX            | Close on Outside Click | Active     | Click outside                | Outside area  | Calendar close đúng       | UX                | Medium     |
+| Date Picker    | UX            | Month Navigation       | Active     | Navigate month/year          | Next/Prev     | Calendar update đúng      | Functional        | Medium     |
+| Date Picker    | UX            | Disabled Date          | Disabled   | Verify disabled dates        | Weekend       | Disabled đúng             | Functional        | High       |
+| Date Picker    | Localization  | Locale Format          | Active     | Different locale             | US/VN/JP      | Format đúng locale        | Localization      | High       |
+| Date Picker    | Localization  | RTL Language           | Active     | Arabic locale                | RTL layout    | Layout đúng               | Localization      | Medium     |
+| Date Picker    | Mobile        | Mobile Picker          | Active     | Mobile date selection        | Mobile device | Native/mobile UX smooth   | UX                | Medium     |
+| Date Picker    | Browser       | Cross Browser          | Active     | Different browsers           | Chrome/Safari | Consistent behavior       | Compatibility     | Medium     |
+| Date Picker    | Accessibility | Screen Reader          | Focus      | Read picker                  | Screen reader | Announce đúng             | Accessibility     | High       |
+| Date Picker    | Responsive    | Small Screen           | Mobile     | Small viewport               | 320px width   | UI usable                 | Responsive        | Medium     |
+| Date Picker    | Performance   | Fast Navigation        | Active     | Rapid month switching        | Rapid click   | Không lag/freeze          | Performance       | Medium     |
+
+# 12: Toast_Message_Matrix
+
+| UI Component   | Category      | Sub Category     | UI State    | Scenario                 | Test Data       | Expected Result             | Validation Type   | Priority   |
+|:---------------|:--------------|:-----------------|:------------|:-------------------------|:----------------|:----------------------------|:------------------|:-----------|
+| Toast Message  | Success       | Save Success     | Visible     | Save thành công          | Save action     | Hiển thị success toast đúng | Functional        | High       |
+| Toast Message  | Error         | API Error        | Visible     | API fail                 | 500 error       | Hiển thị error toast đúng   | Functional        | High       |
+| Toast Message  | Warning       | Warning State    | Visible     | Warning condition        | Invalid action  | Hiển thị warning đúng       | UX                | Medium     |
+| Toast Message  | Info          | Information      | Visible     | Show info message        | Info action     | Nội dung đúng               | UX                | Low        |
+| Toast Message  | UX            | Auto Dismiss     | Timeout     | Auto close toast         | 5 seconds       | Toast tự biến mất đúng      | UX                | Medium     |
+| Toast Message  | UX            | Manual Close     | Visible     | Close toast manually     | Click X         | Toast close đúng            | Functional        | Medium     |
+| Toast Message  | UX            | Multiple Toast   | Stack       | Show multiple toast      | 5 toasts        | Stack/display đúng          | UX                | Medium     |
+| Toast Message  | UX            | Long Message     | Overflow    | Long content             | 500 chars       | Không vỡ layout             | UI/UX             | Medium     |
+| Toast Message  | Accessibility | Screen Reader    | Visible     | Screen reader read toast | nan             | Announce đúng               | Accessibility     | High       |
+| Toast Message  | Accessibility | Focus Management | Visible     | Focus after toast        | Trigger action  | Focus không bị mất          | Accessibility     | Medium     |
+| Toast Message  | Security      | Sensitive Info   | Error       | Error response           | Stack trace     | Không lộ system info        | Security          | Critical   |
+| Toast Message  | Responsive    | Mobile Toast     | Mobile      | Show on mobile           | Mobile screen   | Position/layout đúng        | Responsive        | Medium     |
+| Toast Message  | Localization  | Multi Language   | Visible     | Long translated text     | German/Japanese | Không vỡ UI                 | Localization      | Medium     |
+| Toast Message  | Performance   | Rapid Trigger    | Spam Action | Trigger nhiều toast      | Rapid clicks    | Không lag/crash             | Performance       | Medium     |
+
+# 13: Alert_Message_Matrix
+
+| UI Component   | Category      | Sub Category     | UI State    | Scenario                 | Test Data       | Expected Result             | Validation Type   | Priority   |
+|:---------------|:--------------|:-----------------|:------------|:-------------------------|:----------------|:----------------------------|:------------------|:-----------|
+| Alert Banner   | Success       | Save Success     | Visible     | Save thành công          | Save action     | Hiển thị success alert đúng | Functional        | High       |
+| Alert Banner   | Error         | API Error        | Visible     | API fail                 | 500 error       | Hiển thị error alert đúng   | Functional        | High       |
+| Alert Banner   | Warning       | Warning State    | Visible     | Warning condition        | Invalid action  | Hiển thị warning alert đúng | UX                | Medium     |
+| Alert Banner   | Info          | Information      | Visible     | Show info message        | Info action     | Nội dung alert đúng         | UX                | Low        |
+| Alert Banner   | UX            | Static Display   | Default     | Hiển thị alert tĩnh      | Layout render   | Không tự biến mất           | UI                | Medium     |
+| Alert Banner   | UX            | Manual Close     | Visible     | Close alert manually     | Click X         | Alert close đúng            | Functional        | Medium     |
+| Alert Banner   | UX            | Long Message     | Overflow    | Content dài              | 500 chars       | Wrap text/không vỡ layout   | UI/UX             | Medium     |
+| Alert Banner   | Accessibility | Screen Reader    | Visible     | Screen reader read alert | nan             | Announce ARIA alert đúng    | Accessibility     | High       |
+| Alert Banner   | Security      | Sensitive Info   | Error       | Error response           | Stack trace     | Không lộ system info        | Security          | Critical   |
+| Alert Banner   | Responsive    | Mobile Alert     | Mobile      | Show on mobile           | Mobile screen   | Layout co giãn đúng         | Responsive        | Medium     |
+
+# 14: Padding_&_Spacing_Matrix
+
+| UI Component        | Category         | Sub Category               | UI State   | Scenario                          | Test Data           | Expected Result                      | Validation Type   | Priority   |
+|:--------------------|:-----------------|:---------------------------|:-----------|:----------------------------------|:--------------------|:-------------------------------------|:------------------|:-----------|
+| Layout Spacing      | Padding          | Internal Padding           | Default    | Verify component inner padding    | Standard component  | Padding consistent với design system | UI/UX             | High       |
+| Layout Spacing      | Margin           | External Margin            | Default    | Verify spacing between components | Multiple components | Khoảng cách consistent               | UI/UX             | High       |
+| Layout Spacing      | Alignment        | Horizontal Alignment       | Default    | Verify left/right alignment       | Form layout         | Align đúng grid/layout               | UI                | High       |
+| Layout Spacing      | Alignment        | Vertical Alignment         | Default    | Verify vertical spacing           | Stacked components  | Vertical spacing consistent          | UI                | High       |
+| Button              | Padding          | Button Inner Padding       | Default    | Verify button padding             | Button text         | Text không sát border                | UI/UX             | High       |
+| Button              | Padding          | Long Text Padding          | Overflow   | Long button text                  | German translation  | Padding vẫn đúng, không vỡ layout    | Localization      | Medium     |
+| Button              | Padding          | Icon + Text                | Default    | Button có icon                    | Icon button         | Spacing icon/text đúng               | UI                | Medium     |
+| Textbox             | Padding          | Input Inner Padding        | Focus      | Verify typing area                | Text input          | Text không sát border                | UI/UX             | High       |
+| Textbox             | Padding          | Placeholder Padding        | Default    | Placeholder alignment             | Placeholder         | Placeholder align đúng               | UI                | Medium     |
+| Textbox             | Padding          | Validation Message Spacing | Error      | Show error message                | Invalid input       | Error spacing consistent             | UX                | Medium     |
+| Dropdown            | Padding          | Option Padding             | Expanded   | Dropdown open                     | Dropdown items      | Item spacing dễ đọc/click            | UX                | Medium     |
+| Dropdown            | Padding          | Searchable Dropdown        | Focus      | Search input spacing              | Search dropdown     | Padding consistent                   | UI                | Medium     |
+| Modal               | Padding          | Modal Content Padding      | Open       | Open modal                        | Modal content       | Content không sát border             | UI/UX             | High     
+# 1: Component_Matrix
+
+| UI Component             | Critical Areas                    | High Risk Scenarios            | UX Validation            | Security Validation       | Accessibility Validation   | Responsive Validation   | Performance Validation    | Automation Candidate   |
+|:-------------------------|:----------------------------------|:-------------------------------|:-------------------------|:--------------------------|:---------------------------|:------------------------|:--------------------------|:-----------------------|
+| Textbox                  | Validation, input behavior, state | XSS, SQL injection, max length | Focus, typing smoothness | Injection prevention      | Keyboard, screen reader    | Mobile keyboard         | Long input typing         | High                   |
+| Password Field           | Masking, visibility toggle        | Password leak                  | Show/hide UX             | Copy/paste restriction    | Label announce             | Mobile secure keyboard  | Toggle smoothness         | High                   |
+| Textarea                 | Multi-line input                  | Huge content                   | Auto resize              | Script injection          | Keyboard navigation        | Mobile typing           | Large text rendering      | Medium                 |
+| Button                   | Click behavior, loading           | Duplicate submit               | Click feedback           | Permission action         | Keyboard Enter/Space       | Touch target size       | Spam click handling       | High                   |
+| Icon Button              | Tooltip, icon clarity             | Wrong action icon              | Hover/focus feedback     | Restricted action         | Screen reader label        | Mobile icon tap         | Icon rendering            | Medium                 |
+| Link                     | Navigation                        | Broken navigation              | Hover state              | Open redirect             | Screen reader text         | Responsive wrapping     | Navigation speed          | High                   |
+| Dropdown                 | Option selection, search          | Wrong selection                | Expand/collapse UX       | Restricted options        | Keyboard navigation        | Mobile select UX        | Large dataset loading     | High                   |
+| Multi Select             | Multiple values                   | Partial selection bug          | Tag display UX           | Unauthorized option       | Keyboard selection         | Mobile interaction      | Large option rendering    | Medium                 |
+| Checkbox                 | Checked/unchecked state           | Wrong selection                | Selection clarity        | Hidden action bypass      | Keyboard toggle            | Touch interaction       | Bulk checkbox handling    | High                   |
+| Radio Button             | Exclusive selection               | Multiple selected              | Visual clarity           | Invalid option            | Keyboard navigation        | Mobile layout           | Rendering consistency     | Medium                 |
+| Toggle Switch            | ON/OFF state                      | Wrong state sync               | Immediate feedback       | Permission state          | Keyboard toggle            | Mobile touch            | State transition speed    | Medium                 |
+| Date Picker              | Date selection, timezone          | Invalid date                   | Calendar UX              | Date validation           | Keyboard support           | Mobile date picker      | Calendar loading          | High                   |
+| Time Picker              | Time format                       | Wrong timezone                 | Time selection UX        | Invalid time              | Keyboard navigation        | Mobile picker           | Render performance        | Medium                 |
+| DateTime Picker          | Combined date/time                | DST issue                      | Picker usability         | Validation consistency    | Screen reader              | Mobile layout           | Loading smoothness        | Medium                 |
+| Modal/Dialog             | Focus trap, overlay               | Background interaction         | Open/close animation     | Unauthorized modal access | Focus restoration          | Mobile fullscreen       | Animation smoothness      | High                   |
+| Drawer/Sidebar           | Navigation                        | Hidden content                 | Open/close transition    | Permission menu           | Keyboard navigation        | Responsive collapse     | Render performance        | Medium                 |
+| Tooltip                  | Hover/focus info                  | Wrong tooltip content          | Timing/position          | Sensitive info exposure   | Screen reader support      | Mobile fallback         | Tooltip rendering         | Low                    |
+| Toast Notification       | Success/error feedback            | Wrong message                  | Visibility duration      | Sensitive info leak       | Screen reader announce     | Mobile position         | Multiple toast handling   | Medium                 |
+| Alert Banner             | Warning/error display             | Hidden critical alert          | Visibility clarity       | Info exposure             | ARIA alert                 | Responsive wrapping     | Render stability          | Medium                 |
+| Search Box               | Keyword search                    | Incorrect result               | Search responsiveness    | Query injection           | Keyboard search            | Mobile keyboard         | Debounce performance      | High                   |
+| Filter Panel             | Multi-condition filter            | Wrong AND/OR logic             | Easy reset UX            | Restricted filter         | Keyboard navigation        | Mobile collapse         | Filter query performance  | High                   |
+| Data Grid/Table          | Sorting/filter/pagination         | Wrong data order               | Sticky header UX         | Unauthorized row action   | Keyboard table nav         | Horizontal scroll       | Large dataset performance | High                   |
+| Card List                | Data display                      | Missing data                   | Consistent spacing       | Hidden info leak          | Semantic structure         | Responsive card layout  | Lazy loading              | Medium                 |
+| Accordion                | Expand/collapse state             | Wrong expanded section         | Transition smoothness    | Hidden restricted data    | Keyboard expand            | Mobile interaction      | Animation performance     | Medium                 |
+| Tabs                     | Active tab state                  | Wrong tab content              | Tab switching UX         | Restricted tab access     | Keyboard navigation        | Responsive tabs         | Tab load speed            | High                   |
+| Breadcrumb               | Navigation hierarchy              | Wrong path                     | Navigation clarity       | Unauthorized path         | Screen reader nav          | Mobile wrapping         | Navigation speed          | Low                    |
+| Pagination               | Page navigation                   | Wrong page data                | Navigation clarity       | Query tampering           | Keyboard navigation        | Mobile pagination       | Large page handling       | High                   |
+| File Upload              | File validation                   | Malicious file upload          | Upload progress UX       | File type restriction     | Keyboard upload            | Mobile upload           | Large upload handling     | Critical               |
+| File Download            | File export                       | Wrong exported data            | Download feedback        | Unauthorized export       | Accessible filename        | Mobile download         | Export performance        | Critical               |
+| Image Viewer             | Image rendering                   | Broken image                   | Zoom UX                  | Unsafe image source       | Alt text                   | Mobile pinch zoom       | Large image loading       | Medium                 |
+| Video Player             | Playback controls                 | Playback failure               | Seeking UX               | Unauthorized stream       | Keyboard controls          | Mobile playback         | Streaming performance     | Medium                 |
+| Audio Player             | Playback behavior                 | Audio sync issue               | Volume UX                | Unauthorized source       | Keyboard control           | Mobile playback         | Streaming stability       | Medium                 |
+| Chat Box                 | Real-time message                 | Duplicate message              | Typing UX                | Message injection         | Screen reader update       | Mobile keyboard         | Real-time performance     | Medium                 |
+| Stepper/Wizard           | Multi-step flow                   | Lost step data                 | Progress clarity         | Step bypass               | Keyboard flow              | Mobile navigation       | Step loading              | High                   |
+| Infinite Scroll          | Lazy loading                      | Duplicate/missing item         | Smooth scrolling         | Query abuse               | Keyboard support           | Mobile scroll           | Memory leak               | High                   |
+| Skeleton Loading         | Loading placeholder               | Endless skeleton               | Perceived performance    | nan                       | Screen reader hidden       | Responsive skeleton     | Render smoothness         | Medium                 |
+| Empty State              | No data state                     | Missing guidance               | Helpful UX               | Hidden permission issue   | Accessible message         | Responsive empty layout | Fast rendering            | Low                    |
+| Error State              | Failure handling                  | Wrong error                    | Recovery guidance        | Sensitive info exposure   | Screen reader alert        | Responsive error UI     | Retry performance         | High                   |
+| Session Timeout Popup    | Expired session                   | Unexpected logout              | Warning timing UX        | Session hijack prevention | Keyboard accessible        | Mobile modal            | Timer stability           | Critical               |
+| Approval Workflow Screen | State transition                  | Wrong approval state           | Clear workflow UX        | Permission approval       | Keyboard navigation        | Responsive workflow     | State sync performance    | Critical               |
+| Audit Log Viewer         | History tracking                  | Missing logs                   | Readable timeline        | Sensitive log exposure    | Accessible table           | Mobile readability      | Huge log performance      | High                   |
+| Notification Center      | Real-time notification            | Missing notification           | Read/unread UX           | Unauthorized notification | Screen reader announce     | Mobile layout           | Notification sync         | Medium                 |
+| Dashboard Widget         | KPI/data visualization            | Wrong metric                   | Readability              | Data exposure             | Accessible charts          | Responsive cards        | Widget loading            | High                   |
+
+# 2: Textbox_Matrix
+
+| UI Component   | Category       | Sub Category        | UI State   | Scenario                        | Test Data                 | Expected Result                 | Validation Type   | Priority   |
+|:---------------|:---------------|:--------------------|:-----------|:--------------------------------|:--------------------------|:--------------------------------|:------------------|:-----------|
+| Textbox        | Default State  | Placeholder         | Default    | Verify placeholder              | nan                       | Placeholder đúng wording/design | UI                | Low        |
+| Textbox        | Input Behavior | Typing              | Focus      | Typing normal text              | abc123                    | Textbox nhận input smooth       | Functional        | Medium     |
+| Textbox        | Input Behavior | Copy/Paste          | Focus      | Paste long content              | 1000 chars                | Không lag/vỡ UI                 | Functional        | Medium     |
+| Textbox        | Input Behavior | Undo/Redo           | Focus      | Ctrl+Z/Ctrl+Y                   | abc123                    | Undo/Redo đúng                  | Functional        | Low        |
+| Textbox        | Validation     | Max Length          | Error      | Input vượt max length           | 300 chars                 | Không cho nhập vượt giới hạn    | Functional        | High       |
+| Textbox        | Validation     | Min Length          | Error      | Input dưới min length           | abc                       | Hiển thị validation đúng        | Functional        | High       |
+| Textbox        | Validation     | Leading Space       | Error      | Input leading spaces            | " abc"                    | System trim đúng                | Functional        | Medium     |
+| Textbox        | Validation     | Trailing Space      | Error      | Input trailing spaces           | "abc "                    | System trim đúng                | Functional        | Medium     |
+| Textbox        | Validation     | Multi Space         | Error      | Input multiple spaces           | "a b"                     | Handle đúng theo business       | Functional        | Low        |
+| Textbox        | Validation     | Special Character   | Error      | Input special chars             | @#$%^&*                   | Validate đúng business rule     | Functional        | Medium     |
+| Textbox        | Validation     | Unicode             | Default    | Input Japanese/Vietnamese       | こんにちは                | Không lỗi encoding              | Functional        | High       |
+| Textbox        | Validation     | Emoji               | Default    | Input emoji                     | 😀🔥                      | Render đúng                     | Functional        | Low        |
+| Textbox        | Security       | SQL Injection       | Error      | Input SQL injection             | OR 1=1 --                 | Không crash/lộ data             | Security          | Critical   |
+| Textbox        | Security       | XSS                 | Error      | Input XSS script                | <script>alert(1)</script> | Không execute script            | Security          | Critical   |
+| Textbox        | State          | Disabled            | Disabled   | Verify disabled textbox         | nan                       | Không focus/edit được           | UI                | Medium     |
+| Textbox        | State          | Readonly            | Readonly   | Verify readonly textbox         | nan                       | Không edit nhưng copy được      | UI                | Medium     |
+| Textbox        | UI State       | Focus               | Focus      | Tab tới textbox                 | nan                       | Focus border hiển thị đúng      | UI/UX             | Low        |
+| Textbox        | UI State       | Hover               | Hover      | Hover textbox                   | nan                       | Hover effect consistent         | UI                | Low        |
+| Textbox        | Accessibility  | Keyboard Navigation | Focus      | Navigate bằng keyboard          | Tab                       | Keyboard usable                 | Accessibility     | High       |
+| Textbox        | Accessibility  | Screen Reader       | Focus      | Read textbox bằng screen reader | nan                       | Label announce đúng             | Accessibility     | High       |
+| Textbox        | Mobile         | Keyboard Type       | Focus      | Focus email input               | email@gmail.com           | Keyboard type đúng              | UX                | Medium     |
+| Textbox        | Browser        | Autofill            | Default    | Browser autofill                | Saved account             | Autofill hoạt động đúng         | Functional        | Medium     |
+| Textbox        | Performance    | Typing Delay        | Focus      | Typing text dài liên tục        | 5000 chars                | Không lag input                 | Performance       | Medium     |
+| Textbox        | Localization   | RTL Language        | Default    | Input Arabic                    | مرحبا                     | Render RTL đúng                 | Localization      | Medium     |
+| Textbox        | Responsive     | Zoom 200%           | Focus      | Browser zoom 200%               | nan                       | UI vẫn usable                   | UI/UX             | Medium     |
+
+# 3: Button_Matrix
+
+| UI Component   | Category      | Sub Category       | UI State   | Scenario                | Test Data            | Expected Result                   | Validation Type   | Priority   |
+|:---------------|:--------------|:-------------------|:-----------|:------------------------|:---------------------|:----------------------------------|:------------------|:-----------|
+| Button         | Interaction   | Single Click       | Active     | Click button            | Click                | Trigger đúng 1 action             | Functional        | High       |
+| Button         | Interaction   | Double Click       | Active     | Double click submit     | Double click         | Không duplicate request           | Security          | Critical   |
+| Button         | Interaction   | Spam Click         | Loading    | Spam click liên tục     | 10 rapid clicks      | Chỉ tạo 1 request                 | Security          | Critical   |
+| Button         | State         | Loading            | Loading    | Submit khi loading      | Click                | Hiển thị spinner + disable button | UI/UX             | High       |
+| Button         | State         | Disabled           | Disabled   | Disabled button         | Click                | Không trigger action              | UI                | Medium     |
+| Button         | State         | Hidden             | Hidden     | Verify hidden button    | nan                  | Không hiển thị UI                 | UI                | Medium     |
+| Button         | Accessibility | Keyboard           | Focus      | Press Enter/Space       | Enter                | Trigger đúng action               | Accessibility     | High       |
+| Button         | Accessibility | Focus Visible      | Focus      | Tab tới button          | Tab                  | Focus outline rõ ràng             | Accessibility     | Medium     |
+| Button         | Permission    | Role Access        | Disabled   | Viewer click delete     | Viewer role          | Button hidden/disabled đúng       | Security          | High       |
+| Button         | UX            | Destructive Action | Active     | Click delete button     | Delete item          | Show confirm popup đúng           | UX                | High       |
+| Button         | Browser       | Multiple Browser   | Active     | Same action on browsers | Chrome/Edge          | Behavior consistent               | Compatibility     | Medium     |
+| Button         | Responsive    | Mobile Touch       | Active     | Tap button trên mobile  | Tap                  | Touch area đủ lớn                 | UX                | Medium     |
+| Button         | Performance   | Slow API           | Loading    | API response chậm       | 10s response         | Loading state stable              | Performance       | Medium     |
+| Button         | Localization  | Long Text          | Active     | German button text      | SehrLangerButtonText | Không vỡ layout                   | Localization      | Medium     |
+
+# 4: Authentication_&_Session_Matrix
+
+| Module   | Category          | Scenario                         | Test Data           | Expected Result              | Validation Type   | Priority   |
+|:---------|:------------------|:---------------------------------|:--------------------|:-----------------------------|:------------------|:-----------|
+| Login    | Authentication    | Login valid account              | valid_user/password | Login success                | Functional        | Critical   |
+| Login    | Authentication    | Login invalid password           | wrong password      | Show error đúng              | Functional        | Critical   |
+| Login    | Security          | SQL injection login              | OR 1=1 --           | Không bypass auth            | Security          | Critical   |
+| Session  | Multi Browser     | Login same account on 2 browsers | Chrome + Edge       | Theo session policy          | Security          | High       |
+| Session  | Timeout           | Idle timeout                     | 30 mins idle        | Auto logout đúng timing      | Security          | Critical   |
+| Session  | Token Refresh     | Access token expired             | expired token       | Refresh token hoạt động đúng | Security          | Critical   |
+| Session  | Browser Cache     | Browser back after logout        | Back browser        | Không access secure page     | Security          | High       |
+| Session  | Concurrent Action | Spam submit                      | 10 rapid clicks     | Không duplicate transaction  | Security          | Critical   |
+| Session  | Refresh Page      | Refresh during submit            | F5                  | Không duplicate action       | Functional        | High       |
+| Session  | Offline Mode      | Disconnect internet              | Offline             | Retry/offline state đúng     | UX                | High       |
+| Session  | Reconnect         | Restore internet                 | Reconnect network   | Auto recover đúng            | UX                | Medium     |
+
+# 5: Dropdown_Matrix
+
+| UI Component   | Category      | Scenario               | Test Data      | Expected Result     | Validation Type   | Priority   |
+|:---------------|:--------------|:-----------------------|:---------------|:--------------------|:------------------|:-----------|
+| Dropdown       | Default State | Verify default value   | Default option | Selected đúng       | Functional        | Medium     |
+| Dropdown       | Interaction   | Open dropdown          | Click dropdown | Open đúng vị trí    | UI/UX             | Medium     |
+| Dropdown       | Search        | Search option          | keyword        | Filter result đúng  | Functional        | High       |
+| Dropdown       | Keyboard      | Arrow navigation       | Arrow keys     | Keyboard usable     | Accessibility     | High       |
+| Dropdown       | Large Dataset | 1000+ items            | Large data     | Không lag/freezing  | Performance       | Medium     |
+| Dropdown       | Async Loading | API loading            | Slow API       | Loading state đúng  | UX                | Medium     |
+| Dropdown       | Empty State   | No data                | Empty list     | Show "No data" đúng | UX                | Medium     |
+| Dropdown       | Permission    | Restricted option      | Viewer role    | Hide invalid option | Security          | High       |
+| Dropdown       | Localization  | Long translated option | German text    | Không vỡ layout     | Localization      | Medium     |
+| Dropdown       | Mobile        | Mobile select          | Mobile tap     | Interaction smooth  | UX                | Medium     |
+
+# 6: UI_Semantic_Dictionary
+
+| UI Keyword   | Semantic Type      | Behavior           | Risk                 | Common Validation   |
+|:-------------|:-------------------|:-------------------|:---------------------|:--------------------|
+| Save         | Submit Action      | Create/Update data | Duplicate submit     | Loading/confirm     |
+| Delete       | Destructive Action | Remove data        | Data loss            | Confirm/policy      |
+| Approve      | Workflow Action    | State transition   | Permission           | Audit log           |
+| Search       | Query Action       | Filter data        | Performance          | Debounce            |
+| Export       | File Action        | Generate file      | Permission/data leak | Encoding            |
+| Password     | Sensitive Input    | Secret data        | Security             | Masking             |
+| Amount       | Financial Input    | Currency value     | Precision            | Decimal             |
+| Date Range   | Dependent Input    | Start/End relation | Invalid range        | Cross-validation    |
+
+# 7: Risk_Heuristic_Library
+
+| Pattern         | Common Bugs        |
+|:----------------|:-------------------|
+| Async Loading   | Duplicate request  |
+| Modal           | Focus trap         |
+| Pagination      | Missing data       |
+| Search          | Debounce/cache     |
+| Approval        | Wrong state        |
+| Permission      | Hidden UI mismatch |
+| Upload          | Corrupted file     |
+| Infinite Scroll | Duplicate item     |
+| Session         | Stale token        |
+
+# 8: User_Behavior_Matrix
+
+| User Behavior          | Risk                  |
+|:-----------------------|:----------------------|
+| Spam click             | Duplicate transaction |
+| Browser back           | State inconsistency   |
+| Refresh during loading | Duplicate submit      |
+| Multi tabs             | Stale state           |
+| Network lost           | Partial save          |
+| Switch device          | Session issue         |
+| Leave form half-way    | Unsaved changes       |
+| Paste malformed text   | Validation issue      |
+
+# 9: TableGrid_Matrix
+
+| UI Component   | Category      | Scenario            | Test Data      | Expected Result          | Validation Type   | Priority   |
+|:---------------|:--------------|:--------------------|:---------------|:-------------------------|:------------------|:-----------|
+| Data Grid      | Sorting       | Sort ascending      | Mixed values   | Sort đúng ASC            | Functional        | High       |
+| Data Grid      | Sorting       | Sort descending     | Mixed values   | Sort đúng DESC           | Functional        | High       |
+| Data Grid      | Pagination    | Next page           | 100+ records   | Load đúng data           | Functional        | High       |
+| Data Grid      | Search        | Search keyword      | keyword        | Result đúng              | Functional        | High       |
+| Data Grid      | Filter        | Multi filter        | Status + Role  | AND logic đúng           | Functional        | High       |
+| Data Grid      | Empty State   | No result           | Invalid search | Show empty state đúng    | UX                | Medium     |
+| Data Grid      | Overflow      | Long text           | 500 chars      | Truncate + tooltip đúng  | UI/UX             | Medium     |
+| Data Grid      | Sticky Header | Scroll page         | Scroll down    | Header luôn visible      | UX                | Low        |
+| Data Grid      | Bulk Action   | Bulk approve        | 100 selected   | Action đúng tất cả items | Functional        | Critical   |
+| Data Grid      | Performance   | Huge dataset        | 10000 rows     | Không lag/freeze         | Performance       | High       |
+| Data Grid      | Responsive    | Mobile table        | Mobile screen  | Horizontal scroll đúng   | Responsive        | Medium     |
+| Data Grid      | Accessibility | Keyboard navigation | Tab/Arrow      | Keyboard usable          | Accessibility     | High       |
+
+# 10: Search_Matrix
+
+| UI Component   | Category      | Sub Category          | UI State        | Scenario                           | Test Data                 | Expected Result              | Validation Type   | Priority   |
+|:---------------|:--------------|:----------------------|:----------------|:-----------------------------------|:--------------------------|:-----------------------------|:------------------|:-----------|
+| Search Box     | Default State | Placeholder           | Default         | Verify placeholder                 | nan                       | Placeholder đúng wording     | UI                | Low        |
+| Search Box     | Input         | Exact Match           | Active          | Search exact keyword               | User123                   | Return đúng result           | Functional        | High       |
+| Search Box     | Input         | Partial Match         | Active          | Search partial keyword             | User                      | Return matched results       | Functional        | High       |
+| Search Box     | Input         | Case Sensitive        | Active          | Search upper/lower case            | USER/user                 | Theo business rule           | Functional        | Medium     |
+| Search Box     | Input         | Trim Space            | Active          | Search với leading/trailing spaces | " abc "                   | System trim đúng             | Functional        | Medium     |
+| Search Box     | Input         | Multiple Spaces       | Active          | Search nhiều spaces                | "a b"                     | Handle đúng                  | Functional        | Medium     |
+| Search Box     | Input         | Special Character     | Active          | Search special chars               | @#$%                      | Không crash/lỗi              | Functional        | Medium     |
+| Search Box     | Input         | Unicode               | Active          | Search Japanese/Vietnamese         | こんにちは                | Search đúng encoding         | Functional        | High       |
+| Search Box     | Input         | Emoji                 | Active          | Search emoji                       | 😀🔥                      | Theo business rule           | Functional        | Low        |
+| Search Box     | Validation    | Empty Search          | Empty           | Click search without keyword       | Empty                     | Theo business rule           | Functional        | Medium     |
+| Search Box     | Validation    | No Result             | Empty Result    | Search invalid keyword             | xyz_not_found             | Show "No result" đúng        | UX                | High       |
+| Search Box     | Search Logic  | AND Filter            | Active          | Multiple filter AND                | Status=Active + Admin     | Result đúng                  | Functional        | High       |
+| Search Box     | Search Logic  | OR Filter             | Active          | OR condition                       | Name OR Email             | Result đúng                  | Functional        | High       |
+| Search Box     | Search Logic  | Reset Filter          | Default         | Reset search/filter                | Click Reset               | Clear đúng data/filter       | Functional        | High       |
+| Search Box     | Search Logic  | Persist Search        | Back Navigation | Back page                          | Browser back              | Giữ filter/search đúng       | UX                | Medium     |
+| Search Box     | Search Logic  | Debounce              | Typing          | Typing liên tục                    | Fast typing               | Không spam API               | Performance       | Medium     |
+| Search Box     | Search Logic  | Search While Loading  | Loading         | Search nhiều lần                   | Rapid search              | Cancel previous request đúng | Performance       | High       |
+| Search Box     | Performance   | Huge Dataset          | Loading         | Search data lớn                    | 1M records                | Response acceptable          | Performance       | High       |
+| Search Box     | Security      | SQL Injection         | Error           | SQL injection search               | OR 1=1 --                 | Không bypass/filter sai      | Security          | Critical   |
+| Search Box     | Security      | XSS                   | Error           | Search script                      | <script>alert(1)</script> | Không execute                | Security          | Critical   |
+| Search Box     | Accessibility | Keyboard Search       | Focus           | Press Enter search                 | Enter                     | Trigger đúng search          | Accessibility     | High       |
+| Search Box     | Accessibility | Screen Reader         | Focus           | Read search field                  | nan                       | Announce label đúng          | Accessibility     | High       |
+| Search Box     | Responsive    | Mobile Search         | Active          | Search on mobile                   | Mobile keyboard           | UI usable                    | UX                | Medium     |
+| Search Box     | Browser       | Browser Compatibility | Active          | Search multiple browsers           | Chrome/Edge/Safari        | Behavior consistent          | Compatibility     | Medium     |
+| Search Box     | Offline       | No Internet           | Offline         | Search without internet            | Offline                   | Show retry/offline state     | UX                | High       |
+
+# 11: Date_Picker_Matrix
+
+| UI Component   | Category      | Sub Category           | UI State   | Scenario                     | Test Data     | Expected Result           | Validation Type   | Priority   |
+|:---------------|:--------------|:-----------------------|:-----------|:-----------------------------|:--------------|:--------------------------|:------------------|:-----------|
+| Date Picker    | Default State | Default Date           | Default    | Verify default selected date | Today         | Hiển thị đúng default     | Functional        | Medium     |
+| Date Picker    | Interaction   | Open Calendar          | Active     | Open picker                  | Click input   | Calendar open đúng vị trí | UI/UX             | Medium     |
+| Date Picker    | Interaction   | Select Date            | Active     | Select valid date            | 2026-05-19    | Select đúng date          | Functional        | High       |
+| Date Picker    | Validation    | Invalid Date           | Error      | Input invalid date           | 31/02/2026    | Show validation đúng      | Functional        | High       |
+| Date Picker    | Validation    | Min Date               | Error      | Select date < min date       | 1900-01-02    | Không cho select          | Functional        | High       |
+| Date Picker    | Validation    | Max Date               | Error      | Select date > max date       | 9999-12-31    | Không cho select          | Functional        | High       |
+| Date Picker    | Validation    | Leap Year              | Active     | Select leap date             | 29/02/2028    | Handle đúng               | Functional        | Medium     |
+| Date Picker    | Validation    | DST Timezone           | Active     | DST transition               | DST date      | Correct timezone handling | Functional        | High       |
+| Date Picker    | Interaction   | Keyboard Input         | Focus      | Manual typing                | 2026-05-19    | Parse đúng format         | Functional        | Medium     |
+| Date Picker    | Interaction   | Keyboard Navigation    | Focus      | Arrow/tab navigation         | Keyboard      | Keyboard usable           | Accessibility     | High       |
+| Date Picker    | UX            | Close on Outside Click | Active     | Click outside                | Outside area  | Calendar close đúng       | UX                | Medium     |
+| Date Picker    | UX            | Month Navigation       | Active     | Navigate month/year          | Next/Prev     | Calendar update đúng      | Functional        | Medium     |
+| Date Picker    | UX            | Disabled Date          | Disabled   | Verify disabled dates        | Weekend       | Disabled đúng             | Functional        | High       |
+| Date Picker    | Localization  | Locale Format          | Active     | Different locale             | US/VN/JP      | Format đúng locale        | Localization      | High       |
+| Date Picker    | Localization  | RTL Language           | Active     | Arabic locale                | RTL layout    | Layout đúng               | Localization      | Medium     |
+| Date Picker    | Mobile        | Mobile Picker          | Active     | Mobile date selection        | Mobile device | Native/mobile UX smooth   | UX                | Medium     |
+| Date Picker    | Browser       | Cross Browser          | Active     | Different browsers           | Chrome/Safari | Consistent behavior       | Compatibility     | Medium     |
+| Date Picker    | Accessibility | Screen Reader          | Focus      | Read picker                  | Screen reader | Announce đúng             | Accessibility     | High       |
+| Date Picker    | Responsive    | Small Screen           | Mobile     | Small viewport               | 320px width   | UI usable                 | Responsive        | Medium     |
+| Date Picker    | Performance   | Fast Navigation        | Active     | Rapid month switching        | Rapid click   | Không lag/freeze          | Performance       | Medium     |
+
+# 12: Toast_Message_Matrix
+
+| UI Component   | Category      | Sub Category     | UI State    | Scenario                 | Test Data       | Expected Result             | Validation Type   | Priority   |
+|:---------------|:--------------|:-----------------|:------------|:-------------------------|:----------------|:----------------------------|:------------------|:-----------|
+| Toast Message  | Success       | Save Success     | Visible     | Save thành công          | Save action     | Hiển thị success toast đúng | Functional        | High       |
+| Toast Message  | Error         | API Error        | Visible     | API fail                 | 500 error       | Hiển thị error toast đúng   | Functional        | High       |
+| Toast Message  | Warning       | Warning State    | Visible     | Warning condition        | Invalid action  | Hiển thị warning đúng       | UX                | Medium     |
+| Toast Message  | Info          | Information      | Visible     | Show info message        | Info action     | Nội dung đúng               | UX                | Low        |
+| Toast Message  | UX            | Auto Dismiss     | Timeout     | Auto close toast         | 5 seconds       | Toast tự biến mất đúng      | UX                | Medium     |
+| Toast Message  | UX            | Manual Close     | Visible     | Close toast manually     | Click X         | Toast close đúng            | Functional        | Medium     |
+| Toast Message  | UX            | Multiple Toast   | Stack       | Show multiple toast      | 5 toasts        | Stack/display đúng          | UX                | Medium     |
+| Toast Message  | UX            | Long Message     | Overflow    | Long content             | 500 chars       | Không vỡ layout             | UI/UX             | Medium     |
+| Toast Message  | Accessibility | Screen Reader    | Visible     | Screen reader read toast | nan             | Announce đúng               | Accessibility     | High       |
+| Toast Message  | Accessibility | Focus Management | Visible     | Focus after toast        | Trigger action  | Focus không bị mất          | Accessibility     | Medium     |
+| Toast Message  | Security      | Sensitive Info   | Error       | Error response           | Stack trace     | Không lộ system info        | Security          | Critical   |
+| Toast Message  | Responsive    | Mobile Toast     | Mobile      | Show on mobile           | Mobile screen   | Position/layout đúng        | Responsive        | Medium     |
+| Toast Message  | Localization  | Multi Language   | Visible     | Long translated text     | German/Japanese | Không vỡ UI                 | Localization      | Medium     |
+| Toast Message  | Performance   | Rapid Trigger    | Spam Action | Trigger nhiều toast      | Rapid clicks    | Không lag/crash             | Performance       | Medium     |
+
+# 13: Alert_Message_Matrix
+
+| UI Component   | Category      | Sub Category     | UI State    | Scenario                 | Test Data       | Expected Result             | Validation Type   | Priority   |
+|:---------------|:--------------|:-----------------|:------------|:-------------------------|:----------------|:----------------------------|:------------------|:-----------|
+| Alert Banner   | Success       | Save Success     | Visible     | Save thành công          | Save action     | Hiển thị success alert đúng | Functional        | High       |
+| Alert Banner   | Error         | API Error        | Visible     | API fail                 | 500 error       | Hiển thị error alert đúng   | Functional        | High       |
+| Alert Banner   | Warning       | Warning State    | Visible     | Warning condition        | Invalid action  | Hiển thị warning alert đúng | UX                | Medium     |
+| Alert Banner   | Info          | Information      | Visible     | Show info message        | Info action     | Nội dung alert đúng         | UX                | Low        |
+| Alert Banner   | UX            | Static Display   | Default     | Hiển thị alert tĩnh      | Layout render   | Không tự biến mất           | UI                | Medium     |
+| Alert Banner   | UX            | Manual Close     | Visible     | Close alert manually     | Click X         | Alert close đúng            | Functional        | Medium     |
+| Alert Banner   | UX            | Long Message     | Overflow    | Content dài              | 500 chars       | Wrap text/không vỡ layout   | UI/UX             | Medium     |
+| Alert Banner   | Accessibility | Screen Reader    | Visible     | Screen reader read alert | nan             | Announce ARIA alert đúng    | Accessibility     | High       |
+| Alert Banner   | Security      | Sensitive Info   | Error       | Error response           | Stack trace     | Không lộ system info        | Security          | Critical   |
+| Alert Banner   | Responsive    | Mobile Alert     | Mobile      | Show on mobile           | Mobile screen   | Layout co giãn đúng         | Responsive        | Medium     |
+
+# 14: Padding_&_Spacing_Matrix
+
+| UI Component        | Category         | Sub Category               | UI State   | Scenario                          | Test Data           | Expected Result                      | Validation Type   | Priority   |
+|:--------------------|:-----------------|:---------------------------|:-----------|:----------------------------------|:--------------------|:-------------------------------------|:------------------|:-----------|
+| Layout Spacing      | Padding          | Internal Padding           | Default    | Verify component inner padding    | Standard component  | Padding consistent với design system | UI/UX             | High       |
+| Layout Spacing      | Margin           | External Margin            | Default    | Verify spacing between components | Multiple components | Khoảng cách consistent               | UI/UX             | High       |
+| Layout Spacing      | Alignment        | Horizontal Alignment       | Default    | Verify left/right alignment       | Form layout         | Align đúng grid/layout               | UI                | High       |
+| Layout Spacing      | Alignment        | Vertical Alignment         | Default    | Verify vertical spacing           | Stacked components  | Vertical spacing consistent          | UI                | High       |
+| Button              | Padding          | Button Inner Padding       | Default    | Verify button padding             | Button text         | Text không sát border                | UI/UX             | High       |
+| Button              | Padding          | Long Text Padding          | Overflow   | Long button text                  | German translation  | Padding vẫn đúng, không vỡ layout    | Localization      | Medium     |
+| Button              | Padding          | Icon + Text                | Default    | Button có icon                    | Icon button         | Spacing icon/text đúng               | UI                | Medium     |
+| Textbox             | Padding          | Input Inner Padding        | Focus      | Verify typing area                | Text input          | Text không sát border                | UI/UX             | High       |
+| Textbox             | Padding          | Placeholder Padding        | Default    | Placeholder alignment             | Placeholder         | Placeholder align đúng               | UI                | Medium     |
+| Textbox             | Padding          | Validation Message Spacing | Error      | Show error message                | Invalid input       | Error spacing consistent             | UX                | Medium     |
+| Dropdown            | Padding          | Option Padding             | Expanded   | Dropdown open                     | Dropdown items      | Item spacing dễ đọc/click            | UX                | Medium     |
+| Dropdown            | Padding          | Searchable Dropdown        | Focus      | Search input spacing              | Search dropdown     | Padding consistent                   | UI                | Medium     |
+| Modal               | Padding          | Modal Content Padding      | Open       | Open modal                        | Modal content       | Content không sát border             | UI/UX             | High       |
+| Modal               | Padding          | Header/Footer Spacing      | Open       | Modal actions                     | Modal buttons       | Header/body/footer spacing đúng      | UI                | Medium     |
+| Card                | Padding          | Card Content Padding       | Default    | Card layout                       | Card data           | Content spacing consistent           | UI                | Medium     |
+| Table/Grid          | Padding          | Cell Padding               | Default    | Verify table cell spacing         | Table data          | Text không chạm border               | UI                | High       |
+| Table/Grid          | Padding          | Header Cell Padding        | Default    | Verify table header               | Header text         | Header spacing đúng                  | UI                | Medium     |
+| Table/Grid          | Padding          | Dense Mode                 | Compact    | Compact table mode                | Dense layout        | Padding giảm đúng                    | UX                | Medium     |
+| Form                | Spacing          | Label/Input Spacing        | Default    | Verify form spacing               | Form fields         | Label-input spacing consistent       | UI/UX             | High       |
+| Form                | Spacing          | Field-to-Field Spacing     | Default    | Multiple fields                   | Form layout         | Field spacing đều                    | UI                | High       |
+| Form                | Spacing          | Section Spacing            | Default    | Multiple sections                 | Long form           | Section separation rõ ràng           | UX                | Medium     |
+| Toast Message       | Padding          | Toast Content Padding      | Visible    | Show toast                        | Success message     | Text spacing readable                | UI                | Medium     |
+| Alert Message       | Padding          | Alert Inner Padding        | Visible    | Warning/error alert               | Alert content       | Nội dung không sát border            | UI                | Medium     |
+| Sidebar             | Padding          | Menu Item Padding          | Default    | Verify menu spacing               | Sidebar menu        | Click area đủ lớn                    | UX                | High       |
+| Tabs                | Padding          | Tab Spacing                | Active     | Multiple tabs                     | Long tab text       | Tab spacing readable                 | UX                | Medium     |
+| Mobile Layout       | Padding          | Touch Area                 | Mobile     | Mobile interaction                | Small button        | Touch target >= guideline            | Accessibility     | High       |
+| Mobile Layout       | Spacing          | Safe Area                  | Mobile     | iPhone safe area                  | Notch device        | Không bị che content                 | Responsive        | High       |
+| Responsive          | Spacing          | Tablet Layout              | Tablet     | Medium screen                     | Tablet viewport     | Padding adapt đúng                   | Responsive        | Medium     |
+| Responsive          | Spacing          | Small Screen               | Mobile     | 320px width                       | Small viewport      | Không overlap/vỡ layout              | Responsive        | High       |
+| Localization        | Spacing          | Long Translation           | Expanded   | German language                   | Long text           | Padding auto-adapt đúng              | Localization      | Medium     |
+| Accessibility       | Spacing          | Zoom 200%                  | Zoomed     | Browser zoom                      | 200% zoom           | UI vẫn readable                      | Accessibility     | High       |
+| Accessibility       | Spacing          | High Contrast Mode         | Enabled    | Windows HC mode                   | HC enabled          | Border/spacing vẫn rõ                | Accessibility     | Medium     |
+| Performance         | Layout Rendering | Dynamic Resize             | Resize     | Resize browser liên tục           | Window resize       | Layout stable                        | Performance       | Medium     |
+| Skeleton Loading    | Padding          | Skeleton Alignment         | Loading    | Show skeleton                     | Loading state       | Skeleton spacing match final UI      | UX                | Medium     |
+| Empty State         | Spacing          | Empty Layout               | Empty      | No data screen                    | Empty data          | Empty state centered đẹp             | UX                | Low        |
+| Error State         | Spacing          | Error Layout               | Error      | Full page error                   | 500 page            | Error spacing readable               | UX                | Medium     |
+| Dashboard           | Spacing          | Widget Gap                 | Default    | Multiple widgets                  | Dashboard screen    | Widget spacing consistent            | UI                | Medium     |
+| Notification Center | Spacing          | Notification Item Gap      | Visible    | Multiple notifications            | Notification list   | Readable item spacing                | UX                | Medium     |
+| Accordion           | Padding          | Expand Content Spacing     | Expanded   | Open accordion                    | Accordion content   | Padding consistent                   | UI                | Low        |
+| File Upload         | Padding          | Dropzone Spacing           | Default    | Upload area                       | Drag/drop           | Dropzone padding dễ thao tác         | UX                | Medium     |
+| Pagination          | Padding          | Pagination Button Gap      | Default    | Multiple pages                    | Pagination          | Click spacing đúng                   | UX                | Medium     |
+
+# 15: Pagination_Matrix
+
+| UI Component   | Category            | Sub Category             | UI State      | Scenario                      | Test Data               | Expected Result                 | Validation Type   | Priority   |
+|:---------------|:--------------------|:-------------------------|:--------------|:------------------------------|:------------------------|:--------------------------------|:------------------|:-----------|
+| Pagination     | Default State       | Initial Page             | Default       | Open list screen              | Dataset > 1 page        | Default page hiển thị đúng      | Functional        | High       |
+| Pagination     | Navigation          | Next Page                | Active        | Click next page               | Page 1 → 2              | Load đúng data page tiếp theo   | Functional        | High       |
+| Pagination     | Navigation          | Previous Page            | Active        | Click previous page           | Page 2 → 1              | Load đúng data page trước       | Functional        | High       |
+| Pagination     | Navigation          | Specific Page            | Active        | Click page number             | Page 5                  | Load đúng page được chọn        | Functional        | High       |
+| Pagination     | Navigation          | First Page               | Active        | Click first page              | Page > 1                | Navigate về page đầu            | Functional        | Medium     |
+| Pagination     | Navigation          | Last Page                | Active        | Click last page               | Last page               | Navigate đúng page cuối         | Functional        | Medium     |
+| Pagination     | Navigation          | Disable Previous         | First Page    | Verify previous button        | Page 1                  | Previous button disabled        | UI/UX             | Medium     |
+| Pagination     | Navigation          | Disable Next             | Last Page     | Verify next button            | Last page               | Next button disabled            | UI/UX             | Medium     |
+| Pagination     | State               | Active Page Highlight    | Active        | Current selected page         | Page 3                  | Highlight đúng active page      | UI                | Medium     |
+| Pagination     | Data                | Total Records            | Default       | Verify total items            | 125 items               | Total count đúng                | Functional        | High       |
+| Pagination     | Data                | Total Pages              | Default       | Verify total pages            | 125 items / 10 per page | Total pages đúng                | Functional        | High       |
+| Pagination     | Data                | Empty Data               | Empty         | No records                    | 0 items                 | Hide/disable pagination đúng    | UX                | Medium     |
+| Pagination     | Data                | Single Page              | Small Dataset | Dataset < page size           | 5 items                 | Pagination hidden/disabled đúng | UX                | Medium     |
+| Pagination     | Page Size           | Change Page Size         | Active        | Change items per page         | 10 → 50                 | Reload đúng số lượng item       | Functional        | High       |
+| Pagination     | Page Size           | Persist Page Size        | Refresh       | Refresh browser               | Selected page size      | Giữ đúng page size              | UX                | Medium     |
+| Pagination     | Search Integration  | Search + Pagination      | Active        | Search then next page         | keyword                 | Search result pagination đúng   | Functional        | High       |
+| Pagination     | Filter Integration  | Filter + Pagination      | Active        | Apply filter                  | Status=Active           | Filter result đúng pagination   | Functional        | High       |
+| Pagination     | Sorting Integration | Sort + Pagination        | Active        | Sort data then next page      | Sort ASC                | Sorting consistent giữa pages   | Functional        | High       |
+| Pagination     | Refresh Behavior    | Browser Refresh          | Refresh       | Refresh current page          | Page 5                  | Giữ đúng current page           | UX                | Medium     |
+| Pagination     | Browser Navigation  | Browser Back             | Browser Back  | Browser back after paging     | Page 4                  | Restore đúng state              | UX                | Medium     |
+| Pagination     | URL State           | Query Param              | URL           | Pagination in URL             | ?page=5                 | URL sync đúng                   | Functional        | Medium     |
+| Pagination     | Validation          | Invalid Page Number      | Error         | Modify invalid page param     | ?page=9999              | Redirect/fallback đúng          | Security          | Medium     |
+| Pagination     | Validation          | Negative Page            | Error         | Invalid page value            | ?page=-1                | Handle đúng                     | Functional        | Medium     |
+| Pagination     | Validation          | Non-number Page          | Error         | Invalid param                 | ?page=abc               | Không crash                     | Functional        | Medium     |
+| Pagination     | UX                  | Loading State            | Loading       | Change page                   | Slow API                | Show loading đúng               | UX                | High       |
+| Pagination     | UX                  | Skeleton Loading         | Loading       | Pagination loading            | API delay               | Skeleton consistent             | UX                | Medium     |
+| Pagination     | UX                  | Smooth Scroll            | Active        | Change page                   | Next page               | Scroll position đúng            | UX                | Medium     |
+| Pagination     | UX                  | Maintain Scroll Position | Active        | Change page in infinite table | Long page               | UX consistent                   | UX                | Low        |
+| Pagination     | Accessibility       | Keyboard Navigation      | Focus         | Tab/Enter navigation          | Keyboard                | Keyboard usable                 | Accessibility     | High       |
+| Pagination     | Accessibility       | Screen Reader            | Focus         | Read pagination               | Screen reader           | Announce đúng current page      | Accessibility     | High       |
+| Pagination     | Accessibility       | Focus State              | Focus         | Navigate pages                | Tab                     | Focus visible rõ ràng           | Accessibility     | Medium     |
+| Pagination     | Responsive          | Mobile Pagination        | Mobile        | Pagination on small screen    | Mobile viewport         | Responsive đúng                 | Responsive        | High       |
+| Pagination     | Responsive          | Tablet Pagination        | Tablet        | Tablet layout                 | Tablet viewport         | Layout không overlap            | Responsive        | Medium     |
+| Pagination     | Localization        | Long Translation         | Localization  | German/Japanese labels        | Long labels             | Không vỡ layout                 | Localization      | Medium     |
+| Pagination     | Browser             | Cross Browser            | Active        | Multiple browsers             | Chrome/Edge/Safari      | Behavior consistent             | Compatibility     | Medium     |
+| Pagination     | Performance         | Large Dataset            | Huge Data     | Navigate huge dataset         | 1M records              | Response acceptable             | Performance       | High       |
+| Pagination     | Performance         | Rapid Page Switching     | Stress        | Rapid click pages             | Fast navigation         | Không duplicate request         | Performance       | High       |
+| Pagination     | Security            | Unauthorized Data Access | URL Tampering | Modify page params            | Restricted dataset      | Không expose data trái phép     | Security          | Critical   |
+| Pagination     | API/UI Sync         | Backend Pagination       | Active        | Verify API paging             | API page=2              | UI sync đúng backend            | Integration       | High       |
+| Pagination     | Offline             | No Internet              | Offline       | Change page offline           | Offline                 | Show retry/offline state        | UX                | High       |
+| Pagination     | Infinite Scroll     | Auto Load More           | Scroll        | Scroll to bottom              | Infinite scroll         | Load đúng next batch            | Functional        | High       |
+| Pagination     | Infinite Scroll     | Duplicate Item           | Scroll        | Fast scrolling                | Large dataset           | Không duplicate item            | Functional        | High       |
+| Pagination     | Infinite Scroll     | Missing Item             | Scroll        | Multiple loads                | Large dataset           | Không missing item              | Functional        | High       |
+| Pagination     | Infinite Scroll     | Memory Leak              | Stress        | Long scrolling session        | 10000+ items            | Không freeze/crash              | Performance       | High       |
+
+# 16: Concurrency_Matrix
+
+| Module      | Category    | Sub Category                 | UI State          | Scenario                           | Test Data          | Expected Result             | Validation Type   | Priority   |
+|:------------|:------------|:-----------------------------|:------------------|:-----------------------------------|:-------------------|:----------------------------|:------------------|:-----------|
+| Concurrency | Multi User  | Concurrent Edit              | Editing           | 2 users edit same record           | User A + User B    | Detect conflict đúng        | Functional        | Critical   |
+| Concurrency | Multi User  | Delete While Editing         | Editing           | User A delete while User B editing | Same record        | Show stale/conflict warning | Functional        | Critical   |
+| Concurrency | Multi User  | Concurrent Approval          | Pending Approval  | 2 users approve cùng lúc           | Same workflow item | Chỉ 1 approval success      | Functional        | Critical   |
+| Concurrency | Request     | Double Submit                | Loading           | Double click submit                | Rapid click        | Chỉ tạo 1 transaction       | Security          | Critical   |
+| Concurrency | Request     | Spam Click                   | Loading           | Spam click button                  | 10 rapid clicks    | Không duplicate API         | Security          | Critical   |
+| Concurrency | Request     | Refresh During Submit        | Submitting        | Refresh browser khi submit         | F5                 | Không duplicate action      | Functional        | High       |
+| Concurrency | Request     | Browser Back During Submit   | Submitting        | Browser back khi loading           | Back button        | State consistent            | Functional        | High       |
+| Concurrency | Multi Tabs  | Update Same Record           | Editing           | Edit same record on 2 tabs         | Tab A + Tab B      | Sync/conflict handling đúng | Functional        | High       |
+| Concurrency | Multi Tabs  | Logout Other Tab             | Logged In         | Logout ở tab khác                  | Multi tabs         | Session sync đúng           | Security          | High       |
+| Concurrency | Versioning  | Optimistic Locking           | Saving            | Save outdated data                 | Old version        | Show version conflict       | Functional        | High       |
+| Concurrency | Versioning  | Last Update Wins             | Saving            | Save latest update                 | Multi update       | Theo business rule          | Functional        | Medium     |
+| Concurrency | API         | Parallel Requests            | Loading           | Multiple API requests              | Parallel calls     | Không corrupt data          | Integration       | High       |
+| Concurrency | API         | Retry Duplicate Request      | Retry             | Retry after timeout                | Retry request      | Không duplicate data        | Integration       | High       |
+| Concurrency | Data        | Stale Data                   | Viewing           | Old cached data                    | Cache delay        | Data refresh đúng           | Functional        | Medium     |
+| Concurrency | Queue       | Sequential Action            | Processing        | Queue actions liên tục             | Bulk action        | Process đúng order          | Functional        | Medium     |
+| Concurrency | Offline     | Sync Conflict                | Reconnect         | Offline edit rồi reconnect         | Different updates  | Resolve conflict đúng       | Functional        | High       |
+| Concurrency | Performance | Huge Concurrent Users        | Stress            | Many users update same data        | Load test          | System stable               | Performance       | High       |
+| Concurrency | Security    | Duplicate Payment            | Payment           | Multiple payment request           | Spam pay           | Không duplicate transaction | Security          | Critical   |
+| Concurrency | Security    | Concurrent Permission Change | Permission Update | Role changed during action         | User role update   | Permission apply đúng       | Security          | High       |
+| Concurrency | UX          | Loading State Consistency    | Loading           | Multiple concurrent actions        | Fast actions       | Loading UI consistent       | UX                | Medium     |
+
+# 17: APIUI_Sync_Matrix
+
+| Module      | Category       | Sub Category            | UI State   | Scenario                   | Test Data           | Expected Result            | Validation Type   | Priority   |
+|:------------|:---------------|:------------------------|:-----------|:---------------------------|:--------------------|:---------------------------|:------------------|:-----------|
+| API/UI Sync | API Response   | Success Response        | Loaded     | API success                | Valid response      | UI render đúng data        | Integration       | Critical   |
+| API/UI Sync | API Response   | Delayed Response        | Loading    | Slow API response          | 10s delay           | Loading state đúng         | UX                | High       |
+| API/UI Sync | API Response   | Timeout                 | Timeout    | API timeout                | Timeout response    | Show retry/error đúng      | Functional        | High       |
+| API/UI Sync | API Response   | Empty Response          | Empty      | Empty array/object         | []                  | Empty state đúng           | Functional        | High       |
+| API/UI Sync | API Response   | Null Field              | Loaded     | Field = null               | null values         | UI handle đúng             | Functional        | High       |
+| API/UI Sync | API Response   | Missing Field           | Loaded     | Missing response field     | Missing key         | Không crash UI             | Functional        | High       |
+| API/UI Sync | API Response   | Wrong Data Type         | Loaded     | String instead number      | Invalid type        | Validation đúng            | Functional        | Medium     |
+| API/UI Sync | API Response   | Duplicate Data          | Loaded     | Duplicate records          | Same ID             | UI handle đúng             | Functional        | Medium     |
+| API/UI Sync | API Response   | Partial Response        | Partial    | Missing partial data       | Incomplete response | UI partial render đúng     | Functional        | Medium     |
+| API/UI Sync | Mapping        | Wrong Field Mapping     | Loaded     | Backend mapping mismatch   | Wrong mapping       | UI detect/display đúng     | Integration       | High       |
+| API/UI Sync | Pagination     | Pagination Mismatch     | Paging     | UI != backend total        | Total mismatch      | Pagination sync đúng       | Integration       | High       |
+| API/UI Sync | Sorting        | Sort Mismatch           | Sorted     | Backend sort khác UI       | ASC/DESC            | UI consistent backend      | Functional        | High       |
+| API/UI Sync | Filtering      | Filter Mismatch         | Filtered   | Backend filter issue       | Filter params       | Result đúng                | Functional        | High       |
+| API/UI Sync | Retry          | Retry API               | Retry      | Retry failed request       | Retry action        | Retry đúng behavior        | Functional        | Medium     |
+| API/UI Sync | Cache          | Cached Data             | Cached     | Old cache data             | Cache enabled       | Refresh đúng               | Functional        | Medium     |
+| API/UI Sync | Cache          | Stale Data              | Viewing    | Backend updated data       | Old UI data         | Sync đúng                  | Functional        | Medium     |
+| API/UI Sync | Authentication | Expired Token           | Expired    | Token hết hạn              | 401                 | Redirect/login đúng        | Security          | Critical   |
+| API/UI Sync | Authentication | Permission Denied       | Forbidden  | API 403                    | No permission       | Show access denied đúng    | Security          | Critical   |
+| API/UI Sync | Offline        | Offline API             | Offline    | No internet                | Offline mode        | Retry/offline đúng         | UX                | High       |
+| API/UI Sync | Reconnect      | Restore Connection      | Reconnect  | Internet restored          | Reconnect           | Auto refresh đúng          | UX                | Medium     |
+| API/UI Sync | Security       | Sensitive Data Exposure | Error      | API error response         | Stacktrace          | Không expose internal data | Security          | Critical   |
+| API/UI Sync | Performance    | Huge Response           | Loaded     | Large payload              | 10000 records       | UI stable                  | Performance       | High       |
+| API/UI Sync | Performance    | Rapid Requests          | Stress     | Multiple API calls         | Rapid actions       | Không crash/lag            | Performance       | High       |
+| API/UI Sync | Browser        | Browser Refresh         | Refresh    | Refresh during API loading | F5                  | State consistent           | Functional        | Medium     |
+
+# 18: Error_Handling_Matrix
+
+| Module         | Category      | Sub Category          | UI State   | Scenario              | Test Data          | Expected Result              | Validation Type   | Priority   |
+|:---------------|:--------------|:----------------------|:-----------|:----------------------|:-------------------|:-----------------------------|:------------------|:-----------|
+| Error Handling | HTTP Error    | 400 Bad Request       | Error      | Invalid request       | Invalid payload    | Show validation message đúng | Functional        | High       |
+| Error Handling | HTTP Error    | 401 Unauthorized      | Error      | Expired session       | Expired token      | Redirect login đúng          | Security          | Critical   |
+| Error Handling | HTTP Error    | 403 Forbidden         | Error      | No permission         | Restricted API     | Access denied đúng           | Security          | Critical   |
+| Error Handling | HTTP Error    | 404 Not Found         | Error      | Missing resource      | Invalid URL        | Show not found page đúng     | Functional        | Medium     |
+| Error Handling | HTTP Error    | 500 Internal Error    | Error      | Backend crash         | 500 response       | Generic error đúng           | Functional        | Critical   |
+| Error Handling | API           | Timeout               | Timeout    | API timeout           | Delayed response   | Retry option đúng            | UX                | High       |
+| Error Handling | API           | Partial Failure       | Partial    | Partial API fail      | Multi API screen   | Partial render đúng          | Functional        | High       |
+| Error Handling | API           | Invalid Response      | Error      | Invalid JSON          | Broken response    | Không crash UI               | Functional        | High       |
+| Error Handling | Session       | Session Expired       | Expired    | Idle timeout          | Expired session    | Show re-login đúng           | Security          | Critical   |
+| Error Handling | Permission    | Access Denied         | Forbidden  | Direct URL access     | Restricted page    | Block access đúng            | Security          | High       |
+| Error Handling | Offline       | No Internet           | Offline    | Disconnect network    | Offline            | Show offline state đúng      | UX                | High       |
+| Error Handling | Offline       | Retry After Reconnect | Retry      | Restore internet      | Reconnect          | Retry đúng                   | UX                | Medium     |
+| Error Handling | Validation    | Required Field        | Error      | Empty required input  | Empty              | Error wording đúng           | UX                | High       |
+| Error Handling | Validation    | Invalid Format        | Error      | Wrong format          | Invalid email      | Validation đúng              | Functional        | High       |
+| Error Handling | Validation    | Duplicate Data        | Error      | Duplicate value       | Existing email     | Duplicate validation đúng    | Functional        | High       |
+| Error Handling | UX            | Error Message Wording | Error      | Show error text       | Any error          | User-friendly wording        | UX                | Medium     |
+| Error Handling | UX            | Focus on Error Field  | Error      | Submit invalid form   | Multiple errors    | Focus đúng field đầu tiên    | UX                | Medium     |
+| Error Handling | UX            | Retry Action          | Error      | Retry failed action   | Retry button       | Retry thành công đúng        | Functional        | Medium     |
+| Error Handling | Security      | Stacktrace Exposure   | Error      | Backend exception     | Raw error          | Không lộ internal info       | Security          | Critical   |
+| Error Handling | Security      | Sensitive Data Leak   | Error      | API fail              | Sensitive response | Không expose token/data      | Security          | Critical   |
+| Error Handling | Performance   | Multiple Errors       | Stress     | Trigger nhiều errors  | Rapid errors       | UI stable                    | Performance       | Medium     |
+| Error Handling | Accessibility | Screen Reader Error   | Error      | Read validation error | Screen reader      | Announce đúng                | Accessibility     | High       |
+| Error Handling | Responsive    | Mobile Error Layout   | Error      | Error on mobile       | Mobile screen      | Layout usable                | Responsive        | Medium     |
+
+# 19: Deep_Form_Validation_Matrix
+
+| Module          | Category               | Sub Category              | UI State   | Scenario                      | Test Data             | Expected Result           | Validation Type   | Priority   |
+|:----------------|:-----------------------|:--------------------------|:-----------|:------------------------------|:----------------------|:--------------------------|:------------------|:-----------|
+| Form Validation | Required Field         | Empty Required            | Error      | Submit empty required field   | Empty                 | Show required validation  | Functional        | Critical   |
+| Form Validation | Min/Max Length         | Max Length                | Error      | Input vượt max length         | 300 chars             | Validation đúng           | Functional        | High       |
+| Form Validation | Min/Max Length         | Min Length                | Error      | Input dưới min length         | abc                   | Validation đúng           | Functional        | High       |
+| Form Validation | Format                 | Email Format              | Error      | Invalid email                 | abc@                  | Show format error         | Functional        | High       |
+| Form Validation | Format                 | Phone Format              | Error      | Invalid phone                 | 123abc                | Validation đúng           | Functional        | Medium     |
+| Form Validation | Cross-field            | Password Confirm          | Error      | Password mismatch             | Different passwords   | Show mismatch error       | Functional        | High       |
+| Form Validation | Cross-field            | Start/End Date            | Error      | End < Start                   | Invalid date range    | Validation đúng           | Functional        | High       |
+| Form Validation | Conditional            | Conditional Required      | Dynamic    | Field required theo condition | Toggle ON             | Validation dynamic đúng   | Functional        | High       |
+| Form Validation | Conditional            | Dynamic Field Show/Hide   | Dynamic    | Change dependent field        | Select option         | Dynamic UI đúng           | Functional        | Medium     |
+| Form Validation | Dependency             | Parent/Child Field        | Dynamic    | Select parent value           | Country/City          | Child field update đúng   | Functional        | High       |
+| Form Validation | Async Validation       | Username Check            | Loading    | Check duplicate username      | Existing username     | Async validation đúng     | Functional        | High       |
+| Form Validation | Server-side Validation | Backend Validation        | Error      | Backend reject                | Invalid business data | Show backend error đúng   | Integration       | High       |
+| Form Validation | Duplicate Validation   | Duplicate Data            | Error      | Existing value                | Existing email        | Duplicate validation đúng | Functional        | High       |
+| Form Validation | Real-time Validation   | Live Validation           | Typing     | Validate while typing         | Invalid input         | Real-time validation đúng | UX                | Medium     |
+| Form Validation | Auto-format            | Input Formatting          | Typing     | Auto format phone/card        | 901234567             | Format đúng               | UX                | Medium     |
+| Form Validation | Save Draft             | Draft Save                | Draft      | Save incomplete form          | Partial data          | Draft lưu đúng            | Functional        | Medium     |
+| Form Validation | Unsaved Changes        | Leave Page Warning        | Dirty Form | Browser back/close            | Modified form         | Warning đúng              | UX                | High       |
+| Form Validation | Error UX               | Focus First Error         | Error      | Multiple invalid fields       | Invalid form          | Focus field đầu tiên lỗi  | UX                | Medium     |
+| Form Validation | Error UX               | Scroll to Error           | Error      | Error below fold              | Long form             | Auto scroll đúng          | UX                | Medium     |
+| Form Validation | Accessibility          | Keyboard Submit           | Focus      | Submit bằng Enter             | Keyboard              | Submit đúng               | Accessibility     | High       |
+| Form Validation | Accessibility          | Screen Reader Error       | Error      | Read validation error         | Screen reader         | Announce đúng             | Accessibility     | High       |
+| Form Validation | Localization           | Multi-language Validation | Error      | Different locale              | JP/DE/VN              | Message đúng locale       | Localization      | Medium     |
+| Form Validation | Security               | XSS Validation            | Error      | Input script                  | <script>              | Không execute             | Security          | Critical   |
+| Form Validation | Security               | SQL Injection             | Error      | SQL string                    | OR 1=1 --             | Không bypass validation   | Security          | Critical   |
+| Form Validation | Performance            | Huge Form                 | Large Form | Many fields                   | 100+ fields           | Form stable               | Performance       | Medium     |
