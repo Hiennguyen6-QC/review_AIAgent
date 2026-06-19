@@ -1,4 +1,4 @@
----
+﻿---
 name: Create_TCs_Skill
 description: The rigorous test case generation skill incorporating 8-Step Analysis, Embedded Rules, Markdown Template, and Dynamic Library Lookup.
 ---
@@ -44,7 +44,7 @@ Before outputting the Test Cases, you MUST mentally execute these 8 analysis ste
 1. **[FIRST] Read `domain_knowledge.md`**: Start by reading `.claude/rules/domain_knowledge.md` for project terminology, BHYT Business Rules Checklist, tech stack, and testing strategy. This is the foundation — you must understand healthcare-specific logic (tuyến, mức hưởng, đối tượng, cổng BHYT) before anything else.
 
 1.5. **[MANDATORY] Read BA Common Rules (live)**: Navigate to `https://docs.sota-his.com/docs/business/usecases/common` and read ALL CMR entries. These are BA-authored cross-cutting rules applying to ALL screens — input length/blocking behavior, pagination layout, soft-delete, audit log, etc. BA owns and updates this page; read it fresh each session, do NOT rely on cached/local copies. Apply CMRs before writing any TCs — they take precedence over generic antd/UX defaults.
-   - **Auto-login (HTTP Basic Auth)**: Read `BA_PORTAL_USER` and `BA_PORTAL_PASS` from `.env.test`. The portal uses HTTP Basic Authentication — NOT a login form. Embed credentials directly in the URL, URL-encoding special characters (`#` → `%23`, `@` → `%40`). Example: `https://sotatek:9fouBA8wL!%237!Lrm@docs.sota-his.com/docs/business/usecases/common`. If credentials are empty → ask user to fill `.env.test` first. Do NOT ask user to login manually.
+   - **Auto-login (HTTP Basic Auth)**: Read `BA_PORTAL_USER` and `BA_PORTAL_PASS` from `.env.test`. The portal uses HTTP Basic Authentication — NOT a login form. Embed credentials directly in the URL, URL-encoding special characters (`#` → `%23`, `@` → `%40`). Example: `https://your_username:your_password_with_%23@docs.sota-his.com/docs/business/usecases/common`. If credentials are empty → ask user to fill `.env.test` first. Do NOT ask user to login manually.
 
 2. **[SECOND] Read Tester 1 Analysis Output**: Read ALL files from `Output_QC/1. Analysis/<site_folder>/<module_folder>/<task_name>/`:
    - `TestCase_Material*.md` (latest version) — IF-THEN rules, scenarios, component matrix, readiness score
@@ -76,7 +76,7 @@ Before outputting the Test Cases, you MUST mentally execute these 8 analysis ste
    **[MANDATORY] Portal Login Protocol** (apply EVERY TIME before accessing any UC URL):
    1. **Portal uses HTTP Basic Authentication** — NOT a login form. Always embed credentials in the URL.
    2. **Read credentials from `.env.test`**: Get `BA_PORTAL_USER` and `BA_PORTAL_PASS`. URL-encode special characters (`#` → `%23`, `@` → `%40`).
-   3. **Navigate with embedded credentials**: `https://<BA_PORTAL_USER>:<encoded_pass>@docs.sota-his.com/docs/business/usecases`. Example: `https://sotatek:9fouBA8wL!%237!Lrm@docs.sota-his.com/docs/business/usecases`.
+   3. **Navigate with embedded credentials**: `https://<BA_PORTAL_USER>:<encoded_pass>@docs.sota-his.com/docs/business/usecases`. Example: `https://your_username:your_password_with_%23@docs.sota-his.com/docs/business/usecases`.
    4. **If ERR_INVALID_AUTH_CREDENTIALS**: Credentials may have changed — ask user to update `.env.test`.
    5. **NEVER ask user to login manually** if credentials are present in `.env.test`.
    6. **NEVER fallback to Figma/local files** solely because portal auth failed — fix credentials first.

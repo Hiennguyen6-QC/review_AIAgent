@@ -18,7 +18,7 @@ Ensure rigorous validation of UI constraints and 3C criteria (Completeness, Clar
    1. `.claude/rules/domain_knowledge.md` — project terminology, BHYT Business Rules Checklist, tech stack, testing strategy
    2. `.claude/rules/ui_ux_standards.md` — UI standards, validation rules, TC writing standards
    3. **BA Common Rules (live)**: Navigate to `https://docs.sota-his.com/docs/business/usecases/common` and read ALL CMR entries (CMR-001 to end). These are BA-authored cross-cutting rules applying to ALL screens — input length limits, blocking behavior, pagination layout, soft-delete, audit log, etc. BA owns and updates this page; read it fresh each session. Apply CMRs with same weight as domain_knowledge.md rules.
-      - **Auto-login (HTTP Basic Auth)**: Read `BA_PORTAL_USER` and `BA_PORTAL_PASS` from `.env.test`. The portal uses HTTP Basic Authentication — **NOT** a login form. Construct the URL with embedded credentials: `https://<user>:<pass_encoded>@docs.sota-his.com/...`. URL-encode special characters in the password before embedding (e.g., `#` → `%23`, `@` → `%40`). Example: password `9fouBA8wL!#7!Lrm` → embed as `9fouBA8wL!%237!Lrm`. If credentials are empty in `.env.test` → ask user to fill them in first. Do NOT ask user to login manually if credentials are present.
+      - **Auto-login (HTTP Basic Auth)**: Read `BA_PORTAL_USER` and `BA_PORTAL_PASS` from `.env.test`. The portal uses HTTP Basic Authentication — **NOT** a login form. Construct the URL with embedded credentials: `https://<user>:<pass_encoded>@docs.sota-his.com/...`. URL-encode special characters in the password before embedding (e.g., `#` → `%23`, `@` → `%40`). Example: password `your_password_with_#` → embed as `your_password_with_%23`. If credentials are empty in `.env.test` → ask user to fill them in first. Do NOT ask user to login manually if credentials are present.
       - **[MANDATORY] CMR Stale-Data Guard (Rule L)**: DO NOT use CMR rules from conversation history, prior session context, or memory — even if CMR was read earlier in the same thread. Re-read CMR fresh whenever ANY of these triggers fire:
         - User mentions "BA vừa update CMR", "common rule mới", or "CMR v2.X"
         - Session gap > 1 day since last CMR read
@@ -106,7 +106,7 @@ Ensure rigorous validation of UI constraints and 3C criteria (Completeness, Clar
    **[MANDATORY] BA Portal Login Protocol:**
    - **Portal uses HTTP Basic Authentication** — NOT a login form. Always embed credentials directly in the URL.
    - **Step 1 — Read credentials from `.env.test`**: Get `BA_PORTAL_USER` and `BA_PORTAL_PASS`. URL-encode special characters in the password (`#` → `%23`, `@` → `%40`, `!` stays as `!`).
-   - **Step 2 — Navigate with embedded credentials**: `https://<BA_PORTAL_USER>:<encoded_pass>@docs.sota-his.com/docs/business/usecases`. Example: `https://sotatek:9fouBA8wL!%237!Lrm@docs.sota-his.com/docs/business/usecases`.
+   - **Step 2 — Navigate with embedded credentials**: `https://<BA_PORTAL_USER>:<encoded_pass>@docs.sota-his.com/docs/business/usecases`. Example: `https://your_username:your_password_with_%23@docs.sota-his.com/docs/business/usecases`.
    - **Step 3 — If ERR_INVALID_AUTH_CREDENTIALS**: Credentials in `.env.test` may have changed. Ask user to update `.env.test` with the correct password.
    - **NEVER ask user to login manually** if credentials are present in `.env.test`.
    - **NEVER fallback to Figma/local BA folder** solely because portal auth failed — fix the credentials first.

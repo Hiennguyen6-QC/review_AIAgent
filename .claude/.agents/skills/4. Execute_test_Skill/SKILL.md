@@ -1,4 +1,4 @@
----
+﻿---
 name: 4.Execute_test_Skill
 description: High-rigor test execution methodology — validates real product behavior, detects hidden risks, and prevents production defects for the Mini HIS project.
 version: 1.1.0
@@ -80,7 +80,7 @@ When validating expected behavior, follow this order. If conflict exists between
 Before execution, understand business goal, user flow, expected behavior, critical risks. Validate test environment readiness, account/data validity, dependency availability.
 **IF blocker exists → STOP and report. Do NOT attempt to bypass.**
 
-**[MANDATORY] BA Portal Access**: When accessing `https://docs.sota-his.com/docs/business/usecases` (Source Priority #1), the portal uses **HTTP Basic Authentication** — NOT a login form. Read `BA_PORTAL_USER` / `BA_PORTAL_PASS` from `.env.test` and embed in URL with special chars URL-encoded (`#` → `%23`). Example: `https://sotatek:9fouBA8wL!%237!Lrm@docs.sota-his.com/docs/business/usecases`. If ERR_INVALID_AUTH_CREDENTIALS → ask user to update `.env.test`. NEVER ask user to login manually if credentials are present.
+**[MANDATORY] BA Portal Access**: When accessing `https://docs.sota-his.com/docs/business/usecases` (Source Priority #1), the portal uses **HTTP Basic Authentication** — NOT a login form. Read `BA_PORTAL_USER` / `BA_PORTAL_PASS` from `.env.test` and embed in URL with special chars URL-encoded (`#` → `%23`). Example: `https://your_username:your_password_with_%23@docs.sota-his.com/docs/business/usecases`. If ERR_INVALID_AUTH_CREDENTIALS → ask user to update `.env.test`. NEVER ask user to login manually if credentials are present.
 
 ## Rule 1 — Test Execution (Core)
 For each TC, execute step-by-step. Validate UI behavior, business logic, data handling, navigation, system response, error handling.
